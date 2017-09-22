@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+  <image style="width: 120px; height: 100px; background-color: #eeeeee;" mode="{{item.mode}}" src="/images/1.png"></image>
+</view>
+
+<view class="MainBtn">
+  <button class="CreatGameBtn">创建游戏</button>
+  <button class="JoinGameBtn">加入游戏</button>
+</view>
+
+<view class="info">
+  <button class="WLARP" size="mini">LARP介绍</button>
+  <button class="WCAPP" size="mini">小程序码</button>
+  <button class="WCAPP" size="mini">联系作者</button>
+</view>
