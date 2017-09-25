@@ -1,4 +1,13 @@
 /**app.wxss**/
+.page__hd {padding: 40px}
+.page__bd {padding-bottom: 40px}
+.weui-article{padding:20px 15px;font-size:15px}
+.weui-article__section{margin-bottom:1.5em}
+.weui-article__h1{font-size:18px;font-weight:400;margin-bottom:.9em}
+.weui-article__h2{font-size:16px;font-weight:400;margin-bottom:.34em}
+.weui-article__h3{font-weight:400;font-size:15px;margin-bottom:.34em}
+.weui-article__p{margin:0 0 .8em}
+
 .container {
   height: 100%;
   display: flex;
@@ -9,24 +18,9 @@
   box-sizing: border-box;
 } 
 .MainBtn {
+  margin: 0 auto;
   padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 50px; 
   padding-right: 50px;
-}
-.CreatGameBtn {
-  margin-top: 10px;
-  color: white;
-  background-color: orange
-}
-.JoinGameBtn {
-  margin-top: 10px;
-  color: orange;
-  background-color: white
-}
-.info {
-  padding-top: 100px;
-  padding-left: 30px; 
-  padding-right: 30px;
-  display:flex;
-  justify-content: space-around;
 }

@@ -4,12 +4,25 @@
 </view>
 
 <view class="MainBtn">
-  <button class="CreatGameBtn">创建游戏</button>
-  <button class="JoinGameBtn">加入游戏</button>
+  <navigator url="??????" hover-class="navigator-hover">
+    <button class="CreatGameBtn" type="primary" style="background-color:orange;">创建游戏</button>
+  </navigator>
+</view>
+
+<view class="MainBtn">
+  
+    <button class="JoinGameBtn" style="color:orange;background-color:white;" hover-class="JoinHover">加入游戏</button>
 </view>
 
 <view class="info">
-  <button class="WLARP" size="mini">LARP介绍</button>
-  <button class="WCAPP" size="mini">小程序码</button>
-  <button class="WCAPP" size="mini">联系作者</button>
+  <navigator url="../intro/intro" hover-class="navigator-hover">
+    <button class="WCARP" size="mini">LARP介绍</button>
+  </navigator>
+  <navigator url="../wccode/wccode" hover-class="navigator-hover">
+    <button class="WCAPP" size="mini">小程序码</button>
+  </navigator>
+  <navigator url="../info/info" hover-class="navigator-hover">
+    <button class="WCAPP" size="mini">联系作者</button>
+  </navigator>
+  
 </view>
