@@ -4,7 +4,7 @@
 </view>
 
 <view class="MainBtn">
-  <navigator url="??????" hover-class="navigator-hover">
+  <navigator url="../new/new" hover-class="navigator-hover">
     <button class="CreatGameBtn" type="primary" style="background-color:orange;">创建游戏</button>
   </navigator>
 </view>
