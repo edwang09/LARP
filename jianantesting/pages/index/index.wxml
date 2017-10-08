@@ -1,13 +1,33 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
+      <view class="container">
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  <image style="width: 120px; height: 100px; background-color: #eeeeee;" mode="{{item.mode}}" src="/images/1.png"></image>
+</view>
+<view class="MainBtn">
+  <navigator url="../new/new" hover-class="navigator-hover">
+    <button class="CreatGameBtn" type="primary" style="background-color:orange;">创建游戏</button>
+  </navigator>
+</view>
+
+<view class="MainBtn">
+  
+    <button bindtap='JoinGameBtn' class="JoinGameBtn" style="color:orange;background-color:white;" hover-class="JoinHover">加入游戏</button>
+</view>
+
+<view class="info">
+  <navigator url="../intro/intro" hover-class="navigator-hover">
+    <button class="WCARP" size="mini">LARP介绍</button>
+  </navigator>
+  <navigator url="../wccode/wccode" hover-class="navigator-hover">
+    <button class="WCAPP" size="mini">小程序码</button>
+  </navigator>
+  <navigator url="../info/info" hover-class="navigator-hover">
+    <button class="WCAPP" size="mini">联系作者</button>
+  </navigator>
+  
+</view>
     </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
 </view>

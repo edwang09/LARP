@@ -1,0 +1,11 @@
+/* pages/info/info.wxss */
+.artiblue{
+  padding:40px 15px;
+  font-size:15px;
+  color: orange;
+}
+
+.artibluep{
+  padding:20px;
+  margin:0 0 .8em
+  }

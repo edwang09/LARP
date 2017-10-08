@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="usermotto">
+    <text class="user-motto">{{tableid}}</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{gameinfo.name}}</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{characterinfo.charactername}}</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{characterinfo.charactersex}}</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{characterinfo.characterdescription}}</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{characterinfo.characterbackground}}</text>
+  </view>
+  <view wx:for="{{characterinfo.characterobjective}}">
+    <text>肮脏的事实： {{item}}</text>
+  </view>
+    <view wx:for="{{characterinfo.characterscandal}}">
+    <text>目的： {{item}}</text>
+  </view>
+</view>

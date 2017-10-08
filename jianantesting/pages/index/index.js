@@ -10,9 +10,9 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
+  JoinGameBtn: function() {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../join/join'
     })
   },
   onLoad: function () {

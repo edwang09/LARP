@@ -1,0 +1,13 @@
+<!--pages/wccode/wccode.wxml-->
+<view class="container">
+  <image style="width: 210px; height: 210px; background-color: #eeeeee;" mode="{{item.mode}}" src="/images/larpcode.png"></image>
+
+
+</view>
+   
+<view class="container">
+  <view class="weui-article__p">
+            可保存小程序码并分享给您的好友
+  </view>
+
+</view>

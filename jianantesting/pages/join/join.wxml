@@ -1,0 +1,36 @@
+<!--index.wxml-->
+<view class="container">
+
+<block wx:if="{{!hasgame}}">
+<view class="section">
+<view class="section__title">请输入房间号码</view>
+  <input bindinput="roomidInput" type="text" value= "temprary"/>
+</view>
+<view class="section">
+<view class="section__title">请输入房间密码</view>
+  <input bindinput="passwordInput" password type="number" value="123123"/>
+</view>
+<button bindtap="enterroom" > 进入房间 </button>
+</block>
+
+
+<block wx:if="{{hasgame}}">
+  <view class="section">
+  <view class="section__title">当前房间名称：{{tableid}}</view>
+  <view class="section__title">当前游戏名称：{{gamename}}</view>
+  <view class="section__title">当前游戏简介：{{description}}</view>
+  <view class="section__title">请选择角色</view>
+  <picker bindchange="bindPickerChange" value="0" range="{{characterlist}}" range-key="name">
+    <view class="picker">
+      当前选择：{{charactername}}
+    </view>
+  </picker>
+</view>
+<view class="section">
+<view  class="section__title">请输角色密码</view>
+  <input bindchange="passcodeChange" password type="text" />
+</view>
+
+<button bindtap="choosecharacter" > 确认角色 </button>
+</block>
+</view>
