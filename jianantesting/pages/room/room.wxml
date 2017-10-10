@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="container">
+<block wx:if="{{(display==1)}}">
   <view class="usermotto">
     <text class="user-motto">{{tableid}}</text>
   </view>
@@ -18,10 +19,68 @@
   <view class="usermotto">
     <text class="user-motto">{{characterinfo.characterbackground}}</text>
   </view>
+  <view class="usermotto">
+    <text class="user-motto">肮脏的事实：</text>
+  </view>
+  <view wx:for="{{characterinfo.characterscandal}}">
+    <text> => {{item}}</text>
+  </view>
+  
+  <view class="usermotto">
+    <text class="user-motto">目的：</text>
+  </view>
   <view wx:for="{{characterinfo.characterobjective}}">
-    <text>肮脏的事实： {{item}}</text>
+    <text>=> {{item}}</text>
   </view>
-    <view wx:for="{{characterinfo.characterscandal}}">
-    <text>目的： {{item}}</text>
+</block>
+
+
+
+
+<block wx:if="{{(display==2)}}">
+  <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
+    <view>{{plot.content}}</view>
+  </block>
+</block>
+
+
+
+<block wx:if="{{(display==3)}}">
+  <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
+    <view>{{clue.name}}</view>
+  </block>
+</block>
+
+<block wx:if="{{(display==4)}}">
+  <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
+    <button bindtap='getclue'>{{location.name}}</button>
+  </block>
+</block>
+
+
+
+<block wx:if="{{(display==5)}}">
+  <view class="usermotto">
+    <text class="user-motto">{{gameinfo.name}}</text>
   </view>
+  <view class="usermotto">
+    <text class="user-motto">{{gameinfo.descripion}}</text>
+  </view>
+</block>
+
+
+
+<block wx:if="{{(display==6)}}">
+  <button>进入下一回合</button>
+  <button>使用我的技能：{{}}</button>
+  <button>公告秘密</button>
+  <button>指认凶手</button>
+</block>
+
+<button bindtap='one'>个人信息</button>
+<button bindtap='two'>公开信息</button>
+<button bindtap='three'>我的线索</button>
+<button bindtap='four'>搜集线索</button>
+<button bindtap='five'>游戏说明</button>
+<button bindtap='six'>使用功能</button>
 </view>

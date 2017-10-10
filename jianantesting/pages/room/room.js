@@ -10,11 +10,42 @@ Page({
     characterplot:[],
     characterinfo:{},
     mainplot:[],
-    gameinfo:{}
-
+    gameinfo:{},
+    display:0,
+    acquiredclue:{},
+    broadcast:[]
   },
   //事件处理函数
-
+  one: function () {
+    this.setData({
+      display:1
+    })
+  },
+  two: function () {
+    this.setData({
+      display: 2
+    })
+  },
+  three: function () {
+    this.setData({
+      display: 3
+    })
+  },
+  four: function () {
+    this.setData({
+      display: 4
+    })
+  },
+  five: function () {
+    this.setData({
+      display: 5
+    })
+  },
+  six: function () {
+    this.setData({
+      display: 6
+    })
+  },
   onLoad: function () {
     let that = this
     this.setData({
@@ -44,10 +75,10 @@ Page({
       },
     });
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/mainplot?gameid=',
+      url: 'https://larpxiaozhushou.tk/api/mainplot?gameid=' + that.data.gameid + '&sort=plotid',
       success: function (res) {
         that.setData({
-          mainplot: res.data,
+          mainplot: res.data.slice(0, 1),
         })
       },
     });
