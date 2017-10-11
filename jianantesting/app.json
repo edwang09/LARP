@@ -7,7 +7,8 @@
     "pages/room/room",
     "pages/intro/intro",
     "pages/new/new",
-    "pages/wccode/wccode"
+    "pages/wccode/wccode",
+    "pages/findtruth/findtruth"
   ],
   "window":{
     "backgroundTextStyle":"light",

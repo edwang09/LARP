@@ -12,10 +12,11 @@ Page({
     mainplot:[],
     gameinfo:{},
     display:0,
-    acquiredclue:{},
-    broadcast:[]
+    acquiredclue:[],
+    broadcast:[],
+    roundnumber:0
   },
-  //事件处理函数
+  //navigator
   one: function () {
     this.setData({
       display:1
@@ -46,6 +47,39 @@ Page({
       display: 6
     })
   },
+  nextround: function () {
+    let that = this
+    this.setData({
+      roundnumber: that.data.roundnumber +1
+    })
+  },
+  findtruth: function () {
+    wx.navigateTo({
+      url: '../findtruth/findtruth',
+    })
+  },
+  getclue: function (e) {
+    let that = this;
+    var locationid = e.target.id;
+    var cluecount = this.data.gameinfo.cluelocation[locationid].count
+    var cluenumber = Math.floor(Math.random() * cluecount)
+    console.log(cluenumber)
+    wx.request({
+      url: 'https://larpxiaozhushou.tk/api/clue?gameid=' + that.data.gameid + '&cluelocation=' + locationid + '&cluenumber=' + cluenumber,
+      success: function (res) {
+        //console.log(res.data)
+        that.setData({
+          acquiredclue: that.data.acquiredclue.concat(res.data[0])
+        })
+        console.log(that.data.acquiredclue)
+      },
+    })
+  },
+
+
+
+
+
   onLoad: function () {
     let that = this
     this.setData({
@@ -78,7 +112,7 @@ Page({
       url: 'https://larpxiaozhushou.tk/api/mainplot?gameid=' + that.data.gameid + '&sort=plotid',
       success: function (res) {
         that.setData({
-          mainplot: res.data.slice(0, 1),
+          mainplot: res.data,
         })
       },
     });

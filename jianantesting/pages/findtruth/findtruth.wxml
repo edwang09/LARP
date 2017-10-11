@@ -1,0 +1,3 @@
+  <block wx:for="{{gameinfo.characterlist}}" wx:for-item="character" wx:key="index">
+    <button bindtap='choose' id='{{character.id}}'>{{character.name}}</button>
+  </block>
