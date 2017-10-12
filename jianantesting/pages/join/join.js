@@ -96,3 +96,6 @@ Page({
 
   },
 })
+
+
+//if(this.data.tableid=='temprary' && this.data.tablepw=='123123'){ wx.showToast({ title: '读取房间', icon: 'success', duration: 2000 }) } else{ wx.showToast({ title: '输入有误', icon: 'success', duration: 2000 }) }
