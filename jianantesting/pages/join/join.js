@@ -70,7 +70,7 @@ Page({
               });
           wx.showToast({ title: '进入成功', duration: 1000 })
           }else{
-            wx.showToast({ title: '输入有误', duration: 1000 })
+            wx.showToast({ title: '输入有误', icon:'loading', duration: 1000 })
           }
       }
     });

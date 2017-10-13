@@ -1,86 +1,119 @@
 <!--index.wxml-->
-<view class="container">
-<block wx:if="{{(display=='1')}}">
-  <view class="usermotto">
-    <text class="user-motto">{{tableid}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{gameinfo.name}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{characterinfo.charactername}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{characterinfo.charactersex}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{characterinfo.characterdescription}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{characterinfo.characterbackground}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">肮脏的事实：</text>
-  </view>
-  <view wx:for="{{characterinfo.characterscandal}}">
-    <text> => {{item}}</text>
-  </view>
-  
-  <view class="usermotto">
-    <text class="user-motto">目的：</text>
-  </view>
-  <view wx:for="{{characterinfo.characterobjective}}">
-    <text>=> {{item}}</text>
-  </view>
-</block>
+<view class="page">  
 
+  <!--内容主体-->  
+  <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">  
+    <swiper-item>  
+      <view class="weui-article">
+        <block>
+          <view class="usermotto">
+            <text class="user-motto">{{tableid}}</text>
+          </view>
+          <view class="usermotto">
+            <text class="user-motto">{{gameinfo.name}}</text>
+          </view>
+          <view class="usermotto">
+            <text class="user-motto">{{characterinfo.charactername}}</text>
+          </view>
+         <view class="usermotto">
+           <text class="user-motto">{{characterinfo.charactersex}}</text>
+          </view>
+         <view class="usermotto">
+            <text class="user-motto">{{characterinfo.characterdescription}}</text>
+         </view>
+          <view class="usermotto">
+            <text class="user-motto">{{characterinfo.characterbackground}}</text>
+          </view>
+         <view class="usermotto">
+           <text class="user-motto">肮脏的事实：</text>
+          </view>
+         <view wx:for="{{characterinfo.characterscandal}}">
+          <text> => {{item}}</text>
+         </view>
+          <view class="usermotto">
+            <text class="user-motto">目的：</text>
+          </view>
+          <view wx:for="{{characterinfo.characterobjective}}">
+            <text>=> {{item}}</text>
+          </view>
+        </block>  
+      </view>
+    </swiper-item>
 
+    <swiper-item>  
+      <view class="weui-article">
+        <block>
+          <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
+            <view wx:if="{{plot.plotid <= roundnumber}}">{{plot.content}}</view>
+          </block>
+        </block>
+      </view>
+    </swiper-item> 
 
+    <swiper-item>  
+      <view class="weui-article">
+        <block>
+          <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
+            <view>{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
+          </block>
+        </block>
+      </view>    
+    </swiper-item>
 
-<block wx:if="{{(display=='2')}}">
-  <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
-    <view wx:if="{{plot.plotid <= roundnumber}}">{{plot.content}}</view>
-  </block>
-</block>
+    <swiper-item>  
+      <view class="weui-article">
+        <block>
+          <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
+            <button bindtap='getclue' id='{{location.index}}' >{{location.name}}</button>
+          </block>
+        </block>      
+      </view>    
+    </swiper-item> 
 
+    <swiper-item>  
+      <view class="weui-article">
+        <block>
+          <view class="usermotto">
+            <text class="user-motto">{{gameinfo.name}}</text>
+          </view>
+          <view class="usermotto">
+            <text class="user-motto">{{gameinfo.descripion}}</text>
+          </view>
+        </block>
+      </view>    
+    </swiper-item>  
 
+    <swiper-item>  
+      <view class="weui-article">
+        <block>
+          <button bindtap='nextround'>进入下一回合</button>
+          <button>公告秘密</button>
+          <button hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
+          <button hidden='{{vote==-1?true:false}}'  bindtap='showresult'>查看投票</button>
+        </block>      
+      </view>    
+    </swiper-item> 
+  </swiper>  
+  <!--底部导航栏-->  
+  <view class="swiper-tab">  
+    <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1">
+      <image style="width: 25px; height: 25px;" src="/icon/首页_填充.png"></image>
+    </view>  
+    <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="navigate" id="2">
+      <image style="width: 25px; height: 25px;" src="/icon/群组_填充.png"></image>
+    </view>  
+    <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="navigate" id="3">
+      <image style="width: 25px; height: 25px;" src="/icon/用户_填充.png"></image>
+    </view>  
+    <view class="tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="navigate" id="4">
+      <image style="width: 25px; height: 25px;" src="/icon/搜索_填充.png"></image>
+    </view>  
+    <view class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="navigate" id="5">
+      <image style="width: 25px; height: 25px;" src="/icon/日历_填充.png"></image>
+    </view>  
+    <view class="tab-item {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="navigate" id="6">
+      <image style="width: 25px; height: 25px;" src="/icon/设置_填充.png"></image>
+    </view>  
+  </view>  
+</view>  
 
-<block wx:if="{{(display=='3')}}">
-  <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
-    <view>{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
-  </block>
-</block>
-
-<block wx:if="{{(display=='4')}}">
-  <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
-    <button bindtap='getclue' id='{{location.index}}' >{{location.name}}</button>
-  </block>
-</block>
-
-
-
-<block wx:if="{{(display=='5')}}">
-  <view class="usermotto">
-    <text class="user-motto">{{gameinfo.name}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{gameinfo.descripion}}</text>
-  </view>
-</block>
-
-
-
-<block wx:if="{{(display=='6')}}">
-  <button bindtap='nextround'>进入下一回合</button>
-  <button>公告秘密</button>
-  <button hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
-  <button hidden='{{vote==-1?true:false}}'  bindtap='showresult'>查看投票</button>
-</block>
-
-<button type='warn' bindtap='navigate' id='1'>个人信息</button>
-<button type='warn' bindtap='navigate' id='2'>公开信息</button>
-<button type='warn' bindtap='navigate' id='3'>我的线索</button>
-<button type='warn' bindtap='navigate' id='4'>搜集线索</button>
-<button type='warn' bindtap='navigate' id='5'>游戏说明</button>
-<button type='warn' bindtap='navigate' id='6'>使用功能</button>
-</view>

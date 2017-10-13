@@ -2,12 +2,12 @@
 
 
 <block wx:if ="{{hasUserInfo}}">
-      <view class="container">
+  <view class="container">
       <!-- avatar
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
        avatar-->
   <image style="width: 120px; height: 100px; background-color: #eeeeee;" mode="{{item.mode}}" src="/images/1.png"></image>
-</view>
+  </view>
 <view class="MainBtn">
   <navigator url="../new/new" hover-class="navigator-hover">
     <button class="CreatGameBtn" type="primary" style="background-color:orange;">创建游戏</button>

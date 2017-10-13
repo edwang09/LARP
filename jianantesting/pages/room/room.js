@@ -17,20 +17,44 @@ Page({
     broadcast:[],
     vote:-1,
     voteresult:[],
-    roundnumber:0
+    roundnumber:0,
+    // tab切换    
+    currentTab: 0
   },
+  
+  //swiper
+  
+  swiperChange: function (e) {
+    console.log(e);
+    this.setData({
+      currentTab: e.detail.current,
+    })
+  }, 
+
+
   //navigator
   navigate: function (e) {
+    console.log(e);
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current,
+      })
+    }
     this.setData({
       display:e.target.id
     })
   },
+
   nextround: function () {
     let that = this
     this.setData({
       roundnumber: that.data.roundnumber +1
     })
   },
+
   vote: function () {
     let that = this
     wx.showActionSheet({
@@ -57,6 +81,7 @@ Page({
       }
     })
   }, 
+
   showresult: function () {
     var content=''
     var vote
@@ -86,6 +111,7 @@ Page({
       },
     })
   },
+
   getclue: function (e) {
     let that = this;
     var locationid = e.target.id;
@@ -103,10 +129,6 @@ Page({
       },
     })
   },
-
-
-
-
 
   onShow: function () {
     let that = this
