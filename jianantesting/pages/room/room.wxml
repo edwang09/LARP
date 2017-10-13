@@ -103,19 +103,19 @@
   <!--底部导航栏-->  
   <view class="swiper-tab">  
     <view class="tab-item">
-      <image class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1" src="/icon/首页_填充.png" style="width: 25px; height: 25px;" ></image>
+      <image class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1" src="/icon/用户_填充.png" style="width: 25px; height: 25px;" ></image>
     </view>  
     <view class="tab-item">
-      <image class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="navigate" id="2" style="width: 25px; height: 25px;" src="/icon/群组_填充.png"></image>
+      <image class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="navigate" id="2" style="width: 25px; height: 25px;" src="/icon/清单_填充.png"></image>
     </view>  
     <view class="tab-item">
-      <image class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="navigate" id="3" style="width: 25px; height: 25px;" src="/icon/用户_填充.png"></image>
+      <image class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="navigate" id="3" style="width: 25px; height: 25px;" src="/icon/信封_填充.png"></image>
     </view>  
     <view class="tab-item">
       <image class="tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="navigate" id="4" style="width: 25px; height: 25px;" src="/icon/搜索_填充.png"></image>
     </view>  
     <view class="tab-item">
-      <image class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/日历_填充.png"></image>
+      <image class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/帮助_填充.png"></image>
     </view>  
     <view class="tab-item">
       <image class="tab-item {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="navigate" id="6" style="width: 25px; height: 25px;" src="/icon/设置_填充.png"></image>
