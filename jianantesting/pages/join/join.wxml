@@ -3,7 +3,7 @@
 
 <block wx:if="{{!hasgame}}">
 
-  <view class="container">
+  <view class="page">
     <view class="title">请输入房间号码:</view>
       <input class="inputView" bindinput="roomidInput" type="text" value="temporary"/>
 
@@ -11,39 +11,39 @@
     <view class="title">请输入房间密码:</view>
       <input class="inputView" bindinput="passwordInput" password type="number" value="123123"/>
   
-    <button bindtap="enterroom" type="primary" style="background-color:orange;"> 进入房间 </button>
+    <button class="inputView" bindtap="enterroom" type="primary" style="background-color:orange;"> 进入房间 </button>
   
   </view>
 </block>
 
-<view class="container">
-<block wx:if="{{hasgame}}">
-  <view class="section">
+<view class="page">
+  <block wx:if="{{hasgame}}">
+    <view class="section">
   
-  <view class="flex-row" style="display:flex;">
-      <view class="title">房间名称：</view>
-      <view class="title" style="color:orange;">{{tableid}}</view>
-  </view>
-  <view class="flex-row" style="display:flex;">
-      <view class="title">游戏名称：</view>
-      <view class="title" style="color:orange;">{{gamename}}</view>
-  </view>
-  <view class="flex-row" style="display:flex;">
-      <view class="title">游戏简介：</view>
-      <view class="title" style="color:orange;">{{description}}</view>
-  </view>
-  <picker bindchange="bindPickerChange" value="0" range="{{characterlist}}" range-key="name">
-    <view class="picker">
-      请选择角色：{{charactername}}
+      <view class="flex-row" style="display:flex;">
+        <view class="title">房间名称：</view>
+        <view class="title" style="color:orange;">{{tableid}}</view>
+      </view>
+      <view class="flex-row" style="display:flex;">
+        <view class="title">游戏名称：</view>
+        <view class="title" style="color:orange;">{{gamename}}</view>
+      </view>
+      <view class="flex-row" style="display:flex;">
+        <view class="title">游戏简介：</view>
+        <view class="title" style="color:orange;">{{description}}</view>
+      </view>
+      <picker bindchange="bindPickerChange" value="0" range="{{characterlist}}" range-key="name">
+        <view class="picker">
+          请选择角色：{{charactername}}
+        </view>
+      </picker>
     </view>
-  </picker>
-</view>
 
 
-<view class="section">
-  <input class="inputView" bindchange="passcodeChange" password type="text" placeholder="请输入角色码"placeholder-class="ph"/>
-</view>
+    <view class="section">
+      <input class="inputView" bindchange="passcodeChange" password type="text" placeholder="请输入角色码"placeholder-class="ph"/>
+    </view>
 
-<button bindtap="choosecharacter" type="primary" style="background-color:orange;"> 确认角色 </button>
-</block>
+    <button class="inputView" bindtap="choosecharacter" type="primary" style="background-color:orange;"> 确认角色 </button>
+  </block>
 </view>

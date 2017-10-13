@@ -6,7 +6,7 @@
       <!-- avatar
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
        avatar-->
-  <image style="width: 120px; height: 100px; background-color: #eeeeee;" mode="{{item.mode}}" src="/images/1.png"></image>
+    <image style="width: 120px; height: 100px; background-color: #eeeeee;" mode="{{item.mode}}" src="/images/1.png"></image>
   </view>
 <view class="MainBtn">
   <navigator url="../new/new" hover-class="navigator-hover">

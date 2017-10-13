@@ -21,6 +21,8 @@
   background: #ffffff;  
 }  
 .on {
+  
+  filter: grayscale(90%); 
   color: blue;  
-  border-bottom: 5rpx solid blue;  
+  border-bottom: 4rpx solid orange;
 }  

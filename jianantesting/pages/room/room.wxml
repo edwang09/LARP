@@ -5,6 +5,7 @@
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">  
     <swiper-item>  
       <view class="weui-article">
+        <view class="weui-article__h1">我的信息</view>
         <block>
           <view class="usermotto">
             <text class="user-motto">{{tableid}}</text>
@@ -42,6 +43,7 @@
 
     <swiper-item>  
       <view class="weui-article">
+        <view class="weui-article__h1">公开的线索</view>
         <block>
           <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
             <view wx:if="{{plot.plotid <= roundnumber}}">{{plot.content}}</view>
@@ -52,6 +54,7 @@
 
     <swiper-item>  
       <view class="weui-article">
+        <view class="weui-article__h1">我的线索</view>
         <block>
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
             <view>{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
@@ -62,6 +65,7 @@
 
     <swiper-item>  
       <view class="weui-article">
+        <view class="weui-article__h1">搜集线索</view>
         <block>
           <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
             <button bindtap='getclue' id='{{location.index}}' >{{location.name}}</button>
@@ -72,6 +76,7 @@
 
     <swiper-item>  
       <view class="weui-article">
+        <view class="weui-article__h1">游戏说明及背景</view>
         <block>
           <view class="usermotto">
             <text class="user-motto">{{gameinfo.name}}</text>
@@ -85,34 +90,35 @@
 
     <swiper-item>  
       <view class="weui-article">
+        <view class="weui-article__h1">使用功能</view>
         <block>
-          <button bindtap='nextround'>进入下一回合</button>
+          <button class="MainBtn" bindtap='nextround'>进入下一回合</button>
           <button>公告秘密</button>
-          <button hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
-          <button hidden='{{vote==-1?true:false}}'  bindtap='showresult'>查看投票</button>
+          <button class="MainBtn" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
+          <button class="MainBtn" hidden='{{vote==-1?true:false}}'  bindtap='showresult'>查看投票</button>
         </block>      
       </view>    
     </swiper-item> 
   </swiper>  
   <!--底部导航栏-->  
   <view class="swiper-tab">  
-    <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1">
-      <image style="width: 25px; height: 25px;" src="/icon/首页_填充.png"></image>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1" src="/icon/首页_填充.png" style="width: 25px; height: 25px;" ></image>
     </view>  
-    <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="navigate" id="2">
-      <image style="width: 25px; height: 25px;" src="/icon/群组_填充.png"></image>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="navigate" id="2" style="width: 25px; height: 25px;" src="/icon/群组_填充.png"></image>
     </view>  
-    <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="navigate" id="3">
-      <image style="width: 25px; height: 25px;" src="/icon/用户_填充.png"></image>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="navigate" id="3" style="width: 25px; height: 25px;" src="/icon/用户_填充.png"></image>
     </view>  
-    <view class="tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="navigate" id="4">
-      <image style="width: 25px; height: 25px;" src="/icon/搜索_填充.png"></image>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="navigate" id="4" style="width: 25px; height: 25px;" src="/icon/搜索_填充.png"></image>
     </view>  
-    <view class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="navigate" id="5">
-      <image style="width: 25px; height: 25px;" src="/icon/日历_填充.png"></image>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/日历_填充.png"></image>
     </view>  
-    <view class="tab-item {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="navigate" id="6">
-      <image style="width: 25px; height: 25px;" src="/icon/设置_填充.png"></image>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="navigate" id="6" style="width: 25px; height: 25px;" src="/icon/设置_填充.png"></image>
     </view>  
   </view>  
 </view>  
