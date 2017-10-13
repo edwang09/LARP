@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    user_id:'',
     tableid:'',
     gameid: '',
     characterid: '',
@@ -11,40 +12,17 @@ Page({
     characterinfo:{},
     mainplot:[],
     gameinfo:{},
-    display:0,
+    display:'0',
     acquiredclue:[],
     broadcast:[],
+    vote:-1,
+    voteresult:[],
     roundnumber:0
   },
   //navigator
-  one: function () {
+  navigate: function (e) {
     this.setData({
-      display:1
-    })
-  },
-  two: function () {
-    this.setData({
-      display: 2
-    })
-  },
-  three: function () {
-    this.setData({
-      display: 3
-    })
-  },
-  four: function () {
-    this.setData({
-      display: 4
-    })
-  },
-  five: function () {
-    this.setData({
-      display: 5
-    })
-  },
-  six: function () {
-    this.setData({
-      display: 6
+      display:e.target.id
     })
   },
   nextround: function () {
@@ -53,9 +31,59 @@ Page({
       roundnumber: that.data.roundnumber +1
     })
   },
-  findtruth: function () {
-    wx.navigateTo({
-      url: '../findtruth/findtruth',
+  vote: function () {
+    let that = this
+    wx.showActionSheet({
+      itemList: that.data.gameinfo.characterlist.map(d => d.name),
+      success: function (res) {
+        that.setData({
+          vote: res.tapIndex
+        })
+        wx.request({
+          url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+          data: {
+            acquiredclue: that.data.acquiredclue,
+            broadcast: that.data.broadcast,
+            vote: that.data.vote
+          },
+          method: "PUT",
+          success: function (res) {
+            console.log("succeeded")
+          },
+        });
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+  }, 
+  showresult: function () {
+    var content=''
+    var vote
+    let that = this
+    wx.request({
+      url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid + '&select=characterid vote',
+      success: function (res) {
+        that.setData({
+          voteresult: res.data
+        })
+        console.log(res.data)
+        for(vote in res.data){
+          console.log(res.data[vote].characterid)
+          content = content + that.data.gameinfo.characterlist[res.data[vote].characterid].name + ' : ' + that.data.gameinfo.characterlist[res.data[vote].vote].name + ' \ '
+        }
+        wx.showModal({
+          title: '结果',
+          content: content,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      },
     })
   },
   getclue: function (e) {
@@ -80,7 +108,7 @@ Page({
 
 
 
-  onLoad: function () {
+  onShow: function () {
     let that = this
     this.setData({
       tableid: wx.getStorageSync('tableid')
@@ -91,6 +119,10 @@ Page({
     this.setData({
       characterid: wx.getStorageSync('characterid')
      });
+    this.setData({
+      user_id: wx.getStorageSync('user_id')
+    });
+
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/characterplot?gameid=' + that.data.gameid + '&characterid=' + that.data.characterid,
       success: function (res) {
@@ -125,22 +157,38 @@ Page({
       },
     });
 
+
     wx.connectSocket({
       url: 'wss://larpxiaozhushou.tk',
     })
     wx.onSocketOpen(function (res) {
       console.log('WebSocket is on.')
-
       wx.sendSocketMessage({
         data: "Hello World",
       })
     })
     wx.onSocketMessage(function (res) {
-      console.log('WebSocket is working.')
+
     })
     wx.onSocketClose(function (res) {
       console.log('WebSocket is off.')
     })
 
+},
+onHide: function(){
+  let that= this
+  console.log(this.data.user_id)
+  wx.request({
+    url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+    data:{
+      acquiredclue: that.data.acquiredclue,
+      broadcast: that.data.broadcast,
+      vote: that.data.vote
+    },
+    method:"PUT",
+    success: function (res) {
+      console.log("succeeded")
+    },
+  });
 }
 })

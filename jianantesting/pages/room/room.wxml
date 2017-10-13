@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-<block wx:if="{{(display==1)}}">
+<block wx:if="{{(display=='1')}}">
   <view class="usermotto">
     <text class="user-motto">{{tableid}}</text>
   </view>
@@ -37,7 +37,7 @@
 
 
 
-<block wx:if="{{(display==2)}}">
+<block wx:if="{{(display=='2')}}">
   <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
     <view wx:if="{{plot.plotid <= roundnumber}}">{{plot.content}}</view>
   </block>
@@ -45,13 +45,13 @@
 
 
 
-<block wx:if="{{(display==3)}}">
+<block wx:if="{{(display=='3')}}">
   <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
     <view>{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
   </block>
 </block>
 
-<block wx:if="{{(display==4)}}">
+<block wx:if="{{(display=='4')}}">
   <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
     <button bindtap='getclue' id='{{location.index}}' >{{location.name}}</button>
   </block>
@@ -59,7 +59,7 @@
 
 
 
-<block wx:if="{{(display==5)}}">
+<block wx:if="{{(display=='5')}}">
   <view class="usermotto">
     <text class="user-motto">{{gameinfo.name}}</text>
   </view>
@@ -70,17 +70,17 @@
 
 
 
-<block wx:if="{{(display==6)}}">
+<block wx:if="{{(display=='6')}}">
   <button bindtap='nextround'>进入下一回合</button>
   <button>公告秘密</button>
-  <button bindtap='findtruth'>指认凶手</button>
-  <button>查看投票</button>
+  <button hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
+  <button hidden='{{vote==-1?true:false}}'  bindtap='showresult'>查看投票</button>
 </block>
 
-<button type='warn' bindtap='one'>个人信息</button>
-<button type='warn' bindtap='two'>公开信息</button>
-<button type='warn' bindtap='three'>我的线索</button>
-<button type='warn' bindtap='four'>搜集线索</button>
-<button type='warn' bindtap='five'>游戏说明</button>
-<button type='warn' bindtap='six'>使用功能</button>
+<button type='warn' bindtap='navigate' id='1'>个人信息</button>
+<button type='warn' bindtap='navigate' id='2'>公开信息</button>
+<button type='warn' bindtap='navigate' id='3'>我的线索</button>
+<button type='warn' bindtap='navigate' id='4'>搜集线索</button>
+<button type='warn' bindtap='navigate' id='5'>游戏说明</button>
+<button type='warn' bindtap='navigate' id='6'>使用功能</button>
 </view>

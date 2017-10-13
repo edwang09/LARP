@@ -32,10 +32,9 @@
       <view class="title">游戏简介：</view>
       <view class="title" style="color:orange;">{{description}}</view>
   </view>
-  <view class="title">请选择角色:</view>
   <picker bindchange="bindPickerChange" value="0" range="{{characterlist}}" range-key="name">
     <view class="picker">
-      当前选择：{{charactername}}
+      请选择角色：{{charactername}}
     </view>
   </picker>
 </view>

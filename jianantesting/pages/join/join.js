@@ -10,7 +10,7 @@ Page({
     characterlist: [],
     charactername:'',
     characterid:0,
-    characterpw: '',
+    characterpw: 'fakepassword',
     characterpasscode: '',
     hasgame: false,
     tableid:'temprary',
@@ -44,17 +44,19 @@ Page({
   },
   enterroom: function () {
     let that = this;
+    wx.showToast({ title: '读取房间', icon: 'loading', duration: 2000 });
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/table?tableid=' + this.data.tableid+'&passcode=' + this.data.tablepw,
       success: function(res) {
-        console.log(res.data);
-        that.setData({
-          gameid: res.data[0].gameid,
-          gamename: res.data[0].gamename
-        })
+          if(res.data.length!=0){
+            that.setData({
+              gameid: res.data[0].gameid,
+              gamename: res.data[0].gamename
+            })
+          }
         },
         complete: function(){
-          console.log(that.data.gameid);
+          if (that.data.gameid != '') {
           wx.request({
             url: 'https://larpxiaozhushou.tk/api/game?id=' + that.data.gameid ,
               success: function (res) {
@@ -66,29 +68,85 @@ Page({
                   })
                 },
               });
+          wx.showToast({ title: '进入成功', duration: 1000 })
+          }else{
+            wx.showToast({ title: '输入有误', duration: 1000 })
+          }
       }
     });
     
   },
   choosecharacter: function () {
-    //console.log(this.data.characterpasscode);
-    //console.log(this.data.characterpw);
-    wx.setStorage({
-      key: "tableid",
-      data: this.data.tableid
-    });
-    wx.setStorage({
-      key: "gameid",
-      data: this.data.gameid
-    });
-    wx.setStorage({
-      key: "characterid",
-      data: this.data.characterid
-    });
+    let that = this
     if (this.data.characterpasscode == this.data.characterpw){
-      wx.navigateTo({
-        url: '../room/room'
-      })
+      wx.showToast({ title: '读取房间', icon: 'loading', duration: 2000 });
+      wx.request({
+        url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid + '&characterid=' + that.data.characterid,
+        success: function (res) {
+          console.log(res.data.length);
+          if (res.data.length == 0) {
+            wx.request({
+              url: 'https://larpxiaozhushou.tk/api/user',
+              data: {
+                tableid: that.data.tableid,
+                gameid: that.data.gameid,
+                characterid: that.data.characterid,
+                usernickname: app.globalData.userInfo.nickName,
+              },
+              method: "POST",
+              success: function (res) {
+                console.log(res.data)
+              },
+              complete: function(res){
+                wx.setStorage({
+                  key: "tableid",
+                  data: that.data.tableid
+                });
+                wx.setStorage({
+                  key: "gameid",
+                  data: that.data.gameid
+                });
+                wx.setStorage({
+                  key: "characterid",
+                  data: that.data.characterid
+                });
+                wx.setStorage({
+                  key: "user_id",
+                  data: res.data._id
+                });
+                wx.navigateTo({
+                  url: '../room/room',
+                })
+              }
+            });
+          } else if(res.data[0].usernickname == app.globalData.userInfo.nickName){
+            wx.showToast({ title: '读取房间', icon: 'loading', duration: 2000 });
+            wx.setStorage({
+              key: "tableid",
+              data: that.data.tableid
+            });
+            wx.setStorage({
+              key: "gameid",
+              data: that.data.gameid
+            });
+            wx.setStorage({
+              key: "characterid",
+              data: that.data.characterid
+            });
+            wx.setStorage({
+              key: "user_id",
+              data: res.data[0]._id
+            });
+            wx.navigateTo({
+              url: '../room/room',
+            })
+          }else{
+            wx.showToast({ title: '输入有误', duration: 1000 })
+          }
+        }
+      });
+    }else{
+      wx.showToast({ title: '输入有误', duration: 1000 })
     }
 
   },
@@ -96,6 +154,4 @@ Page({
 
   },
 })
-
-
 //if(this.data.tableid=='temprary' && this.data.tablepw=='123123'){ wx.showToast({ title: '读取房间', icon: 'success', duration: 2000 }) } else{ wx.showToast({ title: '输入有误', icon: 'success', duration: 2000 }) }

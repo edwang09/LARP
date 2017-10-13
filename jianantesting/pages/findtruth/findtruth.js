@@ -14,12 +14,9 @@ Page({
 
   choose: function (e) { 
     let that = this
-    wx.request({
-      url: 'https://larpxiaozhushou.tk/api/table?tableid=' + that.data.tableid,
-      success: function (res) {
-        console.log(res.data[0]._id)
-      },
-    });
+      this.setData({
+        
+      })
   },
   /**
    * 生命周期函数--监听页面加载
