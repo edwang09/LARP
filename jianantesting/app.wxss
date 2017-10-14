@@ -8,6 +8,10 @@
 .weui-article__h3{font-weight:400;font-size:15px;margin-bottom:.34em}
 .weui-article__p{margin:0 0 .8em}
 
+.section_gap{
+    padding: 0 15px;
+}
+
 .container {
   height: 100%;
   display: flex;

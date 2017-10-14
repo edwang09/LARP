@@ -1,0 +1,48 @@
+<view class="page">
+  <view class="page_swiper">
+    <view class="section section_gap swiper">
+      <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500">
+        <block wx:for-items="{{background}}">
+          <swiper-item>
+            <view class="swiper-item bc_{{item}}"></view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+
+  <view class="flex">
+    <view class="tab-item">
+      <image class="tab-item" bindtap="navigate" id="1" style="width: 28px; height: 28px;" src="/icon/用户_填充.png"></image>
+    </view>
+    <view class="tab-item">
+      <image class="tab-item" bindtap="navigate" id="2" style="width: 28px; height: 28px;" src="/icon/清单_填充.png"></image>
+    </view>
+    <view class="tab-item">
+      <image class="tab-item" bindtap="navigate" id="3" style="width: 28px; height: 28px;" src="/icon/信封_填充.png"></image>
+    </view>
+    <view class="tab-item">
+      <image class="tab-item" bindtap="navigate" id="4" style="width: 28px; height: 28px;" src="/icon/搜索_填充.png"></image>
+    </view>
+    <view class="tab-item">
+      <image class="tab-item" bindtap="navigate" id="5" style="width: 28px; height: 28px;" src="/icon/设置_填充.png"></image>
+    </view>
+  </view>
+  <view class="flex">
+    <view class="tab-item">
+      武侠故事
+    </view>
+    <view class="tab-item">
+      民国风云
+    </view>
+    <view class="tab-item">
+      欧美风情
+    </view>
+    <view class="tab-item">
+      现代剧集
+    </view>
+    <view class="tab-item">
+      经典游戏
+    </view>
+  </view>
+</view>

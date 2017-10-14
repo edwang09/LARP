@@ -8,7 +8,9 @@
     "pages/intro/intro",
     "pages/new/new",
     "pages/wccode/wccode",
-    "pages/findtruth/findtruth"
+    "pages/findtruth/findtruth",
+    "pages/shop/shop",
+    "pages/create/create"
   ],
   "window":{
     "backgroundTextStyle":"light",

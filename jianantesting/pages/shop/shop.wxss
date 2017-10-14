@@ -1,0 +1,43 @@
+.page {
+    min-height: 100%;
+    flex: 1;
+    background-color: #FBF9FE;
+    font-size: 16px;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+    overflow: hidden;
+}
+.page_swiper {
+    padding-bottom: 20px;
+}
+.swiper-item{
+    display: block;
+    height: 150px;
+}
+.flex {  
+  display: flex;  
+  flex-direction: row;  
+  background: #ffffff;
+  padding-left: 10px;
+  padding-right: 10px;
+}  
+.tab-item {  
+  width: 33.3%; 
+  font-size: 0.7em; 
+  text-align: center; 
+  color: grey;
+}  
+.bc_green{
+    background-color: #09BB07;
+}
+.bc_red{
+    background-color: #F76260;
+}
+.bc_blue{
+    background-color: #10AEFF;
+}
+.bc_yellow{
+    background-color: #FFBE00;
+}
+.bc_gray{
+    background-color: #C9C9C9;
+}
