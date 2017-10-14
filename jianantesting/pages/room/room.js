@@ -50,8 +50,17 @@ Page({
 
   nextround: function () {
     let that = this
-    this.setData({
-      roundnumber: that.data.roundnumber +1
+    wx.request({
+      url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
+      data: {
+        roundnumber: that.data.roundnumber+1
+      },
+      method: "PUT",
+      success: function (res) {
+        wx.sendSocketMessage({
+          data: "refresh",
+        })
+      },
     })
   },
 
@@ -144,7 +153,18 @@ Page({
     this.setData({
       user_id: wx.getStorageSync('user_id')
     });
-
+    this.setData({
+      table_id: wx.getStorageSync('table_id')
+    });
+    wx.request({
+      url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
+      success: function (res) {
+        //console.log(res.data)
+        that.setData({
+          roundnumber: res.data.roundnumber
+        })
+      },
+    });
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/characterplot?gameid=' + that.data.gameid + '&characterid=' + that.data.characterid,
       success: function (res) {
@@ -178,6 +198,16 @@ Page({
         })
       },
     });
+    wx.request({
+      url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+      success: function (res) {
+        that.setData({
+          acquiredclue: res.data.acquiredclue,
+            broadcast: res.data.broadcast,
+              vote: res.data.vote
+        })
+      },
+    });
 
 
     wx.connectSocket({
@@ -189,8 +219,17 @@ Page({
         data: "Hello World",
       })
     })
-    wx.onSocketMessage(function (res) {
-
+      wx.onSocketMessage(function (res) {
+        if (res.data =="received:refresh"){
+          wx.request({
+            url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
+            success: function (res) {
+              that.setData({
+                roundnumber: res.data.roundnumber,
+              })
+            },
+          })
+        }
     })
     wx.onSocketClose(function (res) {
       console.log('WebSocket is off.')

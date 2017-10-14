@@ -4,12 +4,13 @@ const app = getApp()
 
 Page({
   data: {
+    table_id:'',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     characterlist: [],
     charactername:'',
-    characterid:0,
+    characterid:-1,
     characterpw: 'fakepassword',
     characterpasscode: '',
     hasgame: false,
@@ -51,7 +52,8 @@ Page({
           if(res.data.length!=0){
             that.setData({
               gameid: res.data[0].gameid,
-              gamename: res.data[0].gamename
+              gamename: res.data[0].gamename,
+              table_id: res.data[0]._id
             })
           }
         },
@@ -114,6 +116,11 @@ Page({
                   key: "user_id",
                   data: res.data._id
                 });
+                wx.setStorage({
+                  key: "table_id",
+                  data: that.data.table_id
+                });
+                
                 wx.navigateTo({
                   url: '../room/room',
                 })
@@ -136,6 +143,10 @@ Page({
             wx.setStorage({
               key: "user_id",
               data: res.data[0]._id
+            });
+            wx.setStorage({
+              key: "table_id",
+              data: that.data.table_id
             });
             wx.navigateTo({
               url: '../room/room',
