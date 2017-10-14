@@ -115,7 +115,7 @@
       <image class="tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="navigate" id="4" style="width: 25px; height: 25px;" src="/icon/搜索_填充.png"></image>
     </view>  
     <view class="tab-item">
-      <image class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/帮助_填充.png"></image>
+      <image class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/问号_填充.png"></image>
     </view>  
     <view class="tab-item">
       <image class="tab-item {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="navigate" id="6" style="width: 25px; height: 25px;" src="/icon/设置_填充.png"></image>

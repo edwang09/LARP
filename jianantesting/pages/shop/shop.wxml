@@ -13,22 +13,22 @@
 
   <view class="flex">
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="1" style="width: 28px; height: 28px;" src="/icon/用户_填充.png"></image>
+      <image class="tab-item" bindtap="navigate" id="1" style="width: 25px; height: 25px;" src="/icon/太极.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="2" style="width: 28px; height: 28px;" src="/icon/清单_填充.png"></image>
+      <image class="tab-item" bindtap="navigate" id="2" style="width: 25px; height: 25px;" src="/icon/旗袍.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="3" style="width: 28px; height: 28px;" src="/icon/信封_填充.png"></image>
+      <image class="tab-item" bindtap="navigate" id="3" style="width: 25px; height: 25px;" src="/icon/埃菲尔铁塔.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="4" style="width: 28px; height: 28px;" src="/icon/搜索_填充.png"></image>
+      <image class="tab-item" bindtap="navigate" id="4" style="width: 25px; height: 25px;" src="/icon/路灯长椅.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="5" style="width: 28px; height: 28px;" src="/icon/设置_填充.png"></image>
+      <image class="tab-item" bindtap="navigate" id="5" style="width: 28px; height: 28px;" src="/icon/侦探剪影.png"></image>
     </view>
   </view>
-  <view class="flex">
+  <view class="flex1">
     <view class="tab-item">
       武侠故事
     </view>
@@ -43,6 +43,88 @@
     </view>
     <view class="tab-item">
       经典游戏
+    </view>
+  </view>
+
+  <view class="form">
+    <view class="game">
+      <view class="pic bc_green" style="width: 55px; height: 55px;"></view>
+      <view class="info">
+        <view class="h1">
+          死穿白
+        </view>
+        <view class="h2">
+          经典之作
+        </view>
+        <view class="h3">
+          白衣天使的归去来
+        </view>
+      </view>
+    </view>
+    <view class="Dbtn">
+      <button class="detail" size="mini">详细介绍</button>
+    </view>
+  </view>
+
+  <view class="form">
+    <view class="game">
+      <view class="pic bc_blue" style="width: 55px; height: 55px;"></view>
+      <view class="info">
+        <view class="h1">
+          贝克街的亡灵
+        </view>
+        <view class="h2">
+          现代剧集
+        </view>
+        <view class="h3">
+          帮助柯南找出真凶
+        </view>
+
+      </view>
+    </view>
+    <view class="Dbtn">
+      <button class="detail" size="mini">详细介绍</button>
+    </view>
+  </view>
+
+  <view class="form">
+    <view class="game">
+      <view class="pic bc_red" style="width: 55px; height: 55px;"></view>
+      <view class="info">
+        <view class="h1">
+          锦绣未央
+        </view>
+        <view class="h2">
+          武侠故事
+        </view>
+        <view class="h3">
+          神秘组织力挽狂澜
+        </view>
+
+      </view>
+    </view>
+    <view class="Dbtn">
+      <button class="detail" size="mini">详细介绍</button>
+    </view>
+  </view>
+
+  <view class="form">
+    <view class="game">
+      <view class="pic bc_yellow" style="width: 55px; height: 55px;"></view>
+      <view class="info">
+        <view class="h1">
+          鸿门宴之上海滩
+        </view>
+        <view class="h2">
+          民国风云
+        </view>
+        <view class="h3">
+          Yummy酱又一力作
+        </view>
+      </view>
+    </view>
+    <view class="Dbtn">
+      <button class="detail" size="mini">详细介绍</button>
     </view>
   </view>
 </view>

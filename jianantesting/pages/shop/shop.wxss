@@ -1,43 +1,107 @@
 .page {
-    min-height: 100%;
-    flex: 1;
-    background-color: #FBF9FE;
-    font-size: 16px;
-    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
-    overflow: hidden;
+  min-height: 100%;
+  flex: 1;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  overflow: hidden;
 }
+
 .page_swiper {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }
-.swiper-item{
-    display: block;
-    height: 150px;
+.form {
+  display: flex;
+  flex-direction: row;
+  border-top: 0.1rpx double #ededed;
+  justify-content:space-between;
+  align-items: center;
+  
 }
-.flex {  
-  display: flex;  
-  flex-direction: row;  
-  background: #ffffff;
+.game {
+  display: flex;
+  flex-direction: row;
   padding-left: 10px;
   padding-right: 10px;
-}  
-.tab-item {  
-  width: 33.3%; 
-  font-size: 0.7em; 
-  text-align: center; 
+  align-items: center;
+  
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+.Dbtn {
+  margin-right: 15px;
+}
+.swiper-item {
+  display: block;
+  border-radius: 15rpx;
+  height: 150px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.flex1 {
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+}
+
+.tab-item {
+  width: 33.3%;
+  font-size: 0.65em;
+  text-align: center;
   color: grey;
-}  
-.bc_green{
-    background-color: #09BB07;
 }
-.bc_red{
-    background-color: #F76260;
+
+.pic {
+  display: flex;
+  border-radius: 6rpx;
+  margin: 15px 15px 15px 5px;
 }
-.bc_blue{
-    background-color: #10AEFF;
+
+.h1 {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0.3em;
 }
-.bc_yellow{
-    background-color: #FFBE00;
+
+.h2 {
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 0.1em;
+  color: #808080
 }
-.bc_gray{
-    background-color: #C9C9C9;
+
+.h3 {
+  font-weight: 200;
+  font-size: 12px;
+  margin-bottom: 0.1em;
+  color: #c9c9c9;
+}
+
+.bc_green {
+  background-color: #09bb07;
+}
+
+.bc_red {
+  background-color: #f76260;
+}
+
+.bc_blue {
+  background-color: #10aeff;
+}
+
+.bc_yellow {
+  background-color: #ffbe00;
+}
+
+.bc_gray {
+  background-color: #c9c9c9;
 }
