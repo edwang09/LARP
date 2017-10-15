@@ -64,7 +64,35 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
+    if (res.from === 'info') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '游戏及人介绍',
+      imageUrl: '/icon/侦探剪影.png',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
 
+    if (res.from === 'forward') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '“望江南”人物码',
+      path: 'pages/intro/intro',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

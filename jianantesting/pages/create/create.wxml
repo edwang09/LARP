@@ -1,0 +1,26 @@
+<view class="page">
+    
+    <view class="page__bd">
+        <view class="weui-article">
+            <view class="weui-article__h1">“测试游戏”</view>
+            <view class="weui-article__section">
+                <view class="weui-article__h3">
+                  <button class="ppl" size="mini" open-type="share" bindtap="info" >游戏背景</button>
+                  <view class="h3">点击按钮可转发游戏及人物介绍</view>
+                </view>
+                <view class="weui-article__p">
+                        “这是一个二人的测试游戏！爱表演或者爱推理的你准备好了么！”
+                </view>
+                <view class="weui-article__title">************************</view>
+                <view class="weui-article__h3">人物介绍</view>
+                <view class="h3">点击人物名称可转发人物码</view>
+                <view class="weui-article__h3">
+                  <button class="ppl" size="mini" open-type="share" bindtap="forward" id="1">“望江南”</button>
+                </view> 
+                <view class="weui-article__p">
+                        “如果你的心是肉长得，那么别人的心要薄如纸片了吧？”
+                </view> 
+            </view>
+        </view>
+    </view>
+</view>

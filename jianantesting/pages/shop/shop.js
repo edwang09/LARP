@@ -3,12 +3,13 @@ Page({
     background: ['green', 'red', 'yellow'],
     gamelist:[],
     currentgame:{}
-    
   },
   navigate: function (e) {
-    wx.navigateTo({
-      url: '../shop/category/' + e.target.id,
-    })
+    wx.showToast({ title: '敬请期待', icon: 'loading', duration: 1000 });
+    
+    //wx.navigateTo({
+      //url: '../shop/category/' + e.target.id,
+    //})
   },
   introduction: function (e) {
     let that = this
