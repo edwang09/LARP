@@ -9,7 +9,7 @@
 	"compileType": "weapp",
 	"libVersion": "1.5.4",
 	"appid": "wx0c0999e93a27c257",
-	"projectname": "larp",
+	"projectname": "LARP",
 	"condition": {
 		"weapp": {
 			"current": -1,

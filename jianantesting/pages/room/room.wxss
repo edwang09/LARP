@@ -3,10 +3,10 @@
   margin-right: 10rpx;  
 }  
 .swiper-tab {  
+  padding-top: 6px;
   display: flex;  
   flex-direction: row;  
   line-height: 80rpx;  
-  border-bottom: 2rpx solid #777;  
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -17,9 +17,14 @@
   text-align: center;  
 }  
 .swiper {  
-  height: 1100px;  
+  height: 600px;  
   background: #ffffff;  
 }  
+swiper-item{
+    background-repeat: round;
+    background-image: url(http://larpxiaozhushou.tk/pic/background);
+
+}
 .on {
   
   filter: grayscale(90%); 

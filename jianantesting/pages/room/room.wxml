@@ -63,7 +63,7 @@
       </view>    
     </swiper-item>
 
-    <swiper-item>  
+    <swiper-item>
       <view class="weui-article">
         <view class="weui-article__h1">搜集线索</view>
         <block>
