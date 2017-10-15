@@ -45,30 +45,68 @@
       经典游戏
     </view>
   </view>
-  <block wx:for="{{gamelist}}">
-    <view class="form">
-      <view class="game">
-        <view class="pic bc_green" style="width: 55px; height: 55px;"></view>
-        <view class="info">
-          <view class="h1">
-            {{item.name}}
-          </view>
-          <view class="h2">
-            {{item.category}}
-          </view>
-          <view class="h3">
-            {{item.descripion}}
-          </view>
+
+  <view class="form">
+    <view class="game">
+      <view class="pic bc_green" style="width: 55px; height: 55px;"></view>
+      <view class="info">
+        <view class="h1">
+          死穿白
+        </view>
+        <view class="h2">
+          经典之作
+        </view>
+        <view class="h3">
+          白衣天使的归去来
         </view>
       </view>
-      <view class="Dbtn">
-        <button class="detail" size="mini" bindtap="introduction" id="{{item.id}}">详细介绍</button>
+    </view>
+    <view class="Dbtn">
+      <button class="detail" size="mini">详细介绍</button>
+    </view>
+  </view>
+
+  <view class="form">
+    <view class="game">
+      <view class="pic bc_blue" style="width: 55px; height: 55px;"></view>
+      <view class="info">
+        <view class="h1">
+          贝克街的亡灵
+        </view>
+        <view class="h2">
+          现代剧集
+        </view>
+        <view class="h3">
+          帮助柯南找出真凶
+        </view>
+
       </view>
     </view>
-  </block>
+    <view class="Dbtn">
+      <button class="detail" size="mini">详细介绍</button>
+    </view>
+  </view>
 
+  <view class="form">
+    <view class="game">
+      <view class="pic bc_red" style="width: 55px; height: 55px;"></view>
+      <view class="info">
+        <view class="h1">
+          锦绣未央
+        </view>
+        <view class="h2">
+          武侠故事
+        </view>
+        <view class="h3">
+          神秘组织力挽狂澜
+        </view>
 
-
+      </view>
+    </view>
+    <view class="Dbtn">
+      <button class="detail" size="mini">详细介绍</button>
+    </view>
+  </view>
 
   <view class="form">
     <view class="game">
