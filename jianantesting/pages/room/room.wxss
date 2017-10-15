@@ -17,9 +17,15 @@
   text-align: center;  
 }  
 .swiper {  
-  height: 1100px;  
+  height: 600px;
   background: #ffffff;  
 }  
+.search{
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-image: url(http://larpxiaozhushou.tk/pic/background);
+
+}
 .on {
   
   filter: grayscale(90%); 

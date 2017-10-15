@@ -11,7 +11,7 @@
 .inputView{
     margin:40rpx 20rpx 0rpx 20rpx;
     border: 2rpx solid gainsboro;
-    border-radius: 40rpx;
+    border-radius: 30rpx;
     height: 80rpx;
     font-size: 0.875em;
     text-align: center;
@@ -37,10 +37,12 @@ button{
 }
 **/
 
+
 .picker{
     margin-top: 20rpx;
-    padding: 13px;
+    padding: 8px;
     background-color: gainsboro;
+    border-radius: 40rpx;
 }
 
 .ph{
