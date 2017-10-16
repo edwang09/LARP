@@ -25,6 +25,16 @@ Page({
     gamedescription:'',
     characterlist:[]
   },
+
+  goRoom: function () {
+  /**
+   * 待完善
+   */
+    wx.navigateTo({
+      url: '../room/room'
+    })
+  },
+
   deleteroom: function (e) {
     var that=this
     wx.request({
@@ -200,7 +210,7 @@ Page({
       // 来自页面内转发按钮
       console.log("forward")
       return {
-      title: '“望江南”人物码',
+      title: '人物码',
       imageUrl: '/icon/侦探剪影.png',
       path: 'pages/distribute/distribute?value=' + res.target.id,
       success: function (res) {

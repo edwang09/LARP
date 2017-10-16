@@ -8,3 +8,19 @@
   margin-bottom: 0.1em;
   color: #c9c9c9;
 }
+.flex {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+.btn {   
+  border-radius: 0;
+  text-align: center;
+  width: 50%;
+}
+.page {
+  height: 100%;
+  width: 100%
+}
