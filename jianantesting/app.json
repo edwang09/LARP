@@ -10,7 +10,8 @@
     "pages/wccode/wccode",
     "pages/findtruth/findtruth",
     "pages/shop/shop",
-    "pages/create/create"
+    "pages/create/create",
+    "pages/distribute/distribute"
   ],
   "window":{
     "backgroundTextStyle":"light",

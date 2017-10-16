@@ -7,12 +7,30 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
+  }, 
   //事件处理函数
   JoinGameBtn: function() {
     wx.navigateTo({
       url: '../join/join'
     })
+  },
+  create: function () {
+    try {
+      var value = wx.getStorageSync('createtableid')
+      if (value) {
+        console.log(value)
+        wx.navigateTo({
+          url: '../create/create?tableid=' + value
+        })
+      } else {
+        console.log('tobe created')
+        wx.navigateTo({
+          url: '../shop/shop'
+        })
+      }
+    } catch (e) {
+      console.log("not created")
+    }
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
