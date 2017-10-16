@@ -16,7 +16,7 @@
                 <view class="h3">点击人物名称可转发人物码</view>
                 <block wx:for="{{characterlist}}" wx:for-item="item" >
                 <view class="weui-article__h3">
-                  <button class="ppl" size="mini" open-type="share" id="1">{{item.charactername}}</button>
+                  <button class="ppl" size="mini" open-type="share" id="{{item.characterid}}">{{item.charactername}}</button>
                 </view> 
                 <view class="weui-article__p">
                         {{item.characterdescription}}

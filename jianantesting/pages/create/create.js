@@ -189,6 +189,7 @@ Page({
     return {
       title: '游戏及人介绍',
       imageUrl: '/icon/侦探剪影.png',
+      path: 'pages/distribute/distribute?value=' + res.target.id,
       success: function (res) {
         // 转发成功
       },
@@ -201,6 +202,7 @@ Page({
       return {
       title: '“望江南”人物码',
       imageUrl: '/icon/侦探剪影.png',
+      path: 'pages/distribute/distribute?value=' + res.target.id,
       success: function (res) {
         // 转发成功
       },
