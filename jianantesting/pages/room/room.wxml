@@ -96,7 +96,7 @@
           
           <view class="square">
             <form bindsubmit="bindFormSubmit">
-              <textarea class="notepad" bindblur="bindTextAreaBlur" placeholder="在此处输入信息并点击“公告秘密”会显示在所有玩家房间该页面" value="{{broadcast}}"/>
+              <textarea class="notepad" bindblur="bindTextAreaBlur" placeholder="在此处输入信息并点击“公告秘密”会显示在所有玩家房间该页面" value="{{broadcast}}" name="textarea"/>
               <button form-type="submit"> 公告秘密 </button>
             </form>
           </view>
