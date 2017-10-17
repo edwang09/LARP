@@ -57,7 +57,8 @@
         <view class="weui-article__h1">我的线索</view>
         <block>
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
-            <view>{{gameinfo.cluelocation[index].name}} : {{clue.content}}</view>
+            <view>{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
+            <image wx:if="{{clue.image}}" src="{{clue.image}}"></image>
           </block>
         </block>
       </view>    
@@ -92,10 +93,17 @@
       <view class="weui-article">
         <view class="weui-article__h1">使用功能</view>
         <block>
-          <button class="MainBtn" bindtap='nextround'>进入下一回合</button>
-          <button>公告秘密</button>
+          <button class="MainBtn" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
+          <view class="section">
+            <form bindsubmit="bindFormSubmit">
+              <textarea bindblur="bindTextAreaBlur" auto-height placeholder="我发现的惊天的秘密" value="{{broadcast}}" name="textarea"/>
+              <button form-type="submit"> 公告秘密 </button>
+            </form>
+          </view>
+          <view> {{globalbroadcast}} </view>
           <button class="MainBtn" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
           <button class="MainBtn" hidden='{{vote==-1?true:false}}'  bindtap='showresult'>查看投票</button>
+           <button class="MainBtn" bindtap='save'>保存信息</button>
         </block>      
       </view>    
     </swiper-item> 

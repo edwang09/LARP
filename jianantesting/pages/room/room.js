@@ -19,7 +19,10 @@ Page({
     voteresult:[],
     roundnumber:0,
     // tab切换    
-    currentTab: 0
+    currentTab: 0,
+    hostname:'',
+    usernickname: '',
+    globalbroadcast:''
   },
   
   //swiper
@@ -103,8 +106,10 @@ Page({
         })
         console.log(res.data)
         for(vote in res.data){
-          console.log(res.data[vote].characterid)
-          content = content + that.data.gameinfo.characterlist[res.data[vote].characterid].name + ' : ' + that.data.gameinfo.characterlist[res.data[vote].vote].name + ' \ '
+          console.log(res.data[vote].vote)
+          if (res.data[vote].vote>-1){
+            content = content + that.data.gameinfo.characterlist[res.data[vote].characterid].name + ' : ' + that.data.gameinfo.characterlist[res.data[vote].vote].name + ' \ '
+          }
         }
         wx.showModal({
           title: '结果',
@@ -133,29 +138,64 @@ Page({
 
   },
 
+  
+  bindFormSubmit: function (e) {
+    let that = this
+    that.setData({
+      broadcast: e.detail.value.textarea,
+    })
+    console.log(e.detail.value.textarea)
+    console.log(this.data.broadcast)
+    wx.request({
+      url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+      data: {
+        broadcast: that.data.broadcast
+      },
+      method: "PUT",
+      success: function (res) {
+        console.log("succeeded")
+      }
+    });
+    wx.sendSocketMessage({
+      data: "refresh",
+    })
+  },
+  save: function (e) {
+    let that = this
+    console.log(this.data.user_id)
+    wx.request({
+      url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+      data: {
+        acquiredclue: that.data.acquiredclue,
+        broadcast: that.data.broadcast,
+        vote: that.data.vote
+      },
+      method: "PUT",
+      success: function (res) {
+        console.log("succeeded")
+      },
+    });
+  },
+
   onShow: function () {
     let that = this
+    var content = ''
+    var cast
     this.setData({
-      tableid: wx.getStorageSync('tableid')
-    });
-    this.setData({
-      gameid: wx.getStorageSync('gameid')
-    });
-    this.setData({
-      characterid: wx.getStorageSync('characterid')
-     });
-    this.setData({
-      user_id: wx.getStorageSync('user_id')
-    });
-    this.setData({
-      table_id: wx.getStorageSync('table_id')
+      tableid: wx.getStorageSync('tableid'),
+      gameid: wx.getStorageSync('gameid'),
+      characterid: wx.getStorageSync('characterid'),
+      user_id: wx.getStorageSync('user_id'),
+      table_id: wx.getStorageSync('table_id'),
+      usernickname: app.globalData.userInfo.nickName
     });
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
       success: function (res) {
         //console.log(res.data)
         that.setData({
-          roundnumber: res.data.roundnumber
+          roundnumber: res.data.roundnumber,
+          hostname:res.data.hostid
         })
       },
     });
@@ -177,6 +217,20 @@ Page({
           mainplot: res.data[0].mainplot,
         })
       },
+      complete: function(){
+        wx.request({
+          url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+          success: function (res) {
+            console.log(res.data)
+            for (cast in res.data) {
+              content = content + that.data.gameinfo.characterlist[res.data[cast].characterid].name + ' : ' + res.data[cast].broadcast + ' \ '
+            }
+            that.setData({
+              globalbroadcast: content
+            })
+          },
+        })
+      }
     });
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
@@ -184,10 +238,11 @@ Page({
         that.setData({
           acquiredclue: res.data.acquiredclue,
             broadcast: res.data.broadcast,
-              vote: res.data.vote
+            vote: res.data.vote
         })
       },
     });
+
 
 
     wx.connectSocket({
@@ -201,11 +256,25 @@ Page({
     })
       wx.onSocketMessage(function (res) {
         if (res.data =="received:refresh"){
+          var content=''
+          var cast
           wx.request({
             url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
             success: function (res) {
               that.setData({
                 roundnumber: res.data.roundnumber,
+              })
+            },
+          })
+          wx.request({
+            url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+            success: function (res) {
+              console.log(res.data)
+              for (cast in res.data) {
+                content = content + that.data.gameinfo.characterlist[res.data[cast].characterid].name + ' : ' + res.data[cast].broadcast + ' \ '
+              }
+              that.setData({
+                globalbroadcast: content
               })
             },
           })

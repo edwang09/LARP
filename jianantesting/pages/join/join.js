@@ -94,6 +94,7 @@ Page({
                 gameid: that.data.gameid,
                 characterid: that.data.characterid,
                 usernickname: app.globalData.userInfo.nickName,
+                vote:-1
               },
               method: "POST",
               success: function (res) {
