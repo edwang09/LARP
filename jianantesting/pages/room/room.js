@@ -22,7 +22,8 @@ Page({
     currentTab: 0,
     hostname:'',
     usernickname: '',
-    globalbroadcast:[]
+    globalbroadcast:[],
+    actionpoint:0
   },
   
   //swiper
@@ -80,7 +81,8 @@ Page({
           data: {
             acquiredclue: that.data.acquiredclue,
             broadcast: that.data.broadcast,
-            vote: that.data.vote
+            vote: that.data.vote,
+            actionpoint: that.data.actionpoint
           },
           method: "PUT",
           success: function (res) {
@@ -160,7 +162,10 @@ Page({
       }
     });
     wx.sendSocketMessage({
-      data: "refresh",
+      data: {
+        tableid: that.data.tableid,
+        message: "refresh"
+      },
     })
   },
   save: function (e) {
@@ -171,13 +176,43 @@ Page({
       data: {
         acquiredclue: that.data.acquiredclue,
         broadcast: that.data.broadcast,
-        vote: that.data.vote
+        vote: that.data.vote,
+        actionpoint: that.data.actionpoint
       },
       method: "PUT",
       success: function (res) {
         console.log("succeeded")
       },
     });
+  },
+  setactionpoint: function (e) {
+    var point = e.detail.value.point
+    var user
+    let that = this
+    console.log(this.data.user_id)
+    wx.request({
+      url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+      success: function (res) {
+        for (user in res.data) {
+          wx.request({
+            url: 'https://larpxiaozhushou.tk/api/user/' + res.data[user]._id,
+            data: {
+              actionpoint: point
+            },
+            method: "PUT",
+            success: function (res) {
+              console.log("point added")
+            },
+          });
+        }
+      },
+    });
+    wx.sendSocketMessage({
+      data: {
+        tableid:that.data.tableid,
+        message: "setactionpoint"},
+    })
+
   },
 
   onShow: function () {
@@ -238,7 +273,8 @@ Page({
         that.setData({
           acquiredclue: res.data.acquiredclue,
             broadcast: res.data.broadcast,
-            vote: res.data.vote
+            vote: res.data.vote,
+            actionpoint: res.data.actionpoint
         })
       },
     });
@@ -255,7 +291,8 @@ Page({
       })
     })
       wx.onSocketMessage(function (res) {
-        if (res.data =="received:refresh"){
+        if (res.data.tableid==that.data.tableid){
+        if (res.data.message =="received:refresh"){
           var content=''
           var cast
           wx.request({
@@ -276,6 +313,18 @@ Page({
             },
           })
         }
+        if (res.data.message == "received:setactionpoint") {
+          wx.request({
+            url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+            success: function (res) {
+              console.log(res.data)
+              that.setData({
+                actionpoint: res.data.actionpoint
+              })
+            },
+          })
+        }
+        }
     })
     wx.onSocketClose(function (res) {
       console.log('WebSocket is off.')
@@ -290,7 +339,8 @@ onHide: function(){
     data:{
       acquiredclue: that.data.acquiredclue,
       broadcast: that.data.broadcast,
-      vote: that.data.vote
+      vote: that.data.vote,
+      actionpoint: res.data.actionpoint
     },
     method:"PUT",
     success: function (res) {
