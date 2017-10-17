@@ -1,6 +1,6 @@
 <view class="page">
 
-  <view class="page__bd">
+  <view wx:if="{{displaytype=='character'}}" class="page__bd">
     <view class="weui-article">
       <view class="weui-article__h1">{{gamename}}</view>
       <view class="weui-article__section">
@@ -13,11 +13,31 @@
           房间密码：{{tablepw}}
         </view>
         <view class="weui-article__title">************************</view>
-        <view class="weui-article__h3">你的角色：{{characterid.charactername}}</view>
-        <view class="weui-article__h3">人物码：{{characterid.token}}</view>
+        <view class="weui-article__h3">你的角色：{{character.charactername}}</view>
+        <view class="weui-article__h3">人物码：{{character.token}}</view>
           <view class="weui-article__p">
-            {{characterid.characterdescription}}
+            {{character.characterdescription}}
           </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{displaytype=='table'}}" class="page__bd">
+    <view class="weui-article">
+      <view class="weui-article__h1">{{gamename}}</view>
+      <view class="weui-article__section">
+        <view class="weui-article__h3">
+        </view>
+        <view class="weui-article__p">
+          游戏介绍：{{gameinfo.descripion}}
+        </view>
+        <view class="weui-article__title">************************</view>
+        <block wx:for="{{characterlist}}">
+        <view class="weui-article__h3">角色：{{item.charactername}}</view>
+        <view class="weui-article__h3">性别：{{item.charactersex}}</view>
+          <view class="weui-article__p">
+            {{item.characterdescription}}
+          </view>
+          </block>
       </view>
     </view>
   </view>
