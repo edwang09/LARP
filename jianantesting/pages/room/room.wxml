@@ -100,8 +100,10 @@
               <button form-type="submit"> 公告秘密 </button>
             </form>
           </view>
-          <view class="square" style="height: 80px;"> {{globalbroadcast}} </view>
-          
+          <block wx:for="{{globalbroadcast}}">
+          <view class="square" style="height: 80px;"> {{gameinfo.characterlist[item.characterid].name}} </view>
+          <view class="square" style="height: 80px;"> {{item.broadcast}} </view>
+          </block>
           <button class="MainBtn" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
           <button class="MainBtn" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
           <button class="MainBtn" hidden='{{vote==-1?true:false}}'  bindtap='showresult'>查看投票</button>

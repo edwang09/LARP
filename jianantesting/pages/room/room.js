@@ -22,7 +22,7 @@ Page({
     currentTab: 0,
     hostname:'',
     usernickname: '',
-    globalbroadcast:''
+    globalbroadcast:[]
   },
   
   //swiper
@@ -225,11 +225,8 @@ Page({
           url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
           success: function (res) {
             console.log(res.data)
-            for (cast in res.data) {
-              content = content + that.data.gameinfo.characterlist[res.data[cast].characterid].name + ' : ' + res.data[cast].broadcast + ' \ '
-            }
             that.setData({
-              globalbroadcast: content
+              globalbroadcast: res.data
             })
           },
         })
@@ -273,11 +270,8 @@ Page({
             url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
             success: function (res) {
               console.log(res.data)
-              for (cast in res.data) {
-                content = content + that.data.gameinfo.characterlist[res.data[cast].characterid].name + ' : ' + res.data[cast].broadcast + ' \ '
-              }
               that.setData({
-                globalbroadcast: content
+                globalbroadcast: res.data
               })
             },
           })
