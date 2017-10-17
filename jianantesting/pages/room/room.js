@@ -137,7 +137,10 @@ Page({
     })
 
   },
-
+  
+  bindTextAreaBlur: function (e) {
+    console.log(e.detail.value)
+  },
   
   bindFormSubmit: function (e) {
     let that = this

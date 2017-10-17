@@ -93,17 +93,19 @@
       <view class="weui-article">
         <view class="weui-article__h1">使用功能</view>
         <block>
-          <button class="MainBtn" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
-          <view class="section">
+          
+          <view class="square">
             <form bindsubmit="bindFormSubmit">
-              <textarea bindblur="bindTextAreaBlur" auto-height placeholder="我发现的惊天的秘密" value="{{broadcast}}" name="textarea"/>
+              <textarea class="notepad" bindblur="bindTextAreaBlur" placeholder="在此处输入信息并点击“公告秘密”会显示在所有玩家房间该页面" value="{{broadcast}}"/>
               <button form-type="submit"> 公告秘密 </button>
             </form>
           </view>
-          <view> {{globalbroadcast}} </view>
+          <view class="square" style="height: 80px;"> {{globalbroadcast}} </view>
+          
+          <button class="MainBtn" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
           <button class="MainBtn" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
           <button class="MainBtn" hidden='{{vote==-1?true:false}}'  bindtap='showresult'>查看投票</button>
-           <button class="MainBtn" bindtap='save'>保存信息</button>
+          <button class="MainBtn" bindtap='save'>保存信息</button>
         </block>      
       </view>    
     </swiper-item> 

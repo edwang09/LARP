@@ -1,33 +1,48 @@
-.page {  
-  margin-left: 10rpx;  
-  margin-right: 10rpx;  
-}  
-.swiper-tab {  
+.page {
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.swiper-tab {
   padding-top: 6px;
-  display: flex;  
-  flex-direction: row;  
-  line-height: 80rpx;  
+  display: flex;
+  flex-direction: row;
+  line-height: 80rpx;
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: #ffffff;
-}  
-.tab-item {  
-  width: 33.3%;  
-  text-align: center;  
-}  
-.swiper {  
-  height: 600px;  
-  background: #ffffff;  
-}  
-swiper-item{
-    background-repeat: round;
-    background-image: url(http://larpxiaozhushou.tk/pic/background);
-
+  background: #fff;
 }
+
+.tab-item {
+  width: 33.3%;
+  text-align: center;
+}
+
+.swiper {
+  height: 600px;
+  background: #fff;
+}
+
+swiper-item {
+  background-repeat: round;
+  background-image: url(http://larpxiaozhushou.tk/pic/background);
+}
+
 .on {
-  
-  filter: grayscale(90%); 
-  color: blue;  
+  filter: grayscale(90%);
+  color: blue;
   border-bottom: 4rpx solid orange;
-}  
+}
+
+.notepad {
+  margin-bottom: 30rpx;
+  border: 2rpx solid grey;
+  width: 100%;
+  height: 90px;
+}
+
+.square {
+  width: 90%;
+  margin: 20rpx auto 0;
+}
