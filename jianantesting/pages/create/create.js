@@ -26,12 +26,12 @@ Page({
     characterlist:[]
   },
 
-  goRoom: function () {
+  goBack: function () {
   /**
    * 待完善
    */
-    wx.navigateTo({
-      url: '../room/room'
+    wx.navigateBack({
+      delta: 2
     })
   },
 
@@ -44,17 +44,21 @@ Page({
           url: 'https://larpxiaozhushou.tk/api/table/' + res.data[0]._id,
           method:'DELETE',
           success: function (res) {
-            wx.removeStorage({
-              key: 'createtableid',
-              success: function (res) {
-                console.log("storage removed")
-              }
-            })
-            console.log('deleted')
-            wx.reLaunch({
-              url: '../index/index'
-            })
+
+          },
+          
+        })
+      },
+      complete: function () {
+        wx.removeStorage({
+          key: 'createtableid',
+          success: function (res) {
+            console.log("storage removed")
           }
+        })
+        console.log('deleted')
+        wx.reLaunch({
+          url: '../index/index'
         })
       }
     })

@@ -18,11 +18,13 @@ Page({
     try {
       var value = wx.getStorageSync('createtableid')
       if (value) {
+        //wx.showToast({ title: '进入已建房间', icon: 'loading', duration: 2000 });
         console.log(value)
         wx.navigateTo({
           url: '../create/create?tableid=' + value
         })
       } else {
+        //wx.showToast({ title: '进入超市', icon: 'loading', duration: 2000 });
         console.log('tobe created')
         wx.navigateTo({
           url: '../shop/shop'

@@ -127,16 +127,10 @@ Page({
     var cluecount = this.data.gameinfo.cluelocation[locationid].count
     var cluenumber = Math.floor(Math.random() * cluecount)
     console.log(cluenumber)
-    wx.request({
-      url: 'https://larpxiaozhushou.tk/api/clue?gameid=' + that.data.gameid + '&cluelocation=' + locationid + '&cluenumber=' + cluenumber,
-      success: function (res) {
-        //console.log(res.data)
-        that.setData({
-          acquiredclue: that.data.acquiredclue.concat(res.data[0])
-        })
-        console.log(that.data.acquiredclue)
-      },
+    that.setData({
+      acquiredclue: that.data.acquiredclue.concat(that.data.gameinfo.cluelocation[locationid].clues[cluenumber])
     })
+
   },
 
   onShow: function () {
@@ -165,28 +159,13 @@ Page({
         })
       },
     });
-    wx.request({
-      url: 'https://larpxiaozhushou.tk/api/characterplot?gameid=' + that.data.gameid + '&characterid=' + that.data.characterid,
-      success: function (res) {
-        //console.log(res.data)
-        that.setData({
-          characterplot: res.data,
-        })
-      },
-    });
+
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/character?gameid=' + that.data.gameid + '&characterid=' + that.data.characterid,
       success: function (res) {
         that.setData({
           characterinfo: res.data[0],
-        })
-      },
-    });
-    wx.request({
-      url: 'https://larpxiaozhushou.tk/api/mainplot?gameid=' + that.data.gameid + '&sort=plotid',
-      success: function (res) {
-        that.setData({
-          mainplot: res.data,
+          characterplot: res.data[0].characterplot,
         })
       },
     });
@@ -195,6 +174,7 @@ Page({
       success: function (res) {
         that.setData({
           gameinfo: res.data[0],
+          mainplot: res.data[0].mainplot,
         })
       },
     });

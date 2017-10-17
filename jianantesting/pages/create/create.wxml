@@ -9,7 +9,10 @@
           <view class="h3">点击按钮可转发游戏及人物介绍</view>
         </view>
         <view class="weui-article__p">
-          {{tableid}}“这是一个二人的测试游戏！爱表演或者爱推理的你准备好了么！”
+          房间代码：{{tableid}}
+        </view>
+        <view class="weui-article__p">
+          房间密码：{{tablepw}}
         </view>
         <view class="weui-article__title">************************</view>
         <view class="weui-article__h3">人物介绍</view>
@@ -26,7 +29,7 @@
     </view>
   </view>
   <view class="flex">
-    <button class="btn" type="primary" bindtap="goRoom" style="background-color:orange;">进入游戏</button>
+    <button class="btn" type="primary" bindtap="goBack" style="background-color:orange;">回到主页</button>
     <button class="btn" type="primary" bindtap="deleteroom">删除房间</button>
   </view>
 </view>

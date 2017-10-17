@@ -2,7 +2,7 @@
   <view class="page_swiper">
     <view class="section section_gap swiper">
       <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500">
-        <block wx:for-items="{{background}}">
+        <block wx:for-items="{{background}}" wx:key="index">
           <swiper-item>
             <view class="swiper-item bc_{{item}}"></view>
           </swiper-item>
@@ -45,7 +45,7 @@
       经典游戏
     </view>
   </view>
-  <block wx:for="{{gamelist}}">
+  <block wx:for="{{gamelist}}" wx:key="index">
     <view class="form">
       <view class="game">
         <view class="pic bc_green" style="width: 55px; height: 55px;"></view>

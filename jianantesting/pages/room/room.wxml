@@ -57,7 +57,7 @@
         <view class="weui-article__h1">我的线索</view>
         <block>
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
-            <view>{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
+            <view>{{gameinfo.cluelocation[index].name}} : {{clue.content}}</view>
           </block>
         </block>
       </view>    
