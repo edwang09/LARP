@@ -196,6 +196,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
+    let that = this
     //console.log(res)
     if (res.target.id == 'info') {
       // 来自页面内转发按钮
@@ -216,7 +217,7 @@ Page({
       return {
       title: '人物码',
       imageUrl: '/icon/侦探剪影.png',
-      path: 'pages/distribute/distribute?value=' + res.target.id,
+      path: 'pages/distribute/distribute?value=' + res.target.id + '&characterid=' + that.data.characterid,
       success: function (res) {
         // 转发成功
       },

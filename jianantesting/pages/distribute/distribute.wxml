@@ -1,1 +1,24 @@
-<view>{{infomation}}</view>
+<view class="page">
+
+  <view class="page__bd">
+    <view class="weui-article">
+      <view class="weui-article__h1">{{gamename}}</view>
+      <view class="weui-article__section">
+        <view class="weui-article__h3">
+        </view>
+        <view class="weui-article__p">
+          房间代码：{{tableid}}
+        </view>
+        <view class="weui-article__p">
+          房间密码：{{tablepw}}
+        </view>
+        <view class="weui-article__title">************************</view>
+        <view class="weui-article__h3">你的角色：{{characterid.charactername}}</view>
+        <view class="weui-article__h3">人物码：{{characterid.token}}</view>
+          <view class="weui-article__p">
+            {{characterid.characterdescription}}
+          </view>
+      </view>
+    </view>
+  </view>
+</view>
