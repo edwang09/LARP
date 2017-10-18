@@ -162,10 +162,7 @@ Page({
       }
     });
     wx.sendSocketMessage({
-      data: {
-        tableid: that.data.tableid,
-        message: "refresh"
-      },
+      data: "refresh",
     })
   },
   save: function (e) {
@@ -208,9 +205,7 @@ Page({
       },
     });
     wx.sendSocketMessage({
-      data: {
-        tableid:that.data.tableid,
-        message: "setactionpoint"},
+      data: "setactionpoint",
     })
 
   },
@@ -291,8 +286,9 @@ Page({
       })
     })
       wx.onSocketMessage(function (res) {
-        if (res.data.tableid==that.data.tableid){
-        if (res.data.message =="received:refresh"){
+        console.log(res)
+        if (that.data.tableid==that.data.tableid){
+        if (res.data=="refresh"){
           var content=''
           var cast
           wx.request({
@@ -313,7 +309,7 @@ Page({
             },
           })
         }
-        if (res.data.message == "received:setactionpoint") {
+        if (res.data == "setactionpoint") {
           wx.request({
             url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
             success: function (res) {

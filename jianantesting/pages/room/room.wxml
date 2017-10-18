@@ -101,16 +101,18 @@
             </form>
           </view>
           <view class="square">
-            <scroll-view class="notepad" scroll-y="true" bindscrolltoupper="refresh">
+            <scroll-view class="notepad" scroll-y="true">
               <block wx:for="{{globalbroadcast}}">
                 <view style="margin: 5rpx"> {{gameinfo.characterlist[item.characterid].name}} </view>
                 <view> {{item.broadcast}} </view>
               </block>
-
             </scroll-view>
           </view>
 
-
+          <form bindsubmit="setactionpoint">
+              <!--     此处加入输入数字的信息 name="point"     -->
+              <button form-type="submit"> 设置行动点 </button>
+            </form>
           <button class="square" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
           <button class="square" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
           <button class="square" hidden='{{vote==-1?true:false}}' bindtap='showresult'>查看投票</button>
