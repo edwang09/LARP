@@ -97,7 +97,7 @@
           <view class="square">
             <form bindsubmit="bindFormSubmit">
               <textarea class="notepad" bindblur="bindTextAreaBlur" placeholder="在此处输入信息并点击“公告秘密”会显示在下面的对话框中（所有玩家可见）" value="{{broadcast}}" name="textarea" />
-              <button form-type="submit"> 公告秘密 </button>
+              <button form-type="submit" style="height: 35px; font-size:0.9em;"> 公告秘密 </button>
             </form>
           </view>
           <view class="square">
@@ -108,15 +108,21 @@
               </block>
             </scroll-view>
           </view>
+          <view style="display: block;">
+            <form bindsubmit="setactionpoint" hidden='{{hostname!=usernickname}}'>
 
-          <form bindsubmit="setactionpoint">
+              <slider value="3" bindchange="sliderchange" activeColor="orange" min="0" max="10" show-value name="point" />
+
               <!--     此处加入输入数字的信息 name="point"     -->
-              <button form-type="submit"> 设置行动点 </button>
+              <button class="squareB" form-type="submit"> 设置行动点 </button>
             </form>
-          <button class="square" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
-          <button class="square" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
-          <button class="square" hidden='{{vote==-1?true:false}}' bindtap='showresult'>查看投票</button>
-          <button class="square" bindtap='save'>保存信息</button>
+            <button class="squareB" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
+            <view class="flex">
+              <button class="squareB" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
+              <button class="squareB" hidden='{{vote==-1?true:false}}' bindtap='showresult'>查看投票</button>
+              <button class="squareB" bindtap='save'>保存信息</button>
+            </view>
+          </view>
         </block>
       </view>
     </swiper-item>

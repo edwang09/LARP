@@ -47,3 +47,18 @@ swiper-item {
   width: 90%;
   margin: 20rpx auto 0;
 }
+.squareB {
+  width: 90%;
+  margin: 20rpx auto 0;
+  height: 35px;
+  font-size:0.9em;
+}
+
+
+.flex {
+  margin-left: 35rpx;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+
+}
