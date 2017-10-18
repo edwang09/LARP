@@ -1,9 +1,9 @@
 <!--index.wxml-->
-<view class="page">  
+<view class="page">
 
-  <!--内容主体-->  
-  <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">  
-    <swiper-item>  
+  <!--内容主体-->
+  <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+    <swiper-item>
       <view class="weui-article">
         <view class="weui-article__h1">我的信息</view>
         <block>
@@ -16,32 +16,32 @@
           <view class="usermotto">
             <text class="user-motto">{{characterinfo.charactername}}</text>
           </view>
-         <view class="usermotto">
-           <text class="user-motto">{{characterinfo.charactersex}}</text>
+          <view class="usermotto">
+            <text class="user-motto">{{characterinfo.charactersex}}</text>
           </view>
-         <view class="usermotto">
+          <view class="usermotto">
             <text class="user-motto">{{characterinfo.characterdescription}}</text>
-         </view>
+          </view>
           <view class="usermotto">
             <text class="user-motto">{{characterinfo.characterbackground}}</text>
           </view>
-         <view class="usermotto">
-           <text class="user-motto">肮脏的事实：</text>
+          <view class="usermotto">
+            <text class="user-motto">肮脏的事实：</text>
           </view>
-         <view wx:for="{{characterinfo.characterscandal}}">
-          <text> => {{item}}</text>
-         </view>
+          <view wx:for="{{characterinfo.characterscandal}}">
+            <text> => {{item}}</text>
+          </view>
           <view class="usermotto">
             <text class="user-motto">目的：</text>
           </view>
           <view wx:for="{{characterinfo.characterobjective}}">
             <text>=> {{item}}</text>
           </view>
-        </block>  
+        </block>
       </view>
     </swiper-item>
 
-    <swiper-item>  
+    <swiper-item>
       <view class="weui-article">
         <view class="weui-article__h1">公开的线索</view>
         <block>
@@ -50,9 +50,9 @@
           </block>
         </block>
       </view>
-    </swiper-item> 
+    </swiper-item>
 
-    <swiper-item>  
+    <swiper-item>
       <view class="weui-article">
         <view class="weui-article__h1">我的线索</view>
         <block>
@@ -61,7 +61,7 @@
             <image wx:if="{{clue.image}}" src="{{clue.image}}"></image>
           </block>
         </block>
-      </view>    
+      </view>
     </swiper-item>
 
     <swiper-item>
@@ -69,13 +69,13 @@
         <view class="weui-article__h1">搜集线索</view>
         <block>
           <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
-            <button bindtap='getclue' id='{{location.index}}' >{{location.name}}</button>
+            <button bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
           </block>
-        </block>      
-      </view>    
-    </swiper-item> 
+        </block>
+      </view>
+    </swiper-item>
 
-    <swiper-item>  
+    <swiper-item>
       <view class="weui-article">
         <view class="weui-article__h1">游戏说明及背景</view>
         <block>
@@ -86,52 +86,58 @@
             <text class="user-motto">{{gameinfo.descripion}}</text>
           </view>
         </block>
-      </view>    
-    </swiper-item>  
+      </view>
+    </swiper-item>
 
-    <swiper-item>  
+    <swiper-item>
       <view class="weui-article">
         <view class="weui-article__h1">使用功能</view>
         <block>
-          
+
           <view class="square">
             <form bindsubmit="bindFormSubmit">
-              <textarea class="notepad" bindblur="bindTextAreaBlur" placeholder="在此处输入信息并点击“公告秘密”会显示在所有玩家房间该页面" value="{{broadcast}}" name="textarea"/>
+              <textarea class="notepad" bindblur="bindTextAreaBlur" placeholder="在此处输入信息并点击“公告秘密”会显示在下面的对话框中（所有玩家可见）" value="{{broadcast}}" name="textarea" />
               <button form-type="submit"> 公告秘密 </button>
             </form>
           </view>
-          <block wx:for="{{globalbroadcast}}">
-          <view class="square" style="height: 80px;"> {{gameinfo.characterlist[item.characterid].name}} </view>
-          <view class="square" style="height: 80px;"> {{item.broadcast}} </view>
-          </block>
-          <button class="MainBtn" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
-          <button class="MainBtn" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
-          <button class="MainBtn" hidden='{{vote==-1?true:false}}'  bindtap='showresult'>查看投票</button>
-          <button class="MainBtn" bindtap='save'>保存信息</button>
-        </block>      
-      </view>    
-    </swiper-item> 
-  </swiper>  
-  <!--底部导航栏-->  
-  <view class="swiper-tab">  
+          <view class="square">
+            <scroll-view class="notepad" scroll-y="true" bindscrolltoupper="refresh">
+              <block wx:for="{{globalbroadcast}}">
+                <view style="margin: 5rpx"> {{gameinfo.characterlist[item.characterid].name}} </view>
+                <view> {{item.broadcast}} </view>
+              </block>
+
+            </scroll-view>
+          </view>
+
+
+          <button class="square" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
+          <button class="square" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
+          <button class="square" hidden='{{vote==-1?true:false}}' bindtap='showresult'>查看投票</button>
+          <button class="square" bindtap='save'>保存信息</button>
+        </block>
+      </view>
+    </swiper-item>
+  </swiper>
+  <!--底部导航栏-->
+  <view class="swiper-tab">
     <view class="tab-item">
-      <image class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1" src="/icon/用户_填充.png" style="width: 25px; height: 25px;" ></image>
-    </view>  
+      <image class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1" src="/icon/用户_填充.png" style="width: 25px; height: 25px;"></image>
+    </view>
     <view class="tab-item">
       <image class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="navigate" id="2" style="width: 25px; height: 25px;" src="/icon/清单_填充.png"></image>
-    </view>  
+    </view>
     <view class="tab-item">
       <image class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="navigate" id="3" style="width: 25px; height: 25px;" src="/icon/信封_填充.png"></image>
-    </view>  
+    </view>
     <view class="tab-item">
       <image class="tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="navigate" id="4" style="width: 25px; height: 25px;" src="/icon/搜索_填充.png"></image>
-    </view>  
+    </view>
     <view class="tab-item">
       <image class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/问号_填充.png"></image>
-    </view>  
+    </view>
     <view class="tab-item">
       <image class="tab-item {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="navigate" id="6" style="width: 25px; height: 25px;" src="/icon/设置_填充.png"></image>
-    </view>  
-  </view>  
-</view>  
-
+    </view>
+  </view>
+</view>
