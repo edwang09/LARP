@@ -1,9 +1,9 @@
 page, .page {
-  
-
   height: 100%;
 }
-
+.tx{
+  font-weight: bold;
+}
 .article {
   padding: 30rpx 28rrpx;
   font-size: 28rpx;

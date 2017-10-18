@@ -5,34 +5,38 @@
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
     <swiper-item>
       <view class="weui-article">
-        <view class="weui-article__h1">我的信息</view>
+        <view class="weui-article__h1 tx">我的信息</view>
         <block>
-          <view class="usermotto">
-            <text class="user-motto">{{tableid}}</text>
+          <view class="flex">
+            <view class="usermotto">
+              <text class="user-motto tx">{{gameinfo.name}}</text>
+            </view>
+            <view class="usermotto">
+              <text class="user-motto">（房间码：{{tableid}}）</text>
+            </view>
           </view>
-          <view class="usermotto">
-            <text class="user-motto">{{gameinfo.name}}</text>
+          <view class="flex">
+            <view class="usermotto">
+              <text class="user-motto tx">{{characterinfo.charactername}}</text>
+            </view>
+            <view class="usermotto">
+              <text class="user-motto">（{{characterinfo.charactersex}}）</text>
+            </view>
           </view>
-          <view class="usermotto">
-            <text class="user-motto">{{characterinfo.charactername}}</text>
-          </view>
-          <view class="usermotto">
-            <text class="user-motto">{{characterinfo.charactersex}}</text>
-          </view>
-          <view class="usermotto">
-            <text class="user-motto">{{characterinfo.characterdescription}}</text>
+          <view class="usermotto" style="padding-top: 10rpx">
+            <text class="user-motto" >{{characterinfo.characterdescription}}</text>
           </view>
           <view class="usermotto">
             <text class="user-motto">{{characterinfo.characterbackground}}</text>
           </view>
-          <view class="usermotto">
-            <text class="user-motto">肮脏的事实：</text>
+          <view class="usermotto" style="padding-top: 10rpx">
+            <text class="user-motto tx">肮脏的事实：</text>
           </view>
           <view wx:for="{{characterinfo.characterscandal}}">
             <text> => {{item}}</text>
           </view>
-          <view class="usermotto">
-            <text class="user-motto">目的：</text>
+          <view class="usermotto" style="padding-top: 10rpx">
+            <text class="user-motto tx">目的：</text>
           </view>
           <view wx:for="{{characterinfo.characterobjective}}">
             <text>=> {{item}}</text>
@@ -43,7 +47,7 @@
 
     <swiper-item>
       <view class="weui-article">
-        <view class="weui-article__h1">公开的线索</view>
+        <view class="weui-article__h1 tx">公开的线索</view>
         <block>
           <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
             <view wx:if="{{plot.plotid <= roundnumber}}">{{plot.content}}</view>
@@ -54,7 +58,7 @@
 
     <swiper-item>
       <view class="weui-article">
-        <view class="weui-article__h1">我的线索</view>
+        <view class="weui-article__h1 tx">我的线索</view>
         <block>
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
             <view>{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
@@ -66,19 +70,19 @@
 
     <swiper-item>
       <view class="weui-article">
-        <view class="weui-article__h1">搜集线索</view>
+        <view class="weui-article__h1 tx">搜集线索</view>
         <image class="square" wx:if="{{gameinfo.mapurl}}" src="{{gameinfo.mapurl}}"></image>
-        <block>
+        <view style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
           <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
-            <button class="squareB" bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
+            <button class="squareB" style="width: 40%;" bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
           </block>
-        </block>
+        </view>
       </view>
     </swiper-item>
 
     <swiper-item>
       <view class="weui-article">
-        <view class="weui-article__h1">游戏说明及背景</view>
+        <view class="weui-article__h1 tx">游戏说明及背景</view>
         <block>
           <view class="usermotto">
             <text class="user-motto">{{gameinfo.name}}</text>
@@ -92,13 +96,13 @@
 
     <swiper-item>
       <view class="weui-article">
-        <view class="weui-article__h1">使用功能</view>
+        <view class="weui-article__h1 tx">使用功能</view>
         <block>
 
           <view class="square">
             <form bindsubmit="bindFormSubmit">
               <textarea class="notepad" maxlength="400" bindblur="bindTextAreaBlur" placeholder="点击“公告秘密”将此处填写内容显示在下面的对话框中（所有玩家可见）" value="{{broadcast}}" name="textarea" />
-              <button class="squareB" style="width: 100%;" form-type="submit" > 公告秘密 </button>
+              <button class="squareB" style="width: 100%;" form-type="submit"> 公告秘密 </button>
             </form>
           </view>
           <view class="square">
@@ -130,7 +134,7 @@
   <!--底部导航栏-->
   <view class="swiper-tab">
     <view class="tab-item">
-      <image class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1" style="width: 25px; height: 25px;" src="/icon/用户_填充.png" ></image>
+      <image class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1" style="width: 25px; height: 25px;" src="/icon/用户_填充.png"></image>
     </view>
     <view class="tab-item">
       <image class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="navigate" id="2" style="width: 25px; height: 25px;" src="/icon/清单_填充.png"></image>
