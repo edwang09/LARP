@@ -134,10 +134,36 @@ Page({
     var cluecount = this.data.gameinfo.cluelocation[locationid].count
     var cluenumber = Math.floor(Math.random() * cluecount)
     console.log(cluenumber)
+    this.setData({
+      actionpoint:that.data.actionpoint-1
+    })
+    wx.showModal({
+      title: '线索',
+      content: that.data.gameinfo.cluelocation[locationid].clues[cluenumber].content + '    你的剩余行动点：' + that.data.actionpoint,
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
     that.setData({
       acquiredclue: that.data.acquiredclue.concat(that.data.gameinfo.cluelocation[locationid].clues[cluenumber])
     })
-
+    wx.request({
+      url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+      data: {
+        acquiredclue: that.data.acquiredclue,
+        broadcast: that.data.broadcast,
+        vote: that.data.vote,
+        actionpoint: that.data.actionpoint
+      },
+      method: "PUT",
+      success: function () {
+        console.log("succeeded")
+      },
+    });
   },
   
   bindTextAreaBlur: function (e) {
@@ -181,6 +207,26 @@ Page({
         console.log("succeeded")
       },
     });
+  },
+  clearinfo: function (e) {
+    wx.removeStorage({
+      key: 'tableid'
+    })
+    wx.removeStorage({
+      key: 'gameid'
+    })
+    wx.removeStorage({
+      key: 'characterid'
+    })
+    wx.removeStorage({
+      key: 'user_id'
+    })
+    wx.removeStorage({
+      key: 'table_id'
+    })
+    wx.navigateBack({
+      delta:2
+    })
   },
   setactionpoint: function (e) {
     var point = e.detail.value.point
@@ -336,7 +382,7 @@ onHide: function(){
       acquiredclue: that.data.acquiredclue,
       broadcast: that.data.broadcast,
       vote: that.data.vote,
-      actionpoint: res.data.actionpoint
+      actionpoint: that.data.actionpoint
     },
     method:"PUT",
     success: function (res) {

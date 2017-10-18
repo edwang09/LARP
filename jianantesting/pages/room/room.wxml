@@ -67,6 +67,7 @@
     <swiper-item>
       <view class="weui-article">
         <view class="weui-article__h1">搜集线索</view>
+        <image wx:if="{{gameinfo.mapurl}}" src="{{gameinfo.mapurl}}"></image>
         <block>
           <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
             <button bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
@@ -112,8 +113,6 @@
             <form bindsubmit="setactionpoint" hidden='{{hostname!=usernickname}}'>
 
               <slider value="3" bindchange="sliderchange" activeColor="orange" min="0" max="10" show-value name="point" />
-
-              <!--     此处加入输入数字的信息 name="point"     -->
               <button class="squareB" form-type="submit"> 设置行动点 </button>
             </form>
             <button class="squareB" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
@@ -121,6 +120,7 @@
               <button class="squareB" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
               <button class="squareB" hidden='{{vote==-1?true:false}}' bindtap='showresult'>查看投票</button>
               <button class="squareB" bindtap='save'>保存信息</button>
+              <button class="squareB" bindtap='clearinfo'>退出房间</button>
             </view>
           </view>
         </block>
