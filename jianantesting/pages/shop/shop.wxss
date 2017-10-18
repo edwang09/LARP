@@ -67,13 +67,13 @@
 }
 
 .h1 {
-  font-size: 16px;
+  font-size: 33rpx;
   font-weight: 400;
   margin-bottom: 0.3em;
 }
 
 .h2 {
-  font-size: 14px;
+  font-size: 30rpx;
   font-weight: 300;
   margin-bottom: 0.1em;
   color: #808080
@@ -81,7 +81,7 @@
 
 .h3 {
   font-weight: 200;
-  font-size: 12px;
+  font-size: 27rpx;
   margin-bottom: 0.1em;
   color: #c9c9c9;
 }

@@ -1,11 +1,11 @@
 /**app.wxss**/
 .page__hd {padding: 40px}
 .page__bd {padding-bottom: 40px}
-.weui-article{padding:20px 15px;font-size:15px}
+.weui-article{padding:20px 15px;font-size:32rpx}
 .weui-article__section{margin-bottom:1.5em}
-.weui-article__h1{font-size:18px;font-weight:400;margin-bottom:.9em}
-.weui-article__h2{font-size:16px;font-weight:400;margin-bottom:.34em}
-.weui-article__h3{font-weight:400;font-size:15px;margin-bottom:.34em}
+.weui-article__h1{font-size:36rpx;font-weight:400;margin-bottom:.9em}
+.weui-article__h2{font-size:34rpx;font-weight:400;margin-bottom:.34em}
+.weui-article__h3{font-weight:400;font-size:32rpx;margin-bottom:.34em}
 .weui-article__p{margin:0 0 .8em}
 
 .section_gap{

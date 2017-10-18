@@ -1,10 +1,17 @@
-.page {
-  margin-left: 10rpx;
-  margin-right: 10rpx;
+page, .page {
+  
+
+  height: 100%;
+}
+
+.article {
+  padding: 30rpx 28rrpx;
+  font-size: 28rpx;
+  height: 100%;
 }
 
 .swiper-tab {
-  padding-top: 15px;
+  padding-top: 28rpx;
   display: flex;
   flex-direction: row;
   line-height: 80rpx;
@@ -15,12 +22,12 @@
 }
 
 .tab-item {
-  width: 33.3%;
+  width: 100%;
   text-align: center;
 }
 
 .swiper {
-  height: 600px;
+  height:100%;
   background: #fff;
 }
 
@@ -38,27 +45,32 @@ swiper-item {
 .notepad {
   margin-bottom: 30rpx;
   border: 2rpx solid grey;
-  font-size: 0.9em;
+  font-size: 28rpx;
   width: 100%;
-  height: 80px;
+  height: 200rpx;
 }
 
 .square {
-  width: 90%;
+  width: 100%;
   margin: 20rpx auto 0;
 }
+
 .squareB {
   width: 90%;
   margin: 20rpx auto 0;
-  height: 35px;
-  font-size:0.9em;
+  height: 65rpx;
+  font-size: 28rpx;
 }
-
 
 .flex {
   margin-left: 35rpx;
   display: flex;
   flex-direction: row;
   width: 90%;
+}
 
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
 }
