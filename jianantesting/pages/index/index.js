@@ -10,9 +10,27 @@ Page({
   }, 
   //事件处理函数
   JoinGameBtn: function() {
-    wx.navigateTo({
-      url: '../join/join'
-    })
+    try {
+      var tableid= wx.getStorageSync('tableid')
+      var gameid= wx.getStorageSync('gameid')
+      var characterid= wx.getStorageSync('characterid')
+      var user_id= wx.getStorageSync('user_id')
+      var table_id= wx.getStorageSync('table_id')
+      console.log(tableid + gameid + characterid + user_id + table_id)
+      if (tableid && gameid && characterid!=null && user_id && table_id) {
+        //wx.showToast({ title: '进入已建房间', icon: 'loading', duration: 2000 });
+        wx.navigateTo({
+          url: '../room/room'
+        })
+      } else {
+        wx.navigateTo({
+          url: '../join/join'
+        })
+      }
+    } catch (e) {
+      console.log("not created")
+    }
+
   },
   create: function () {
     try {
