@@ -30,6 +30,15 @@
             <text class="user-motto">{{characterinfo.characterbackground}}</text>
           </view>
           <view class="usermotto" style="padding-top: 10rpx">
+            <text class="user-motto tx">已知信息：</text>
+          </view>
+            <view wx:for="{{characterinfo.characterinfo}}">
+            <text> => {{item.type}}</text>
+              <view wx:for="{{item.content}}">
+              <text>  {{item}}</text>
+              </view>
+            </view>
+          <view class="usermotto" style="padding-top: 10rpx">
             <text class="user-motto tx">肮脏的事实：</text>
           </view>
           <view wx:for="{{characterinfo.characterscandal}}">
@@ -50,7 +59,10 @@
         <view class="weui-article__h1 tx">公开的线索</view>
         <block>
           <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
-            <view wx:if="{{plot.plotid <= roundnumber}}">{{plot.content}}</view>
+          <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
+            <view class="weui-article__h1 tx">{{item.type}}</view>
+            <view >{{item.content}}</view>
+          </block>
           </block>
         </block>
       </view>
