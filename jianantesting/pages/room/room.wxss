@@ -32,10 +32,15 @@ page, .page {
 }
 
 swiper-item {
+  width: 100%;
   background-repeat: round;
   background-image: url(http://larpxiaozhushou.tk/pic/background);
 }
 
+.swipscroll {
+  height: 85%; 
+  width: 709rpx;
+}
 .on {
   filter: grayscale(90%);
   color: blue;
