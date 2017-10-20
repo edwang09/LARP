@@ -4,6 +4,9 @@ page, .page {
 .tx{
   font-weight: bold;
 }
+.pdt{
+  padding-top: 10rpx;
+}
 .swiper-tab {
   padding-top: 28rpx;
   display: flex;

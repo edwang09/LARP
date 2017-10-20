@@ -8,25 +8,25 @@
         <view class="weui-article__h1 tx">我的信息</view>
         <block>
           <view class="flex">
-            <text class="tx">{{gameinfo.name}}</text>
+            <text class="tx">《{{gameinfo.name}}》</text>
             <text>（房间码：{{tableid}}）</text>
           </view>
           <view class="flex">
-            <text class="tx">{{characterinfo.charactername}}</text>
+            <text class="tx">“我”{{characterinfo.charactername}}</text>
             <text>（{{characterinfo.charactersex}}）</text>
           </view>
-          <view style="padding-top: 10rpx">{{characterinfo.characterdescription}}</view>
+          <view class="pdt">{{characterinfo.characterdescription}}</view>
           <view>{{characterinfo.characterbackground}}</view>
-          <view class="tx" style="padding-top: 10rpx">已知信息：</view>
+          <view class="tx pdt">已知信息：</view>
           <view wx:for="{{characterinfo.characterinfo}}">
-            <view class="tx">*{{item.type}}</view>
+            <view class="tx pdt">*{{item.type}}</view>
             <view wx:for="{{item.content}}">{{item}}</view>
           </view>
-          <view class="tx" style="padding-top: 10rpx">肮脏的事实：</view>
+          <view class="tx pdt">肮脏的事实：</view>
           <view wx:for="{{characterinfo.characterscandal}}">
             => {{item}}
           </view>
-          <view class="tx" style="padding-top: 10rpx">目的：</view>
+          <view class="tx pdt">目的：</view>
           <view wx:for="{{characterinfo.characterobjective}}">
             => {{item}}
           </view>
@@ -40,10 +40,10 @@
         <block>
           <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
             <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
-            <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
-              <view style="font-weight: bold; padding-top: 10rpx">*{{item.type}}</view>
-              <view>{{item.content}}</view>
-            </block>
+              <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
+                <view class="tx pdt">*{{item.type}}</view>
+                <view>{{item.content}}</view>
+              </block>
             </block>
           </block>
         </block>
@@ -63,13 +63,15 @@
     </swiper-item>
 
     <swiper-item>
-      <view class=" weui-article weui-article__h1 tx">搜集线索</view>
-      <scroll-view class="weui-article swipscroll" scroll-y="true" wx:if="{{roundnumber>0}}">
-        <image class="square" wx:if="{{gameinfo.mapurl}}" src="{{gameinfo.mapurl}}" mode="aspectFit"></image>
-        <view style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
-          <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
-            <button class="squareB" style="width: 40%;" bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
-          </block>
+      <scroll-view class="weui-article swipscroll" scroll-y="true">
+        <view class="weui-article__h1 tx">搜集线索</view>
+        <view wx:if="{{roundnumber>0}}">
+          <image wx:if="{{gameinfo.mapurl}}" src="{{gameinfo.mapurl}}" mode="widthFix" style="width: 98%; padding-top: 40rpx; padding-bottom: 40rpx"></image>
+          <view style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+            <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
+              <button class="squareB" style="width: 40%;" bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
+            </block>
+          </view>
         </view>
       </scroll-view>
     </swiper-item>
@@ -79,8 +81,8 @@
         <view class="weui-article__h1 tx">游戏说明及背景</view>
         <block>
           <block wx:for="{{gameinfo.instruction}}" wx:for-item="instruct" wx:key="index">
-              <view style="font-weight: bold; padding-top: 10rpx">*{{instruct.type}}</view>
-              <view>{{instruct.content}}</view>
+            <view class="tx pdt">*{{instruct.type}}</view>
+            <view>{{instruct.content}}</view>
           </block>
         </block>
       </scroll-view>
