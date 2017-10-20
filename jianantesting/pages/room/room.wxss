@@ -39,7 +39,7 @@ swiper-item {
 
 .swipscroll {
   height: 85%; 
-  width: 709rpx;
+  width: 93%;
 }
 .on {
   filter: grayscale(90%);

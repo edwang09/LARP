@@ -30,25 +30,25 @@
             <text class="user-motto">{{characterinfo.characterbackground}}</text>
           </view>
           <view class="usermotto" style="padding-top: 10rpx">
-            <text class="user-motto tx">已知信息：</text>
+            <text class="user-motto tx" style="font-size: 30rpx">已知信息：</text>
           </view>
             <view wx:for="{{characterinfo.characterinfo}}">
-            <text> => {{item.type}}</text>
+            <text class="tx" style="font-size: 28rpx">*{{item.type}}</text>
               <view wx:for="{{item.content}}">
-              <text>  {{item}}</text>
+              <text style="font-size: 28rpx">  {{item}}</text>
               </view>
             </view>
           <view class="usermotto" style="padding-top: 10rpx">
-            <text class="user-motto tx">肮脏的事实：</text>
+            <text class="user-motto tx" style="font-size: 30rpx">肮脏的事实：</text>
           </view>
           <view wx:for="{{characterinfo.characterscandal}}">
             <text> => {{item}}</text>
           </view>
           <view class="usermotto" style="padding-top: 10rpx">
-            <text class="user-motto tx">目的：</text>
+            <text class="user-motto tx" style="font-size: 28rpx">目的：</text>
           </view>
           <view wx:for="{{characterinfo.characterobjective}}">
-            <text>=> {{item}}</text>
+            <text style="font-size: 28rpx">=> {{item}}</text>
           </view>
         </block>
       </scroll-view>
@@ -60,8 +60,8 @@
         <block>
           <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
           <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
-            <view style="font-weight: bold; padding-top: 10rpx">{{item.type}}</view>
-            <view>{{item.content}}</view>
+            <view style="font-size: 30rpx; font-weight: bold; padding-top: 10rpx">*{{item.type}}</view>
+            <view style="font-size: 28rpx;">{{item.content}}</view>
           </block>
           </block>
         </block>
@@ -73,7 +73,7 @@
         <view class="weui-article__h1 tx">我的线索</view>
         <block>
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
-            <view>{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
+            <view style="font-size: 28rpx;">{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
             <image wx:if="{{clue.image}}" src="{{clue.image}}"></image>
           </block>
         </block>
@@ -97,10 +97,10 @@
         <view class="weui-article__h1 tx">游戏说明及背景</view>
         <block>
           <view class="usermotto">
-            <text class="user-motto">{{gameinfo.name}}</text>
+            <text class="user-motto" style="font-weight: bold; font-size: 30rpx;">*{{gameinfo.name}}</text>
           </view>
           <view class="usermotto">
-            <text class="user-motto">{{gameinfo.descripion}}</text>
+            <text class="user-motto" style="font-size: 28rpx;">{{gameinfo.descripion}}</text>
           </view>
         </block>
       </scroll-view>
