@@ -8,47 +8,27 @@
         <view class="weui-article__h1 tx">我的信息</view>
         <block>
           <view class="flex">
-            <view class="usermotto">
-              <text class="user-motto tx">{{gameinfo.name}}</text>
-            </view>
-            <view class="usermotto">
-              <text class="user-motto">（房间码：{{tableid}}）</text>
-            </view>
+            <text class="tx">{{gameinfo.name}}</text>
+            <text>（房间码：{{tableid}}）</text>
           </view>
           <view class="flex">
-            <view class="usermotto">
-              <text class="user-motto tx">{{characterinfo.charactername}}</text>
-            </view>
-            <view class="usermotto">
-              <text class="user-motto">（{{characterinfo.charactersex}}）</text>
-            </view>
+            <text class="tx">{{characterinfo.charactername}}</text>
+            <text>（{{characterinfo.charactersex}}）</text>
           </view>
-          <view class="usermotto" style="padding-top: 10rpx">
-            <text class="user-motto" >{{characterinfo.characterdescription}}</text>
+          <view style="padding-top: 10rpx">{{characterinfo.characterdescription}}</view>
+          <view>{{characterinfo.characterbackground}}</view>
+          <view class="tx" style="padding-top: 10rpx">已知信息：</view>
+          <view wx:for="{{characterinfo.characterinfo}}">
+            <view class="tx">*{{item.type}}</view>
+            <view wx:for="{{item.content}}">{{item}}</view>
           </view>
-          <view class="usermotto">
-            <text class="user-motto">{{characterinfo.characterbackground}}</text>
-          </view>
-          <view class="usermotto" style="padding-top: 10rpx">
-            <text class="user-motto tx" style="font-size: 30rpx">已知信息：</text>
-          </view>
-            <view wx:for="{{characterinfo.characterinfo}}">
-            <text class="tx" style="font-size: 28rpx">*{{item.type}}</text>
-              <view wx:for="{{item.content}}">
-              <text style="font-size: 28rpx">  {{item}}</text>
-              </view>
-            </view>
-          <view class="usermotto" style="padding-top: 10rpx">
-            <text class="user-motto tx" style="font-size: 30rpx">肮脏的事实：</text>
-          </view>
+          <view class="tx" style="padding-top: 10rpx">肮脏的事实：</view>
           <view wx:for="{{characterinfo.characterscandal}}">
-            <text> => {{item}}</text>
+            => {{item}}
           </view>
-          <view class="usermotto" style="padding-top: 10rpx">
-            <text class="user-motto tx" style="font-size: 28rpx">目的：</text>
-          </view>
+          <view class="tx" style="padding-top: 10rpx">目的：</view>
           <view wx:for="{{characterinfo.characterobjective}}">
-            <text style="font-size: 28rpx">=> {{item}}</text>
+            => {{item}}
           </view>
         </block>
       </scroll-view>
@@ -59,10 +39,10 @@
         <view class="weui-article__h1 tx">公开的线索</view>
         <block>
           <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
-          <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
-            <view style="font-size: 30rpx; font-weight: bold; padding-top: 10rpx">*{{item.type}}</view>
-            <view style="font-size: 28rpx;">{{item.content}}</view>
-          </block>
+            <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
+              <view style="font-weight: bold; padding-top: 10rpx">*{{item.type}}</view>
+              <view>{{item.content}}</view>
+            </block>
           </block>
         </block>
       </scroll-view>
@@ -73,7 +53,7 @@
         <view class="weui-article__h1 tx">我的线索</view>
         <block>
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
-            <view style="font-size: 28rpx;">{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
+            <view>{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
             <image wx:if="{{clue.image}}" src="{{clue.image}}"></image>
           </block>
         </block>
@@ -81,27 +61,23 @@
     </swiper-item>
 
     <swiper-item>
-      <view wx:if="{{roundnumber>0}}" class="weui-article">
-        <view class="weui-article__h1 tx">搜集线索</view>
-        <image class="square" wx:if="{{gameinfo.mapurl}}" src="{{gameinfo.mapurl}}"></image>
+      <view class=" weui-article weui-article__h1 tx">搜集线索</view>
+      <scroll-view class="weui-article swipscroll" scroll-y="true" wx:if="{{roundnumber>0}}">
+        <image class="square" wx:if="{{gameinfo.mapurl}}" src="{{gameinfo.mapurl}}" mode="aspectFit"></image>
         <view style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
           <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
             <button class="squareB" style="width: 40%;" bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
           </block>
         </view>
-      </view>
+      </scroll-view>
     </swiper-item>
 
     <swiper-item>
       <scroll-view class="weui-article swipscroll" scroll-y="true">
         <view class="weui-article__h1 tx">游戏说明及背景</view>
         <block>
-          <view class="usermotto">
-            <text class="user-motto" style="font-weight: bold; font-size: 30rpx;">*{{gameinfo.name}}</text>
-          </view>
-          <view class="usermotto">
-            <text class="user-motto" style="font-size: 28rpx;">{{gameinfo.descripion}}</text>
-          </view>
+          <view class="tx">*{{gameinfo.name}}</view>
+          <view>{{gameinfo.descripion}}</view>
         </block>
       </scroll-view>
     </swiper-item>
@@ -118,10 +94,10 @@
             </form>
           </view>
           <view class="square">
-            <scroll-view class="notepad" scroll-y="true">
+            <scroll-view class="notepad" style="height: 300rpx" scroll-y="true">
               <block wx:for="{{globalbroadcast}}">
                 <view style="margin: 5rpx"> {{gameinfo.characterlist[item.characterid].name}} </view>
-                <view> {{item.broadcast}} </view>
+                <text> {{item.broadcast}} </text>
               </block>
             </scroll-view>
           </view>

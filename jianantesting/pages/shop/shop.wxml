@@ -25,7 +25,7 @@
       <image class="tab-item" bindtap="navigate" id="4" style="width: 25px; height: 25px;" src="/icon/路灯长椅.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="5" style="width: 28px; height: 28px;" src="/icon/侦探剪影.png"></image>
+      <image class="tab-item" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/侦探剪影.png"></image>
     </view>
   </view>
   <view class="flex1">
@@ -48,7 +48,7 @@
   <block wx:for="{{gamelist}}" wx:key="index">
     <view class="form">
       <view class="game">
-        <view class="pic bc_green" style="width: 121rpx; height: 121rpx;"></view>
+        <view class="pic bc_green" style="width: 120rpx; height: 120rpx;"></view>
         <view class="info">
           <view class="h1">
             {{item.name}}
