@@ -40,8 +40,10 @@
         <block>
           <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
             <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
+            <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
               <view style="font-weight: bold; padding-top: 10rpx">*{{item.type}}</view>
               <view>{{item.content}}</view>
+            </block>
             </block>
           </block>
         </block>
@@ -76,8 +78,10 @@
       <scroll-view class="weui-article swipscroll" scroll-y="true">
         <view class="weui-article__h1 tx">游戏说明及背景</view>
         <block>
-          <view class="tx">*{{gameinfo.name}}</view>
-          <view>{{gameinfo.descripion}}</view>
+          <block wx:for="{{gameinfo.instruction}}" wx:for-item="instruct" wx:key="index">
+              <view style="font-weight: bold; padding-top: 10rpx">*{{instruct.type}}</view>
+              <view>{{instruct.content}}</view>
+          </block>
         </block>
       </scroll-view>
     </swiper-item>

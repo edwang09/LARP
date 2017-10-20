@@ -134,7 +134,7 @@ Page({
     var cluecount = this.data.gameinfo.cluelocation[locationid].count
     var cluenumber = Math.floor(Math.random() * cluecount)
     console.log(cluenumber)
-    if (actionpoint>0){
+    if (that.data.actionpoint>0){
     this.setData({
       actionpoint:that.data.actionpoint-1
     })
