@@ -23,7 +23,8 @@ Page({
     tableid:'',
     tablepw:'',
     gamedescription:'',
-    characterlist:[]
+    characterlist:[],
+    cluestatus:[]
   },
 
   goBack: function () {
@@ -116,6 +117,7 @@ Page({
         console.log(res)
         that.setData({
           gamename:res.data[0].name,
+          cluestatus: res.data[0].cluestatus,
           tableid: makeid(),
           tablepw: makepw(),
           gameid: options.gameid
@@ -131,7 +133,8 @@ Page({
             gameid: that.data.gameid,
             passcode: that.data.tablepw,
             vote: [],
-            roundnumber: 0
+            roundnumber: 0,
+            cluestatus: that.data.cluestatus
           },
           method: "POST",
           success: function (res) {
