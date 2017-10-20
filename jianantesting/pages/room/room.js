@@ -134,6 +134,7 @@ Page({
     var cluecount = this.data.gameinfo.cluelocation[locationid].count
     var cluenumber = Math.floor(Math.random() * cluecount)
     console.log(cluenumber)
+    if (actionpoint>0){
     this.setData({
       actionpoint:that.data.actionpoint-1
     })
@@ -164,6 +165,19 @@ Page({
         console.log("succeeded")
       },
     });
+    }else{
+      wx.showModal({
+        title: '线索',
+        content: '你的剩余行动点：' + that.data.actionpoint,
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
   },
   
   bindTextAreaBlur: function (e) {

@@ -37,32 +37,46 @@ Page({
 
   deleteroom: function (e) {
     var that=this
+    var user
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/table?tableid=' + that.data.tableid,
       success: function (res) {
+        if(res.data.length!=0){
         wx.request({
           url: 'https://larpxiaozhushou.tk/api/table/' + res.data[0]._id,
           method:'DELETE',
-          success: function (res) {
-
+        })
+        }
+      }
+    })
+    wx.request({
+      url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+      success: function (res) {
+        console.log(res.data)
+        for(user in res.data){
+        wx.request({
+          url: 'https://larpxiaozhushou.tk/api/user/' + res.data[user]._id,
+          method: 'DELETE',
+          success: function () {
+            console.log("deleted")
           },
           
         })
+        }
       },
-      complete: function () {
-        wx.removeStorage({
-          key: 'createtableid',
-          success: function (res) {
-            console.log("storage removed")
-          }
-        })
-        console.log('deleted')
-        wx.reLaunch({
-          url: '../index/index'
-        })
+
+    })
+    wx.removeStorage({
+      key: 'createtableid',
+      success: function (res) {
+        console.log("storage removed")
       }
     })
-  },
+    console.log('deleted')
+    wx.reLaunch({
+      url: '../index/index'
+    })
+    },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -72,6 +86,7 @@ Page({
       wx.request({
         url: 'https://larpxiaozhushou.tk/api/table?tableid=' + options.tableid,
         success: function (res) {
+          if(res.data.length!=0){
           that.setData({
             gamename: res.data[0].gamename,
             tableid: res.data[0].tableid,
@@ -87,6 +102,7 @@ Page({
               })
             }
           })
+          }
         }
       })
       console.log("already have "+ that.data.tableid)

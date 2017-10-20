@@ -81,7 +81,7 @@
     </swiper-item>
 
     <swiper-item>
-      <view class="weui-article">
+      <view wx:if="{{roundnumber>0}}" class="weui-article">
         <view class="weui-article__h1 tx">搜集线索</view>
         <image class="square" wx:if="{{gameinfo.mapurl}}" src="{{gameinfo.mapurl}}"></image>
         <view style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
@@ -127,8 +127,7 @@
           </view>
           <view style="display: block;">
             <form bindsubmit="setactionpoint" hidden='{{hostname!=usernickname}}'>
-
-              <slider value="3" bindchange="sliderchange" activeColor="orange" min="0" max="10" show-value name="point" />
+              <slider value="3" activeColor="orange" min="0" max="10" show-value name="point" />
               <button class="squareB" form-type="submit"> 设置行动点 </button>
             </form>
             <button class="squareB" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
