@@ -95,19 +95,19 @@
 
           <view class="square">
             <form bindsubmit="bindFormSubmit">
-              <textarea class="notepad" maxlength="400" bindblur="bindTextAreaBlur" placeholder="点击“公告秘密”将此处填写内容显示在下面的对话框中（所有玩家可见）" value="{{broadcast}}" name="textarea" />
+              <textarea class="notepad" maxlength="300" bindblur="bindTextAreaBlur" placeholder="点击“公告秘密”将此处填写内容显示在下面的对话框中（所有玩家可见）" value="{{broadcast}}" name="textarea" />
               <button class="squareB" style="width: 100%;" form-type="submit"> 公告秘密 </button>
             </form>
           </view>
           <view class="square">
-            <scroll-view class="notepad" style="height: 300rpx" scroll-y="true">
+            <scroll-view class="notepad" style="height: 320rpx" scroll-y="true">
               <block wx:for="{{globalbroadcast}}">
-                <view style="margin: 5rpx"> {{gameinfo.characterlist[item.characterid].name}} </view>
-                <text> {{item.broadcast}} </text>
+                <view class="tx" style="margin: 5rpx; font-size:30rpx"> {{gameinfo.characterlist[item.characterid].name}} </view>
+                <view style="word-break: break-all; white-space: pre-line; font-size: 30rpx;"> {{item.broadcast}} </view>
               </block>
             </scroll-view>
           </view>
-          <view style="display: block;">
+          <view>
             <form bindsubmit="setactionpoint" hidden='{{hostname!=usernickname}}'>
               <slider value="3" activeColor="orange" min="0" max="10" show-value name="point" />
               <button class="squareB" form-type="submit"> 设置行动点 </button>
