@@ -95,12 +95,12 @@
 
           <view class="square">
             <form bindsubmit="bindFormSubmit">
-              <textarea class="notepad" maxlength="300" bindblur="bindTextAreaBlur" placeholder="点击“公告秘密”将此处填写内容显示在下面的对话框中（所有玩家可见）" value="{{broadcast}}" name="textarea" />
+              <input class="notepad" maxlength="100" bindblur="bindTextAreaBlur" style="height: 40rpx;" placeholder="“公告秘密”将此填写内容广播（所有玩家可见）" value="{{broadcast}}" name="textarea" />
               <button class="squareB" style="width: 100%;" form-type="submit"> 公告秘密 </button>
             </form>
           </view>
           <view class="square">
-            <scroll-view class="notepad" style="height: 320rpx" scroll-y="true">
+            <scroll-view class="notepad" style="height: 400rpx" scroll-y="true">
               <block wx:for="{{globalbroadcast}}">
                 <view class="tx" style="margin: 5rpx; font-size:30rpx"> {{gameinfo.characterlist[item.characterid].name}} </view>
                 <view style="word-break: break-all; white-space: pre-line; font-size: 30rpx;"> {{item.broadcast}} </view>
@@ -114,7 +114,13 @@
             </form>
             <button class="squareB" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
             <view class="flex">
-              <button class="squareB" hidden='{{vote==-1?false:true}}' bindtap='vote'>指认凶手</button>
+              <picker bindchange=""  range="{{gameinfo.characterlist}}" range-key="name">
+                <view class="picker">
+                    当前选择：{{array[index].name}}
+                </view>
+                </picker>
+              <button class="squareB" style="width: 100%;" form-type="submit"> 指认凶手 </button>
+              <button class="squareB" style="width: 100%;" form-type="submit"> 查看结果 </button>
               <button class="squareB" hidden='{{vote==-1?true:false}}' bindtap='showresult'>查看投票</button>
               <button class="squareB" bindtap='save'>保存信息</button>
               <button class="squareB" bindtap='clearinfo'>退出房间</button>

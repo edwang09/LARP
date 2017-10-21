@@ -71,12 +71,6 @@ Page({
 
   vote: function () {
     let that = this
-    wx.showActionSheet({
-      itemList: that.data.gameinfo.characterlist.map(d => d.name),
-      success: function (res) {
-        that.setData({
-          vote: res.tapIndex
-        })
         wx.request({
           url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
           data: {
@@ -90,11 +84,6 @@ Page({
             console.log("succeeded")
           },
         });
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
   },
 
   showresult: function () {

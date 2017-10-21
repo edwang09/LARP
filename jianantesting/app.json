@@ -6,9 +6,7 @@
     "pages/info/info",
     "pages/room/room",
     "pages/intro/intro",
-    "pages/new/new",
     "pages/wccode/wccode",
-    "pages/findtruth/findtruth",
     "pages/shop/shop",
     "pages/create/create",
     "pages/distribute/distribute"
