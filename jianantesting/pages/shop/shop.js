@@ -1,6 +1,6 @@
 Page({
   data: {
-    background: ['green', 'red', 'yellow'],
+    background: ['1' ,'2', '3'],
     gamelist:[],
     currentgame:{}
   },

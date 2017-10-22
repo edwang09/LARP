@@ -4,7 +4,7 @@
       <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500">
         <block wx:for-items="{{background}}" wx:key="index">
           <swiper-item>
-            <view class="swiper-item bc_{{item}}"></view>
+            <image class="swiper-item" src="https://larpxiaozhushou.tk/pic/conan{{item}}" style="width: 100%"></image>
           </swiper-item>
         </block>
       </swiper>
@@ -48,7 +48,7 @@
   <block wx:for="{{gamelist}}" wx:key="index">
     <view class="form">
       <view class="game">
-        <view class="pic bc_green" style="width: 120rpx; height: 120rpx;"></view>
+        <image class="pic" src="https://larpxiaozhushou.tk/pic/fengzhaqiicon" style="width: 120rpx; height: 120rpx;"></image>
         <view class="info">
           <view class="h1">
             {{item.name}}

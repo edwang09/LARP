@@ -34,7 +34,7 @@
 }
 .swiper-item {
   display: block;
-  border-radius: 15rpx;
+  border-radius: 10rpx;
   height: 150px;
 }
 
