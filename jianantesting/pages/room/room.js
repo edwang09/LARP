@@ -16,6 +16,7 @@ Page({
     acquiredclue: [],
     broadcast: [],
     vote: -1,
+    voted: -1,
     voteresult: [],
     roundnumber: 0,
     // tab切换    
@@ -76,7 +77,7 @@ Page({
           data: {
             acquiredclue: that.data.acquiredclue,
             broadcast: that.data.broadcast,
-            vote: that.data.vote,
+            vote: that.data.pickvote,
             actionpoint: that.data.actionpoint
           },
           method: "PUT",
@@ -84,6 +85,16 @@ Page({
             console.log("succeeded")
           },
         });
+        this.setData({
+          vote: that.data.pickvote
+        })
+        console.log(that.data.vote)
+  }, 
+  pickvote: function (e) {
+    let that = this
+    this.setData({
+      pickvote: e.detail.value
+    })
   },
 
   showresult: function () {

@@ -69,7 +69,7 @@
 
 
 
-
+<!--
   <view class="form">
     <view class="game">
       <view class="pic bc_yellow" style="width: 55px; height: 55px;"></view>
@@ -89,4 +89,7 @@
       <button class="detail" size="mini">详细介绍</button>
     </view>
   </view>
+! sfdaf-->
+
 </view>
+

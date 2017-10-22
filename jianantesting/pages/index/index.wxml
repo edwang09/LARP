@@ -1,6 +1,6 @@
 <!--index.wxml-->
-<toast wx:if="{{!hasUserInfo && canIUse}}"  >正在载入</toast>
-<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 手动载入 </button>
+<toast wx:if="{{!hasUserInfo}}"  >正在载入</toast>
+<button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 手动载入 </button>
 <block wx:if ="{{hasUserInfo}}">
   <view class="container">
       <!-- avatar

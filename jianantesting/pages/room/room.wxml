@@ -100,7 +100,7 @@
             </form>
           </view>
           <view class="square">
-            <scroll-view class="notepad" style="height: 400rpx" scroll-y="true">
+            <scroll-view class="notepad" style="height: 300rpx" scroll-y="true">
               <block wx:for="{{globalbroadcast}}">
                 <view class="tx" style="margin: 5rpx; font-size:30rpx"> {{gameinfo.characterlist[item.characterid].name}} </view>
                 <view style="word-break: break-all; white-space: pre-line; font-size: 30rpx;"> {{item.broadcast}} </view>
@@ -113,16 +113,18 @@
               <button class="squareB" form-type="submit"> 设置行动点 </button>
             </form>
             <button class="squareB" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
+            <block wx:if="{{vote==-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'}}">
+            <picker  bindchange="pickvote" range="{{gameinfo.characterlist}}" range-key="name">
+              <view class="squareB" style="background-color: gainsboro; border-radius: 20rpx;">
+                你的选择：{{gameinfo.characterlist[pickvote].name}}
+              </view>
+            </picker>
+            </block>
             <view class="flex">
-              <picker bindchange=""  range="{{gameinfo.characterlist}}" range-key="name">
-                <view class="picker">
-                    当前选择：{{array[index].name}}
-                </view>
-                </picker>
-              <button class="squareB" style="width: 100%;" form-type="submit"> 指认凶手 </button>
-              <button class="squareB" style="width: 100%;" form-type="submit"> 查看结果 </button>
-              <button class="squareB" hidden='{{vote==-1?true:false}}' bindtap='showresult'>查看投票</button>
-              <button class="squareB" bindtap='save'>保存信息</button>
+
+              <button class="squareB" hidden="{{vote==-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" style="width: 100%;" bindtap="vote"> 指认凶手 </button>
+              <button class="squareB" hidden="{{vote!=-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" bindtap='showresult'>查看投票</button>
+              <button class="squareB" bindtap='save'>保存游戏</button>
               <button class="squareB" bindtap='clearinfo'>退出房间</button>
             </view>
           </view>
