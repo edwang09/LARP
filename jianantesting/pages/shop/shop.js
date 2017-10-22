@@ -1,6 +1,6 @@
 Page({
   data: {
-    background: ['1' ,'2', '3'],
+    background: ['wanshengjiegame', 'top1','top2'],
     gamelist:[],
     currentgame:{}
   },

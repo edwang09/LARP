@@ -4,7 +4,7 @@
       <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500">
         <block wx:for-items="{{background}}" wx:key="index">
           <swiper-item>
-            <image class="swiper-item" src="https://larpxiaozhushou.tk/pic/conan{{item}}" style="width: 100%"></image>
+            <image class="swiper-item" src="https://larpxiaozhushou.tk/pic/{{item}}" style="width: 100%"></image>
           </swiper-item>
         </block>
       </swiper>
