@@ -5,7 +5,7 @@ Page({
    */
   data: {
     displaytype: '',
-    gamename: '',
+    gamename: 'gamename',
     tableid:'',
     tablepw:'',
     character:'',
@@ -30,7 +30,7 @@ Page({
         }
       })
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/game?gameid=' + options.gameid,
+        url: 'https://larpxiaozhushou.tk/api/game?id=' + options.gameid,
         success: function (res) {
           that.setData({
             gameinfo: res.data[0],
@@ -55,7 +55,7 @@ Page({
       })
       console.log(options.gameid)
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/game?gameid=' + options.gameid,
+        url: 'https://larpxiaozhushou.tk/api/game?id=' + options.gameid,
         success: function (res) {
           that.setData({
             gamename: res.data[0].name

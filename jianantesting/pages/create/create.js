@@ -219,7 +219,7 @@ Page({
     //console.log(res)
     if (res.target.id == 'info') {
       // 来自页面内转发按钮
-      console.log("info")
+      console.log("pages/distribute/distribute?tableid=" + that.data.tableid + "&gameid=" + that.data.gameid + "&type=table")
     return {
       title: '游戏及人介绍',
       imageUrl: '/icon/侦探剪影.png',
