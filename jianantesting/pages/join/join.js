@@ -5,17 +5,14 @@ const app = getApp()
 Page({
   data: {
     table_id:'',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     characterlist: [],
     charactername:'',
     characterid:-1,
     characterpw: 'fakepassword',
     characterpasscode: '',
     hasgame: false,
-    tableid:'temprary',
-    tablepw:'123123',
+    tableid:'',
+    tablepw:'',
     gameid:'',
     gamename:'',
     description:''

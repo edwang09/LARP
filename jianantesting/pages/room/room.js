@@ -56,18 +56,29 @@ Page({
 
   nextround: function () {
     let that = this
-    wx.request({
-      url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
-      data: {
-        roundnumber: that.data.roundnumber + 1
-      },
-      method: "PUT",
+    wx.showModal({
+      title: '进入下回合',
+      content: '确认进入下一回合：“'+that.data.gameinfo.mainplot[that.data.roundnumber+1].plotname +'” 吗?',
       success: function (res) {
-        wx.sendSocketMessage({
-          data: "refresh",
-        })
-      },
+        if (res.confirm) {
+          wx.request({
+            url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
+            data: {
+              roundnumber: that.data.roundnumber + 1
+            },
+            method: "PUT",
+            success: function (res) {
+              wx.sendSocketMessage({
+                data: "refresh",
+              })
+              
+            },
+          })
+        } else if (res.cancel) {
+        }
+      }
     })
+
   },
 
   vote: function () {
@@ -453,6 +464,7 @@ Page({
       console.log(res)
       if (that.data.tableid == that.data.tableid) {
         if (res.data == "refresh") {
+          wx.showToast({ title: '进入下回合', icon: 'loading', duration: 2000 });
           var content = ''
           var cast
           wx.request({
@@ -474,6 +486,7 @@ Page({
           })
         }
         if (res.data == "setactionpoint") {
+          wx.showToast({ title: '刷新行动点', icon: 'loading', duration: 2000 });
           wx.request({
             url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
             success: function (res) {

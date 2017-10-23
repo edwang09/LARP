@@ -5,11 +5,11 @@
 
   <view class="page">
     <view class="title">请输入房间号码:</view>
-      <input class="inputView" bindinput="roomidInput" type="text" value="temporary"/>
+      <input class="inputView" bindinput="roomidInput" type="text" value=""/>
 
 
     <view class="title">请输入房间密码:</view>
-      <input class="inputView" bindinput="passwordInput" password type="number" value="123123"/>
+      <input class="inputView" bindinput="passwordInput" password type="number" value=""/>
   
     <button class="inputView" bindtap="enterroom" type="primary" style="background-color:orange;"> 进入房间 </button>
   
