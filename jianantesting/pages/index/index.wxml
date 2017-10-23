@@ -1,7 +1,7 @@
-<!--index.wxml-->
+<!--index.wxml
 <toast wx:if="{{!hasUserInfo}}"  >正在载入</toast>
-<button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 手动载入 </button>
-<block wx:if ="{{hasUserInfo}}">
+<button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 手动载入 </button>-->
+<block wx:if ="{{true}}">
   <view class="container">
       <!-- avatar
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
