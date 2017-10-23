@@ -13,19 +13,19 @@
 
   <view class="flex">
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="1" style="width: 25px; height: 25px;" src="/icon/太极.png"></image>
+      <image class="tab-item" bindtap="navigate" id="1" style="width: 25px; height: 25px;" src="/icon/taiji_shop.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="2" style="width: 25px; height: 25px;" src="/icon/旗袍.png"></image>
+      <image class="tab-item" bindtap="navigate" id="2" style="width: 25px; height: 25px;" src="/icon/qipao_shop.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="3" style="width: 25px; height: 25px;" src="/icon/埃菲尔铁塔.png"></image>
+      <image class="tab-item" bindtap="navigate" id="3" style="width: 25px; height: 25px;" src="/icon/ifle_shop.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="4" style="width: 25px; height: 25px;" src="/icon/路灯长椅.png"></image>
+      <image class="tab-item" bindtap="navigate" id="4" style="width: 25px; height: 25px;" src="/icon/city_shop.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/侦探剪影.png"></image>
+      <image class="tab-item" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/detect_shop.png"></image>
     </view>
   </view>
   <view class="flex1">

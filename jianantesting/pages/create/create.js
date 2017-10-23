@@ -223,7 +223,7 @@ Page({
       console.log("pages/distribute/distribute?tableid=" + that.data.tableid + "&gameid=" + that.data.gameid + "&type=table")
     return {
       title: '游戏及人介绍',
-      imageUrl: '/icon/侦探剪影.png',
+      imageUrl: '/icon/detect_shop.png',
       path: 'pages/distribute/distribute?tableid=' + that.data.tableid + '&gameid=' + that.data.gameid + '&type=table',
       success: function (res) {
         // 转发成功
@@ -235,7 +235,7 @@ Page({
       // 来自页面内转发按钮
       return {
       title: '人物码',
-      imageUrl: '/icon/侦探剪影.png',
+      imageUrl: '/icon/detect_shop.png',
       path: 'pages/distribute/distribute?id=' + res.target.id + '&tableid=' + that.data.tableid + '&gameid=' + that.data.gameid + '&type=character',
       success: function (res) {
         // 转发成功
