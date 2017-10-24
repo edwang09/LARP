@@ -28,10 +28,9 @@
 .info {
   display: flex;
   flex-direction: column;
-  height: 120rpx;
 }
 .Dbtn {
-  margin-right: 15px;
+  margin-right: 20rpx;
 }
 .swiper-item {
   display: block;
