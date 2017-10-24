@@ -13,19 +13,19 @@
 
   <view class="flex">
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="1" style="width: 25px; height: 25px;" src="/icon/taiji_shop.png"></image>
+      <image class="tab-item" bindtap="navigate" id="1" style="width: 50rpx; height: 50rpx;" src="/icon/taiji_shop.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="2" style="width: 25px; height: 25px;" src="/icon/qipao_shop.png"></image>
+      <image class="tab-item" bindtap="navigate" id="2" style="width: 50rpx; height: 50rpx;" src="/icon/qipao_shop.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="3" style="width: 25px; height: 25px;" src="/icon/ifle_shop.png"></image>
+      <image class="tab-item" bindtap="navigate" id="3" style="width: 50rpx; height: 50rpx;" src="/icon/ifle_shop.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="4" style="width: 25px; height: 25px;" src="/icon/city_shop.png"></image>
+      <image class="tab-item" bindtap="navigate" id="4" style="width: 50rpx; height: 50rpx;" src="/icon/city_shop.png"></image>
     </view>
     <view class="tab-item">
-      <image class="tab-item" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/detect_shop.png"></image>
+      <image class="tab-item" bindtap="navigate" id="5" style="width: 50rpx; height: 50rpx;" src="/icon/detect_shop.png"></image>
     </view>
   </view>
   <view class="flex1">

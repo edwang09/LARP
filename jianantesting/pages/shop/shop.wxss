@@ -55,7 +55,7 @@
 
 .tab-item {
   width: 33.3%;
-  font-size: 0.65em;
+  font-size: 22rpx;
   text-align: center;
   color: grey;
 }
