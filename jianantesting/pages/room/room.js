@@ -464,7 +464,7 @@ Page({
       console.log(res)
       if (that.data.tableid == that.data.tableid) {
         if (res.data == "refresh") {
-          wx.showToast({ title: '进入下回合', icon: 'loading', duration: 2000 });
+          wx.showToast({ title: '信息更新', icon: 'loading', duration: 2000 });
           var content = ''
           var cast
           wx.request({
