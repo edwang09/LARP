@@ -314,7 +314,9 @@ Page({
       }
     });
     wx.sendSocketMessage({
-      data: "refresh",
+      data: JSON.stringify({
+        table_id: that.data.table_id, message: 'refresh'
+      }),
     })
   },
   save: function (e) {
@@ -372,7 +374,9 @@ Page({
             success: function (res) {
               console.log("point added")
               wx.sendSocketMessage({
-                data: "setactionpoint",
+                data: JSON.stringify({
+                  table_id: that.data.table_id, message: 'setactionpoint' 
+                  }),
               })
             },
           });
@@ -387,14 +391,19 @@ Page({
     let that = this
     var content = ''
     var cast
-    this.setData({
+    try{this.setData({
       tableid: wx.getStorageSync('tableid'),
       gameid: wx.getStorageSync('gameid'),
       characterid: wx.getStorageSync('characterid'),
       user_id: wx.getStorageSync('user_id'),
       table_id: wx.getStorageSync('table_id'),
       usernickname: app.globalData.userInfo.nickName
-    });
+    });}catch(e){
+      wx.reLaunch({
+        url: '../index/index',
+      })
+    }
+  
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
       success: function (res) {
@@ -457,13 +466,14 @@ Page({
     wx.onSocketOpen(function (res) {
       console.log('WebSocket is on.')
       wx.sendSocketMessage({
-        data: "Hello World",
+        data: JSON.stringify({table_id: that.data.table_id,message:'Helloworld'})
       })
     })
     wx.onSocketMessage(function (res) {
-      console.log(res)
-      if (that.data.tableid == that.data.tableid) {
-        if (res.data == "refresh") {
+      var recieved = JSON.parse(res.data)
+      if (recieved.table_id == that.data.table_id) {
+        console.log(recieved)
+        if (recieved.message == "refresh") {
           wx.showToast({ title: '信息更新', icon: 'loading', duration: 2000 });
           var content = ''
           var cast
@@ -485,7 +495,7 @@ Page({
             },
           })
         }
-        if (res.data == "setactionpoint") {
+        if (recieved.message == "setactionpoint") {
           wx.showToast({ title: '刷新行动点', icon: 'loading', duration: 2000 });
           wx.request({
             url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
@@ -500,7 +510,9 @@ Page({
       }
     })
     wx.onSocketClose(function (res) {
-      console.log('WebSocket is off.')
+      wx.reLaunch({
+        url: '../index/index'
+      })
     })
 
   },
