@@ -48,7 +48,7 @@
   <block wx:for="{{gamelist}}" wx:key="index">
     <view class="form">
       <view class="game">
-        <image class="pic" src="https://larpxiaozhushou.tk/pic/{{item.id}}icon" style="width: 100rpx; height: 100rpx;"></image>
+        <image class="pic" src="https://larpxiaozhushou.tk/pic/{{item.id}}icon" style="width: 110rpx; height: 110rpx;"></image>
         <view class="info">
           <view class="h1">
             {{item.name}}
@@ -62,13 +62,13 @@
         </view>
       </view>
       <view class="Dbtn">
-        <button size="mini" style="font-size: 21rpx" bindtap="introduction" id="{{item.id}}">详细介绍</button>
+        <button size="mini" style="font-size: 24rpx" bindtap="introduction" id="{{item.id}}">详细介绍</button>
       </view>
     </view>
   </block>
 
 
-<!--
+
   <view class="form">
     <view class="game">
       <view class="pic bc_yellow" style="width: 55px; height: 55px;"></view>
@@ -88,7 +88,6 @@
       <button class="detail" size="mini">详细介绍</button>
     </view>
   </view>
--->
 
 </view>
 
