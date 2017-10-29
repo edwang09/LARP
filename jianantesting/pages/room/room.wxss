@@ -60,6 +60,11 @@ swiper-item {
   margin: 20rpx auto 0;
 }
 
+.myclueb{
+  width: 28%;
+  padding-top: 20rpx;
+}
+
 .squareB {
   width: 90%;
   margin: 20rpx auto 0;

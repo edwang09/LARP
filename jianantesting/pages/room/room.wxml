@@ -51,15 +51,34 @@
     </swiper-item>
 
     <swiper-item>
-      <scroll-view class="weui-article swipscroll" scroll-y="true">
+      <view class="weui-article" style="height: 100%">
+
         <view class="weui-article__h1 tx">我的线索</view>
-        <block>
+        <scroll-view scroll-y="true" style="height: 60%; background-color: gainsboro;" bindscrolltoupper="upper" bindscrolltolower="lower" scroll-into-view="{{toView}}">
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
-            <view>{{gameinfo.cluelocation[clue.cluelocation].name}} : {{clue.content}}</view>
-            <image wx:if="{{clue.image}}" src="{{clue.image}}"></image>
+            <view class="weui-article" style="height: 100%">
+              <view class="weui-article__h3" style="text-decoration: underline;">{{gameinfo.cluelocation[clue.cluelocation].name}}:</view>
+              <view style="height: 90%; display: flex; justify-content: center; align-items: center;">
+                <text>{{clue.content}}</text>
+                <image wx:if="{{clue.image}}" src="{{clue.image}}"></image>
+              </view>
+            </view>
           </block>
-        </block>
-      </scroll-view>
+        </scroll-view>
+
+
+        <view style="padding-top: 40rpx; display: flex; flex-direction: row; justify-content: space-around; width: 100%;">
+          <button class="myclueb" size="mini" bindtap="taplast">上一条</button>
+          <button class="myclueb" size="mini" bindtap="tapnext">下一条</button>
+          <picker style="width: 28%" bindchange="picksend" range="{{gameinfo.characterlist}}" range-key="name">
+            <view style="height: 65rpx; background-color: gainsboro; border-radius: 10rpx;">
+              发给：{{gameinfo.characterlist[picksend].name}}
+            </view>
+          </picker>
+          <image bindtap="sendclueto" style="width: 70rpx; height: 70rpx;" src="/icon/send.png"></image>
+        </view>
+
+      </view>
     </swiper-item>
 
     <swiper-item>
@@ -67,7 +86,7 @@
         <view class="weui-article__h1 tx">搜集线索</view>
         <view wx:if="{{roundnumber>0}}">
           <image wx:if="{{gameinfo.mapurl}}" src="{{gameinfo.mapurl}}" mode="widthFix" style="width: 98%; padding-top: 40rpx; padding-bottom: 40rpx"></image>
-          <view style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+          <view style="display: flex; flex-direction: row; flex-wrap: wrap;">
             <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
               <button wx:if="{{location.index!=characterinfo.banlocation}}" class="squareB" style="width: 40%;" bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
             </block>
