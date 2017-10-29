@@ -69,7 +69,9 @@ Page({
             method: "PUT",
             success: function (res) {
               wx.sendSocketMessage({
-                data: "refresh",
+                data: JSON.stringify({
+                  table_id: that.data.table_id, message: 'refresh'
+                }),
               })
               
             },

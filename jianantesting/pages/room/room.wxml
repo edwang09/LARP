@@ -69,7 +69,7 @@
           <image wx:if="{{gameinfo.mapurl}}" src="{{gameinfo.mapurl}}" mode="widthFix" style="width: 98%; padding-top: 40rpx; padding-bottom: 40rpx"></image>
           <view style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
             <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
-              <button class="squareB" style="width: 40%;" bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
+              <button wx:if="{{location.index!=characterinfo.banlocation}}" class="squareB" style="width: 40%;" bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
             </block>
           </view>
         </view>
