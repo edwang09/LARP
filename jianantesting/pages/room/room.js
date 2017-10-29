@@ -42,7 +42,7 @@ Page({
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
       data: {
-        toView: acquiredclue[0],
+        toView: that.data.acquiredclue[0],
         acquiredclue: that.data.acquiredclue,
         broadcast: that.data.broadcast,
         sendclueto: that.data.picksend,
