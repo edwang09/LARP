@@ -2,11 +2,6 @@ page, .page {
   height: 100%;
 }
 
-.article {
-  padding: 10rpx;
-  font-size: 32rpx;
-}
-
 .tx {
   font-weight: bold;
 }
@@ -36,7 +31,7 @@ page, .page {
   background: #fff;
 }
 
-.swiperit {
+swiper-item {
   width: 100%;
   background-repeat: round;
   background-image: url(http://larpxiaozhushou.tk/pic/background);
@@ -65,7 +60,7 @@ page, .page {
   margin: 20rpx auto 0;
 }
 
-.myclueb {
+.myclueb{
   width: 28%;
   height: 65rpx;
   padding-top: 20rpx;

@@ -36,44 +36,6 @@ Page({
     })
   },
   
-  //next/last clue
-  tapnext: function (e) {
-    let that = this
-    wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
-      data: {
-        toView: that.data.acquiredclue[0],
-        acquiredclue: that.data.acquiredclue,
-        broadcast: that.data.broadcast,
-        sendclueto: that.data.picksend,
-        actionpoint: that.data.actionpoint
-      },
-      method: "PUT",
-      success: function (res) {
-        console.log("succeeded")
-      },
-    });
-    for (var i = 0; i < that.data.acquiredclue.length; ++i) {
-      if (that.data.acquiredclue[i] === that.data.toView) {
-        that.setData({
-          toView: that.data.acquiredclue[i + 1]
-        })
-        break
-      }
-    }
-  },
-
-  taplast: function (e) {
-    for (var i = 0; i < acquiredclue.length; ++i) {
-      if (acquiredclue[i] === this.data.toView) {
-        this.setData({
-          toView: acquiredclue[i - 1]
-        })
-        break
-      }
-    }
-  },
-
   //sendClueTo
   sendclueto: function () {
     let that = this

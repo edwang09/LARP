@@ -1,0 +1,179 @@
+<!--index.wxml-->
+<view class="page">
+
+  <!--内容主体-->
+  <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+    <swiper-item>
+      <scroll-view class="weui-article swipscroll" scroll-y="true">
+        <view class="weui-article__h1 tx">我的信息</view>
+        <block>
+          <view class="flex">
+            <text class="tx">《{{gameinfo.name}}》</text>
+            <text>（房间码：{{tableid}}）</text>
+          </view>
+          <view class="flex">
+            <text class="tx">“我”{{characterinfo.charactername}}</text>
+            <text>（{{characterinfo.charactersex}}）</text>
+          </view>
+          <view class="pdt">{{characterinfo.characterdescription}}</view>
+          <view>{{characterinfo.characterbackground}}</view>
+          <view class="tx pdt">已知信息：</view>
+          <view wx:for="{{characterinfo.characterinfo}}">
+            <view class="tx pdt">*{{item.type}}</view>
+            <view wx:for="{{item.content}}">{{item}}</view>
+          </view>
+          <view class="tx pdt">肮脏的事实：</view>
+          <view wx:for="{{characterinfo.characterscandal}}">
+            => {{item}}
+          </view>
+          <view class="tx pdt">目的：</view>
+          <view wx:for="{{characterinfo.characterobjective}}">
+            => {{item}}
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view class="weui-article swipscroll" scroll-y="true">
+        <view class="weui-article__h1 tx">公开的线索</view>
+        <block>
+          <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
+            <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
+              <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
+                <view class="tx pdt">*{{item.type}}</view>
+                <view>{{item.content}}</view>
+              </block>
+            </block>
+          </block>
+        </block>
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <view class="weui-article" style="height: 100%">
+
+        <view class="weui-article__h1 tx">我的线索</view>
+        <scroll-view scroll-y="true" style="height: 60%; background-color: gainsboro; opacity: 0.8" scroll-into-view="{{toView}}">
+          <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
+            <view id="{{clue.content}}" class="weui-article" style="height: 100%">
+              <view class="weui-article__h3" style="text-decoration: underline;">{{gameinfo.cluelocation[clue.cluelocation].name}}:</view>
+              <view style="height: 90%; display: flex; justify-content: center; align-items: center;">
+                <view>
+                  <text>{{clue.content}}</text>
+                  <image wx:if="{{clue.image}}" src="{{clue.image}}"></image>
+                </view>
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+
+
+        <view style="padding-top: 40rpx; display: flex; flex-direction: row; justify-content: space-around; width: 100%;">
+          <button class="myclueb" size="mini" bindtap="taplast">上一条</button>
+          <button class="myclueb" size="mini" bindtap="tapnext">下一条</button>
+          <picker style="width: 28%" bindchange="picksend" range="{{gameinfo.characterlist}}" range-key="name">
+            <view style="height: 65rpx; background-color: gainsboro; border-radius: 10rpx;">
+              发给：{{gameinfo.characterlist[picksend].name}}
+            </view>
+          </picker>
+          <image bindtap="sendclueto" style="width: 70rpx; height: 70rpx;" src="/icon/send.png"></image>
+        </view>
+
+      </view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view class="weui-article swipscroll" scroll-y="true">
+        <view class="weui-article__h1 tx">搜集线索</view>
+        <view wx:if="{{roundnumber>0}}">
+          <image wx:if="{{gameinfo.mapurl}}" src="{{gameinfo.mapurl}}" mode="widthFix" style="width: 98%; padding-top: 40rpx; padding-bottom: 40rpx"></image>
+          <view style="display: flex; flex-direction: row; flex-wrap: wrap;">
+            <block wx:for="{{gameinfo.cluelocation}}" wx:for-item="location" wx:key="index">
+              <button wx:if="{{location.index!=characterinfo.banlocation}}" class="squareB" style="width: 40%;" bindtap='getclue' id='{{location.index}}'>{{location.name}}</button>
+            </block>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view class="weui-article swipscroll" scroll-y="true">
+        <view class="weui-article__h1 tx">游戏说明及背景</view>
+        <block>
+          <block wx:for="{{gameinfo.instruction}}" wx:for-item="instruct" wx:key="index">
+            <view class="tx pdt">*{{instruct.type}}</view>
+            <view>{{instruct.content}}</view>
+          </block>
+        </block>
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view scroll-y="true" style="height: 100%;">
+        <view class="weui-article" style="height: 90%;">
+          <view class="weui-article__h1 tx">使用功能</view>
+          <block>
+            <view class="square">
+              <form bindsubmit="bindFormSubmit">
+                <input class="notepad" maxlength="100" bindblur="bindTextAreaBlur" style="height: 40rpx;" placeholder="“公告秘密”将此填写内容广播（所有玩家可见）" value="{{broadcast}}" name="textarea" />
+                <button class="squareB" style="width: 100%;" form-type="submit"> 公告秘密 </button>
+              </form>
+            </view>
+            <view class="square" style="height: 40%;">
+              <scroll-view class="notepad" style="height: 100%" scroll-y="true">
+                <block wx:for="{{globalbroadcast}}">
+                  <view class="tx" style="margin: 5rpx; font-size:28rpx"> {{gameinfo.characterlist[item.characterid].name}} </view>
+                  <view style="word-break: break-all; white-space: pre-line; font-size: 26rpx;"> {{item.broadcast}} </view>
+                </block>
+              </scroll-view>
+            </view>
+
+            <view style="height: 20%;">
+              <form bindsubmit="setactionpoint" hidden='{{hostname!=usernickname}}'>
+                <slider value="3" activeColor="orange" min="0" max="10" show-value name="point" />
+                <button class="squareB" form-type="submit"> 设置行动点 </button>
+              </form>
+              <button class="squareB" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
+              <block wx:if="{{vote==-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'}}">
+                <picker bindchange="pickvote" range="{{gameinfo.characterlist}}" range-key="name">
+                  <view class="squareB" style="background-color: gainsboro; border-radius: 20rpx;">
+                    你的选择：{{gameinfo.characterlist[pickvote].name}}
+                  </view>
+                </picker>
+              </block>
+              <view class="flex">
+
+                <button class="squareB" hidden="{{vote==-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" style="width: 100%;" bindtap="vote"> 指认凶手 </button>
+                <button class="squareB" hidden="{{vote!=-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" bindtap='showresult'>查看投票</button>
+                <button class="squareB" bindtap='save'>保存游戏</button>
+                <button class="squareB" bindtap='clearinfo'>退出房间</button>
+              </view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+  <!--底部导航栏-->
+  <view class="swiper-tab">
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1" style="width: 25px; height: 25px;" src="/icon/user_nav.png"></image>
+    </view>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="navigate" id="2" style="width: 25px; height: 25px;" src="/icon/list_nav.png"></image>
+    </view>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="navigate" id="3" style="width: 25px; height: 25px;" src="/icon/env_nav.png"></image>
+    </view>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="navigate" id="4" style="width: 25px; height: 25px;" src="/icon/search_nav.png"></image>
+    </view>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="navigate" id="5" style="width: 25px; height: 25px;" src="/icon/ques_nav.png"></image>
+    </view>
+    <view class="tab-item">
+      <image class="tab-item {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="navigate" id="6" style="width: 25px; height: 25px;" src="/icon/set_nav.png"></image>
+    </view>
+  </view>
+</view>
