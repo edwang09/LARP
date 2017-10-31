@@ -73,28 +73,29 @@ Page({
           },
           complete: function (){
             var newacquiredclue = that.data.acquiredclue
-            newacquiredclue.splice(that.data.currentclue, 1)
-                that.setData({
-                  acquiredclue: newacquiredclue
-              })
-              wx.sendSocketMessage({
-                data: JSON.stringify({
-                  table_id: that.data.table_id, message: 'sendclue', user_id: tempuser_id
-                }),
-              })
-              wx.request({
-                url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
-                data: {
-                  acquiredclue: that.data.acquiredclue,
-                  broadcast: that.data.broadcast,
-                  vote: that.data.vote,
-                  actionpoint: that.data.actionpoint
-                },
-                method: "PUT",
-                success: function (res) {
-                  console.log("succeeded")
-                },
-              });
+            newacquiredclue[that.data.currentclue] = { "content": "该线索已发送给" + that.data.gameinfo.characterlist[that.data.picksend].name + "。", "cluelocation": that.data.acquiredclue[that.data.currentclue].cluelocation }
+            that.setData({
+                  acquiredclue: newacquiredclue,
+                  currentclue: that.data.currentclue - 1
+            })
+            wx.sendSocketMessage({
+              data: JSON.stringify({
+                table_id: that.data.table_id, message: 'sendclue', user_id: tempuser_id
+              }),
+            })
+            wx.request({
+              url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+              data: {
+                acquiredclue: that.data.acquiredclue,
+                broadcast: that.data.broadcast,
+                vote: that.data.vote,
+                actionpoint: that.data.actionpoint
+              },
+              method: "PUT",
+              success: function (res) {
+                console.log("succeeded")
+              },
+            });
           }
         });
       }

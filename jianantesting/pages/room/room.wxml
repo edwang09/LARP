@@ -53,7 +53,7 @@
     <swiper-item class="swiperit">
       <view class="weui-article" style="height: 100%">
         <view class="weui-article__h1 tx">我的线索</view>
-        <swiper indicator-dots="true" vertical bindchange="swiperV" current="{{currentclue}}" style="height: 65%; width: 103%; padding-top: 10rpx">
+        <swiper indicator-dots="true" vertical circular bindchange="swiperV" current="0" style="height: 65%; width: 103%; padding-top: 10rpx">
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
             <swiper-item>
               <view class="article" style="height: 100%">
