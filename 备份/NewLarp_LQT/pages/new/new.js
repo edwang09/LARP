@@ -27,13 +27,14 @@ Page({
   slidethis: function (e) {
     console.log(e);
     var animation = wx.createAnimation({
-      duration: 600,
-      timingFunction: 'ease-in',
+      duration: 300,
+      timingFunction: 'cubic-bezier(.8,.2,.1,0.8)',
     });
     var self = this;
     this.animation = animation;
-    this.animation.matrix3d(0.4, 0, 0.00, 0, 0.00, 0.4, 0.00, 0, 0, 0, 1, 0, 0, 0, 0, 1).step(); 
-    this.animation.matrix3d(0.05, 0, 0.00, 0.0001, 0.00, 0.05, 0.00, 0, 0, 0, 1, 0, 800, 0, 0, 1).step();
+    this.animation.translateY(-420).rotate(-5).translateX(0).step(); 
+    //matrix3d(.2, 0, 0.00, 0.001, 0.00, 1, 0.00, 0, 0, 0, 1, 0, -150, 0, 0, 1)
+    this.animation.translateY(62).translateX(25).rotate(0).step();
     this.setData({
       animationData: this.animation.export()
     });
@@ -45,7 +46,7 @@ Page({
         cardInfoList: self.data.cardInfoList,
         animationData: {}
       });
-    }, 600);
+    }, 350);
   },
   buythis: function (e) {
     console.log(e);

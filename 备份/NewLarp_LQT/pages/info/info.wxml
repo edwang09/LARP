@@ -1,0 +1,20 @@
+<!--pages/info/info.wxml by LQT-->
+
+<view class="page">
+    
+    <view class="page__bd">
+        <view class="weui-article">
+
+            <view class="weui-article__section">
+  
+                <view class="artiblue">
+                        很高兴你加入到LARP的大家庭中，如果在游戏中遇到任何问题，或者新奇的点子，请给作者发伊美尔：chinalarp@gmail.com
+                </view>
+                <view class="weui-article__title">--关于作者--</view>
+                <view class="artibluep">
+                        推理爱好者，技术宅， 喜欢演，其他的还没想好。
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

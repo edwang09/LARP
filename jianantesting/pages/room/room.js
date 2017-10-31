@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    animationData: {},
     user_id: '',
     tableid: '',
     gameid: '',
@@ -49,59 +50,83 @@ Page({
     let that = this
     var tempacquiredclue =[]
     var tempuser_id
+
     console.log(that.data.tableid)
     console.log(that.data.picksend)
     
-    wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid +'&characterid=' + that.data.picksend,
-      success: function (res) {
-        console.log(res.data[0])
-        tempacquiredclue = res.data[0].acquiredclue
-        tempuser_id = res.data[0]._id
-      },
-      complete: function (){
-        console.log(tempacquiredclue)
-        console.log(tempuser_id)
-        wx.request({
-          url: 'https://larpxiaozhushou.tk/api/user/' + tempuser_id,
-          data:{
-            acquiredclue: tempacquiredclue.concat(that.data.acquiredclue[that.data.currentclue])
-          },
-          method:'PUT',
-          success: function (res) {
-            console.log('send complete')
-          },
-          complete: function (){
-            var newacquiredclue = that.data.acquiredclue
-            newacquiredclue[that.data.currentclue] = { "content": "该线索已发送给" + that.data.gameinfo.characterlist[that.data.picksend].name + "。", "cluelocation": that.data.acquiredclue[that.data.currentclue].cluelocation }
-            that.setData({
-                  acquiredclue: newacquiredclue,
-                  currentclue: that.data.currentclue - 1
-            })
-            wx.sendSocketMessage({
-              data: JSON.stringify({
-                table_id: that.data.table_id, message: 'sendclue', user_id: tempuser_id
-              }),
-            })
-            wx.request({
-              url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
-              data: {
-                acquiredclue: that.data.acquiredclue,
-                broadcast: that.data.broadcast,
-                vote: that.data.vote,
-                actionpoint: that.data.actionpoint
-              },
-              method: "PUT",
-              success: function (res) {
-                console.log("succeeded")
-              },
-            });
-          }
-        });
-      }
+    //animation
+    var animation = wx.createAnimation({
+      duration: 600,
+      timingFunction: 'ease-in',
     });
-
+    var self = this;
+    this.animation = animation;
+    this.animation.matrix3d(0.4, 0, 0.00, 0, 0.00, 0.4, 0.00, 0, 0, 0, 1, 0, 0, 0, 0, 1).step();
+    this.animation.matrix3d(0.05, 0, 0.00, 0.0001, 0.00, 0.05, 0.00, 0, 0, 0, 1, 0, 800, 0, 0, 1).step();
+    this.setData({
+      animationData: this.animation.export()
+    });
+    
+    setTimeout(function () {
+      wx.request({
+        url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid + '&characterid=' + that.data.picksend,
+        success: function (res) {
+          console.log(res.data[0])
+          tempacquiredclue = res.data[0].acquiredclue
+          tempuser_id = res.data[0]._id
+        },
+        complete: function () {
+          console.log(tempacquiredclue)
+          console.log(tempuser_id)
+          wx.request({
+            url: 'https://larpxiaozhushou.tk/api/user/' + tempuser_id,
+            data: {
+              acquiredclue: tempacquiredclue.concat(that.data.acquiredclue[that.data.currentclue])
+            },
+            method: 'PUT',
+            success: function (res) {
+              console.log('send complete')
+            },
+            complete: function () {
+              var newacquiredclue = that.data.acquiredclue
+              newacquiredclue[that.data.currentclue] = { "content": "该线索已发送给" + that.data.gameinfo.characterlist[that.data.picksend].name + "。", "cluelocation": that.data.acquiredclue[that.data.currentclue].cluelocation }
+              that.setData({
+                acquiredclue: newacquiredclue,
+                currentclue: that.data.currentclue - 1
+              })
+              wx.sendSocketMessage({
+                data: JSON.stringify({
+                  table_id: that.data.table_id, message: 'sendclue', user_id: tempuser_id
+                }),
+              })
+              wx.request({
+                url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+                data: {
+                  acquiredclue: that.data.acquiredclue,
+                  broadcast: that.data.broadcast,
+                  vote: that.data.vote,
+                  actionpoint: that.data.actionpoint
+                },
+                method: "PUT",
+                success: function (res) {
+                  console.log("succeeded")
+                },
+              });
+            }
+          });
+        }
+      });
+      var animation = wx.createAnimation({
+        timingFunction: 'step-end',
+      });
+      animation.opacity(0).matrix3d(1, 0, 0.00, 0, 0.00, 1, 0.00, 0, 0, 0, 1, 0, 0, 0, 0, 1).step();
+      animation.opacity(1).step();
+      self.setData({
+        animationData: animation.export(),
+      })
+    }, 1000);
   },
+
   picksend: function (e) {
     let that = this
     this.setData({

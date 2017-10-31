@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/new/new",
+    "pages/join/join",
+    "pages/intro/intro",
+    "pages/wccode/wccode",
+    "pages/info/info"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "LARP小助手",
+    "navigationBarTextStyle": "black"
+  }
+}

@@ -58,7 +58,7 @@
             <swiper-item>
               <view class="article" style="height: 100%">
                 <view class="weui-article__h3" style="text-decoration: underline;">{{gameinfo.cluelocation[clue.cluelocation].name}}:</view>
-                <view style="width: 95%; height: 90%; display: flex; justify-content: center; align-items: center;">
+                <view style="width: 95%; height: 90%; display: flex; justify-content: center; align-items: center;" animation="{{animationData}}">
                   <view style="width: 98%">
                     <view style="width: 98%">
                       <view style="padding-left: 30rpx; padding-right: 40rpx; padding-bottom: 20rpx">{{clue.content}}</view>
@@ -74,7 +74,7 @@
         </swiper>
         <view wx:if="{{acquiredclue.length>0}}" style="padding-top: 20rpx; display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
           <picker style="width: 50%" bindchange="picksend" range="{{gameinfo.characterlist}}" range-key="name">
-            <view style="height: 45rpx; background-color: gainsboro; border-radius: 10rpx;">
+            <view style="height: 45rpx; background-color: gainsboro; border-radius: 10rpx;">             
               发给：{{gameinfo.characterlist[picksend].name}}
             </view>
           </picker>
