@@ -28,8 +28,19 @@
           </view>
           <view class="tx pdt">目的：</view>
           <view wx:for="{{characterinfo.characterobjective}}">
-            => {{item}}
+          {{item}}
           </view>
+          <block wx:if="{{characterinfo.characterplot!=[]}}">
+          <view class="tx pdt">回合剧本：</view>
+          <block wx:for="{{characterinfo.characterplot}}" wx:for-item="plot" wx:key="index">
+            <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
+              <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
+                <view class="tx pdt">*{{item.type}}</view>
+                <view>{{item.content}}</view>
+              </block>
+            </block>
+          </block>
+          </block>
         </block>
       </scroll-view>
     </swiper-item>
@@ -146,6 +157,7 @@
 
                 <button class="squareB" hidden="{{vote==-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" style="width: 100%;" bindtap="vote"> 指认凶手 </button>
                 <button class="squareB" hidden="{{vote!=-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" bindtap='showresult'>查看投票</button>
+                <button class="squareB" hidden="{{hostname!=usernickname&&vote!=-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" bindtap='revote'>重新投票</button>
                 <button class="squareB" bindtap='save'>保存游戏</button>
                 <button class="squareB" bindtap='clearinfo'>退出房间</button>
               </view>

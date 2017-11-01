@@ -13,8 +13,7 @@ function makeid() {
   return text;
 };
 Page({
-
-  /**
+  /*
    * 页面的初始数据
    */
   data: {
