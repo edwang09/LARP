@@ -162,7 +162,7 @@ Page({
         console.log(that.data.gameinfo.playernumber)
         if (res.data.length != that.data.gameinfo.playernumber){
           wx.showToast({ title: '人数未齐', icon: 'loading', duration: 1000 });
-        }else{
+        }else{}
           wx.showModal({
             title: '进入下回合',
             content: '确认进入下一回合：“' + that.data.gameinfo.mainplot[that.data.roundnumber + 1].plotname + '” 吗?',
@@ -187,7 +187,7 @@ Page({
               }
             }
           })
-        }
+        
 
       },
     })
