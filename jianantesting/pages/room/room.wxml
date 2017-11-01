@@ -28,18 +28,18 @@
           </view>
           <view class="tx pdt">目的：</view>
           <view wx:for="{{characterinfo.characterobjective}}">
-          {{item}}
+            {{item}}
           </view>
           <block wx:if="{{characterinfo.characterplot!=[]}}">
-          <view class="tx pdt">回合剧本：</view>
-          <block wx:for="{{characterinfo.characterplot}}" wx:for-item="plot" wx:key="index">
-            <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
-              <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
-                <view class="tx pdt">*{{item.type}}</view>
-                <view>{{item.content}}</view>
+            <view class="tx pdt">回合剧本：</view>
+            <block wx:for="{{characterinfo.characterplot}}" wx:for-item="plot" wx:key="index">
+              <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
+                <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
+                  <view class="tx pdt">*{{item.type}}</view>
+                  <view>{{item.content}}</view>
+                </block>
               </block>
             </block>
-          </block>
           </block>
         </block>
       </scroll-view>
@@ -85,7 +85,7 @@
         </swiper>
         <view wx:if="{{acquiredclue.length>0}}" style="padding-top: 20rpx; display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
           <picker style="width: 50%" bindchange="picksend" range="{{gameinfo.characterlist}}" range-key="name">
-            <view style="height: 45rpx; background-color: gainsboro; border-radius: 10rpx;">             
+            <view style="height: 45rpx; background-color: gainsboro; border-radius: 10rpx;">
               发给：{{gameinfo.characterlist[picksend].name}}
             </view>
           </picker>
@@ -131,7 +131,7 @@
                 <button class="squareB" style="width: 100%;" form-type="submit"> 公告秘密 </button>
               </form>
             </view>
-            <view class="square" style="height: 40%;">
+            <view class="square" style="height: 38%;">
               <scroll-view class="notepad" style="height: 100%" scroll-y="true">
                 <block wx:for="{{globalbroadcast}}">
                   <view class="tx" style="margin: 5rpx; font-size:28rpx"> {{gameinfo.characterlist[item.characterid].name}} </view>
@@ -139,28 +139,32 @@
                 </block>
               </scroll-view>
             </view>
-
-            <view style="height: 20%;">
+            <view>
               <form bindsubmit="setactionpoint" hidden='{{hostname!=usernickname}}'>
                 <slider value="3" activeColor="orange" min="0" max="10" show-value name="point" />
                 <button class="squareB" form-type="submit"> 设置行动点 </button>
               </form>
               <button class="squareB" bindtap='nextround' hidden='{{hostname!=usernickname}}'>进入下一回合</button>
               <block wx:if="{{vote==-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'}}">
-                <picker bindchange="pickvote" range="{{gameinfo.characterlist}}" range-key="name">
-                  <view class="squareB" style="background-color: gainsboro; border-radius: 20rpx;">
-                    你的选择：{{gameinfo.characterlist[pickvote].name}}
-                  </view>
-                </picker>
+                <view style="display: flex; flex-direction: row; width: 100%; align-items: center; justify-content: space-around">
+                  <picker bindchange="pickvote" range="{{gameinfo.characterlist}}" range-key="name" style="width: 50%">
+                    <view class="squareB" style="background-color: gainsboro; border-radius: 20rpx;">
+                      你的选择：{{gameinfo.characterlist[pickvote].name}}
+                    </view>
+                  </picker>
+                  <button class="squareB" hidden="{{vote==-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" style="width: 50%;" bindtap="vote"> 指认凶手 </button>
+                </view>
               </block>
-              <view class="flex">
+            </view>
 
-                <button class="squareB" hidden="{{vote==-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" style="width: 100%;" bindtap="vote"> 指认凶手 </button>
-                <button class="squareB" hidden="{{vote!=-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" bindtap='showresult'>查看投票</button>
-                <button class="squareB" hidden="{{hostname!=usernickname&&vote!=-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" bindtap='revote'>重新投票</button>
-                <button class="squareB" bindtap='save'>保存游戏</button>
-                <button class="squareB" bindtap='clearinfo'>退出房间</button>
-              </view>
+            <view style="display: flex; flex-direction: row; width: 100%;">
+
+
+              <button class="squareB" hidden="{{vote!=-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" bindtap='showresult'>查看投票</button>
+              <button class="squareB" hidden="{{hostname==usernickname&&vote!=-1&&gameinfo.mainplot[roundnumber].plotname=='指认凶手'?false:true}}" bindtap='revote'>重新投票</button>
+              <button class="squareB" bindtap='save'>保存游戏</button>
+              <button class="squareB" bindtap='clearinfo'>退出房间</button>
+
             </view>
           </block>
         </view>

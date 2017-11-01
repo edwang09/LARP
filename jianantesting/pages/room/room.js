@@ -482,7 +482,8 @@ Page({
     });
   },
   revote: function (e) {
-
+    let that=this
+    var user
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
       success: function (res) {
@@ -529,7 +530,7 @@ Page({
     wx.request({
       url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
       success: function (res) {
-        if (res.statusCode == 404){
+        if (res.statusCode == 404 && that.data.table_id){
           wx.showModal({
             title: '房间不存在',
             content: '房间已被删除',
