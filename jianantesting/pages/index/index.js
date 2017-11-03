@@ -49,7 +49,7 @@ Page({
       console.log("not created")
     }
   },
-  onLoad: function () {
+  onShow: function () {
     try {
       var tableid = wx.getStorageSync('tableid')
       var gameid = wx.getStorageSync('gameid')
