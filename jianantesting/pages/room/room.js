@@ -29,6 +29,7 @@ Page({
     cluestatus: [],
     currentclue: 0,
     picksend:null,
+    touchtime: 0,
     //图片放缩
     stv: {
       offsetX: 0,
@@ -56,13 +57,12 @@ Page({
 
 
   touchstartCallback: function (e) {
+    let that=this
     //触摸开始
+    that.data.touchtime = e.timeStamp;
     console.log('touchstartCallback');
     console.log(e);
-    let that = this;
-    var curTime = e.timeStamp;
  //图片缩放
-    var lastTime = that.data.lastTapDiffTime;
     if (e.touches.length === 1) {
       let { clientX, clientY } = e.touches[0];
       this.startX = clientX;
@@ -109,31 +109,37 @@ Page({
       let xMove = e.touches[1].clientX - e.touches[0].clientX;
       let yMove = e.touches[1].clientY - e.touches[0].clientY;
       let distance = Math.sqrt(xMove * xMove + yMove * yMove);
-
       let distanceDiff = distance - this.data.stv.distance;
       let newScale = this.data.stv.scale + 0.005 * distanceDiff;
-
       this.setData({
         'stv.distance': distance,
         'stv.scale': newScale,
       })
     }
-
   },
-
- 
-
   touchendCallback: function (e) {
+    let that=this
     //触摸结束
     console.log('touchendCallback');
     console.log(e);
-    var curTime = e.timeStamp;
     if (e.touches.length === 0) {
       this.setData({
-        'stv.zoom': false //重置缩放状态
+        'stv.zoom': false, //重置缩放状态
       })
+      if(e.timeStamp - that.data.touchtime < 200){
+        this.setData({
+          seeimage: -1
+        })
+      }
     }
   },
+
+  closepic: function (e){
+    this.setData({
+      seeimage: -1
+    })
+  },
+
   hide: function (e) {
     this.setData({
       seeimage: -1

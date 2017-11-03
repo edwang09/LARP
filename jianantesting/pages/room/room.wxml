@@ -1,9 +1,9 @@
 <!--index.wxml-->
 <view class="page" style="overflow: hidden">
 <!--全屏图片-->
-  <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
-  <view id="{{index}}" hidden="{{seeimage!=index}}" style="height:100%; width:100%; background: black">
-    <image catchtouchstart="touchstartCallback" catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback" style="transform:translate({{stv.offsetX}}px, {{stv.offsetY}}px) scale({{stv.scale}});" mode="widthFix" wx:if="{{clue.image}}" src="{{clue.image}}"> </image>
+  <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index" style="justify-content: center; align-items: center">
+  <view id="{{index}}" hidden="{{seeimage!=index}}" style="height:100%; width:100%; background: black;">
+    <image  catchtouchstart="touchstartCallback" catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback" style="transform:translate({{stv.offsetX}}px, {{stv.offsetY}}px) scale({{stv.scale}}); " mode="widthFix" wx:if="{{clue.image}}" src="{{clue.image}}"> </image>
   </view>
   </block>
   <!--内容主体-->
@@ -83,7 +83,7 @@
                     <view style="width: 98%">
                       <view style="padding-left: 30rpx; padding-right: 40rpx; padding-bottom: 20rpx">{{clue.content}}</view>
                     </view>
-                    <view style="height: 100%; width: 98%">
+                    <view style="height: 100%; width: 100%;">
                       <image wx:if="{{clue.image}}" src="{{clue.image}}" bindtap="enlarge" id="{{index}}" mode="aspectFit"></image>
                     </view>
                   </view>
@@ -181,7 +181,7 @@
     </swiper-item>
   </swiper>
   <!--底部导航栏-->
-  <view class="swiper-tab">
+  <view class="swiper-tab" hidden="{{seeimage!=-1}}">
     <view class="tab-item">
       <image class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="navigate" id="1" style="width: 25px; height: 25px;" src="/icon/user_nav.png"></image>
     </view>
