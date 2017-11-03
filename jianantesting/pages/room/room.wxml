@@ -1,10 +1,11 @@
 <!--index.wxml-->
-<view class="page">
-  <!--全屏图片-->
-  <view hidden="ture" style="height:100%; height:100%; background: black">
-    <image catchtouchstart="touchstartCallback" catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback" style="transform:translate({{stv.offsetX}}px, {{stv.offsetY}}px) scale({{stv.scale}});" mode="widthFix"> </image>
+<view class="page" style="overflow: hidden">
+<!--全屏图片-->
+  <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
+  <view id="clue{{index}}" hidden="true" style="height:100%; width:100%; background: black">
+    <image catchtouchstart="touchstartCallback" catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback" style="transform:translate({{stv.offsetX}}px, {{stv.offsetY}}px) scale({{stv.scale}});" mode="widthFix" wx:if="{{clue.image}}" src="{{clue.image}}"> </image>
   </view>
-
+  </block>
   <!--内容主体-->
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperH">
     <swiper-item class="swiperit">
@@ -83,7 +84,7 @@
                       <view style="padding-left: 30rpx; padding-right: 40rpx; padding-bottom: 20rpx">{{clue.content}}</view>
                     </view>
                     <view style="height: 100%; width: 98%">
-                      <image wx:if="{{clue.image}}" src="{{clue.image}}" mode="aspectFit"></image>
+                      <image wx:if="{{clue.image}}" src="{{clue.image}}" bindtap="enlarge" id="{{index}}" mode="aspectFit"></image>
                     </view>
                   </view>
                 </view>

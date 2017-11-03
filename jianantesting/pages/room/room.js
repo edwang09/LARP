@@ -30,7 +30,6 @@ Page({
     currentclue: 0,
     picksend:null,
     //图片放缩
-    lastTapDiffTime: 0,
     stv: {
       offsetX: 0,
       offsetY: 0,
@@ -64,15 +63,6 @@ Page({
  //图片缩放
     var lastTime = that.data.lastTapDiffTime;
     if (e.touches.length === 1) {
-      if (lastTime > 0) {
-        if (curTime - lastTime < 300) {
-          console.log(e.timeStamp + '- db tap')
-          this.setData({
-            'stv.scale': this.data.stv.scale + 1
-          })
-        }
-      }
-      
       let { clientX, clientY } = e.touches[0];
       this.startX = clientX;
       this.startY = clientY;
@@ -139,8 +129,7 @@ Page({
     var curTime = e.timeStamp;
     if (e.touches.length === 0) {
       this.setData({
-        'stv.zoom': false, //重置缩放状态
-        lastTapDiffTime: curTime
+        'stv.zoom': false //重置缩放状态
       })
     }
   },
@@ -236,6 +225,10 @@ Page({
     this.setData({
       picksend: e.detail.value
     })
+  },
+
+  enlarge: function (e) {
+    console.log(e)
   },
 
 
