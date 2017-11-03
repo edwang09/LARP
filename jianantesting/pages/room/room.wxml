@@ -73,12 +73,12 @@
             <swiper-item>
               <view class="article" style="height: 100%">
                 <view class="weui-article__h3" style="text-decoration: underline;">{{gameinfo.cluelocation[clue.cluelocation].name}}:</view>
-                <view style="width: 95%; height: 90%; display: flex; justify-content: center; align-items: center;" animation="{{animationData}}">
-                  <view style="width: 98%">
+                <view style="width: 95%; height: 90%; display: flex;" animation="{{animationData}}">
+                  <view style="width: 98%; height:100%">
                     <view style="width: 98%">
                       <view style="padding-left: 30rpx; padding-right: 40rpx; padding-bottom: 20rpx">{{clue.content}}</view>
                     </view>
-                    <view style="width: 50%">
+                    <view style="width: 100%; height: 100%">
                       <image wx:if="{{clue.image}}" src="{{clue.image}}" mode="aspectFit"></image>
                     </view>
                   </view>
