@@ -68,7 +68,7 @@
     <swiper-item class="swiperit">
       <view class="weui-article" style="height: 100%">
         <view class="weui-article__h1 tx">我的线索</view>
-        <swiper indicator-dots="true" vertical circular bindchange="swiperV" current="0" style="height: 65%; width: 103%; padding-top: 10rpx">
+        <swiper indicator-dots="true" vertical circular bindchange="swiperV" current="0" style="height: 70%; width: 103%; padding-top: 10rpx">
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
             <swiper-item>
               <view class="article" style="height: 100%">
@@ -78,9 +78,9 @@
                     <view style="width: 98%">
                       <view style="padding-left: 30rpx; padding-right: 40rpx; padding-bottom: 20rpx">{{clue.content}}</view>
                     </view>
-                    <view style="width: 50%">
-                      <image wx:if="{{clue.image}}" src="{{clue.image}}" mode="aspectFit"></image>
-                    </view>
+                    <scroll-view catchtouchstart="touchstartCallback"  catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback" scroll-x="true"  scroll-y="true" style="height: 100%; width: 98%">
+                      <image wx:if="{{clue.image}}" src="{{clue.image}}" style="transform:translate({{stv.offsetX}}px, {{stv.offsetY}}px) scale({{stv.scale}});" mode="aspectFit"></image>
+                    </scroll-view>
                   </view>
                 </view>
               </view>
