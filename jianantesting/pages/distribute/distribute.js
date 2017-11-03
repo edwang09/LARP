@@ -184,7 +184,8 @@ Page({
         success: function (res) {
           that.setData({
             tableid: res.data[0].tableid,
-            tablepw: res.data[0].passcode
+            tablepw: res.data[0].passcode,
+            table_id: res.data[0]._id
           })
         }
       })
