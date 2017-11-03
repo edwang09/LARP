@@ -36,7 +36,8 @@ Page({
       zoom: false, //是否缩放状态
       distance: 0,  //两指距离
       scale: 1,  //缩放倍数
-    }
+    },
+    seeimage:-1
   },
 
   //swiper
@@ -133,7 +134,11 @@ Page({
       })
     }
   },
-
+  hide: function (e) {
+    this.setData({
+      seeimage: -1
+    })
+  },
 
 
   //sendClueTo
@@ -228,8 +233,12 @@ Page({
   },
 
   enlarge: function (e) {
-    console.log(e)
+    var hidden=e.target.id
+    this.setData({
+      seeimage: hidden
+    })
   },
+
 
 
   //navigator

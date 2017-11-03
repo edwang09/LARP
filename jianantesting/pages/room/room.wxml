@@ -2,7 +2,7 @@
 <view class="page" style="overflow: hidden">
 <!--全屏图片-->
   <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
-  <view id="clue{{index}}" hidden="true" style="height:100%; width:100%; background: black">
+  <view id="{{index}}" hidden="{{seeimage!=index}}" style="height:100%; width:100%; background: black">
     <image catchtouchstart="touchstartCallback" catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback" style="transform:translate({{stv.offsetX}}px, {{stv.offsetY}}px) scale({{stv.scale}});" mode="widthFix" wx:if="{{clue.image}}" src="{{clue.image}}"> </image>
   </view>
   </block>
