@@ -1,5 +1,9 @@
 <!--index.wxml-->
 <view class="page">
+  <!--全屏图片-->
+  <view hidden="ture" style="height:100%; height:100%; background: black">
+    <image catchtouchstart="touchstartCallback" catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback" style="transform:translate({{stv.offsetX}}px, {{stv.offsetY}}px) scale({{stv.scale}});" mode="widthFix"> </image>
+  </view>
 
   <!--内容主体-->
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperH">
@@ -66,21 +70,21 @@
     </swiper-item>
 
     <swiper-item class="swiperit">
-      <view class="weui-article" style="height: 100%">
+      <view class="weui-article" style="height: 100%;">
         <view class="weui-article__h1 tx">我的线索</view>
-        <swiper indicator-dots="true" vertical circular bindchange="swiperV" current="0" style="height: 70%; width: 103%; padding-top: 10rpx">
+        <swiper indicator-dots="true" vertical circular bindchange="swiperV" current="0" style="height: 70%; width: 103%; padding-top: 10rpx; overflow: visible;">
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
             <swiper-item>
-              <view class="article" style="height: 100%">
+              <view class="article" style="height: 100%; overflow: visible;">
                 <view class="weui-article__h3" style="text-decoration: underline;">{{gameinfo.cluelocation[clue.cluelocation].name}}:</view>
                 <view style="width: 95%; height: 90%; display: flex; justify-content: center; align-items: center;" animation="{{animationData}}">
                   <view style="width: 98%">
                     <view style="width: 98%">
                       <view style="padding-left: 30rpx; padding-right: 40rpx; padding-bottom: 20rpx">{{clue.content}}</view>
                     </view>
-                    <scroll-view catchtouchstart="touchstartCallback"  catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback" scroll-x="true"  scroll-y="true" style="height: 100%; width: 98%">
-                      <image wx:if="{{clue.image}}" src="{{clue.image}}" style="transform:translate({{stv.offsetX}}px, {{stv.offsetY}}px) scale({{stv.scale}});" mode="aspectFit"></image>
-                    </scroll-view>
+                    <view style="height: 100%; width: 98%">
+                      <image wx:if="{{clue.image}}" src="{{clue.image}}" mode="aspectFit"></image>
+                    </view>
                   </view>
                 </view>
               </view>
