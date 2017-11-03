@@ -1,9 +1,11 @@
 <!--index.wxml-->
 
+<view class="page">
+<block wx:if="{{direct}}">
+    <view class="title">直接进入房间</view>
+</block>
 
-<block wx:if="{{!hasgame}}">
-
-  <view class="page">
+<block wx:if="{{!hasgame&&!direct}}">
     <view class="title">请输入房间号码:</view>
       <input class="inputView" bindinput="roomidInput" type="text" value="{{tableid}}"/>
 
@@ -12,12 +14,8 @@
       <input class="inputView" bindinput="passwordInput" password type="number" value="{{tablepw}}"/>
   
     <button class="inputView" bindtap="enterroom" type="primary" style="background-color:orange;"> 进入房间 </button>
-  
-  </view>
 </block>
-
-<view class="page">
-  <block wx:if="{{hasgame}}">
+  <block wx:if="{{hasgame&&!direct}}">
     <view class="section">
   
       <view class="flex-row" style="display:flex;">

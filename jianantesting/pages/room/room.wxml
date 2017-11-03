@@ -36,7 +36,9 @@
               <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
                 <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
                   <view class="tx pdt">*{{item.type}}</view>
-                  <view>{{item.content}}</view>
+                  <block wx:for="{{item.content}}" wx:for-item="paragraph" wx:key="index">
+                    <view>{{paragraph}}</view>
+                  </block>
                 </block>
               </block>
             </block>
@@ -53,7 +55,9 @@
             <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
               <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
                 <view class="tx pdt">*{{item.type}}</view>
-                <view>{{item.content}}</view>
+                <block wx:for="{{item.content}}" wx:for-item="paragraph" wx:key="index">
+                    <view>{{paragraph}}</view>
+                  </block>
               </block>
             </block>
           </block>

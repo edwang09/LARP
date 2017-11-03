@@ -163,9 +163,15 @@ Page({
         if (res.data.length != that.data.gameinfo.playernumber){
           wx.showToast({ title: '人数未齐', icon: 'loading', duration: 1000 });
         }else{}
+        try{
+          var plotname = '确认进入下一回合：“' + that.data.gameinfo.mainplot[that.data.roundnumber + 1].plotname + '” 吗?'
+        }catch(e){
+          console.log(e)
+          var plotname = "已经是最后一回合，请点击退出房间"
+        }
           wx.showModal({
             title: '进入下回合',
-            content: '确认进入下一回合：“' + that.data.gameinfo.mainplot[that.data.roundnumber + 1].plotname + '” 吗?',
+            content:plotname,
             success: function (res) {
               if (res.confirm) {
                 wx.request({
@@ -180,15 +186,12 @@ Page({
                         table_id: that.data.table_id, message: 'refresh'
                       }),
                     })
-
                   },
                 })
               } else if (res.cancel) {
               }
             }
           })
-        
-
       },
     })
 
@@ -300,6 +303,7 @@ Page({
 
 
       if (that.data.actionpoint > 0) {
+        wx.showToast({ title: '正在获取', icon: 'loading', duration: 2000 });
         that.setData({
           actionpoint: that.data.actionpoint - 1
         })
