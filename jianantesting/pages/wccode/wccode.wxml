@@ -1,13 +1,18 @@
 <!--pages/wccode/wccode.wxml-->
 <view class="container">
-  <image style="width: 210px; height: 210px; background-color: #eeeeee;" mode="{{item.mode}}" src="/images/larpcode.png"></image>
-
-
-</view>
-   
-<view class="container">
   <view class="weui-article__p">
-            可保存小程序码并分享给您的好友
+          <view>游戏方法及步骤：</view>
+          <view>1. 一局游戏需一位玩家作为房主创建房间，并令其他玩家加入已创建的房间。</view>
+          <view>2. 房主首先需要挑选适合party人数性别的游戏，创建房间后需将游戏简介转发到群里供大家挑选角色。</view>
+          <view>3. 所有玩家（包括房主）将通过房主转发的链接进入游戏房间。</view>
+          <view>4. 游戏进程由房主控制，包括行动点的发放，游戏回合的控制等（操作界面在房间内的最后一页）。</view>
   </view>
-
+  <view class="weui-article__p">
+          <view>游戏注意事项：</view>
+          <view>1. 一局游戏仅需一位玩家创建房间，并发送给其他人进入房间的链接（人物码）。</view>
+          <view>2. 房间创建者必须参与游戏，并负责控制游戏进程（游戏内控制）。</view>
+          <view>3. 请通过链接进入游戏房间。</view>
+          <view>4. 重复创建房间会删除之前创建的房间。</view>
+          <view>5. 请不要随意清除本地缓存。</view>
+  </view>
 </view>

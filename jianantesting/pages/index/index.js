@@ -40,9 +40,20 @@ Page({
         })
       } else {
         //wx.showToast({ title: '进入超市', icon: 'loading', duration: 2000 });
-        console.log('tobe created')
-        wx.navigateTo({
-          url: '../shop/shop'
+        wx.request({
+          url: 'https://larpxiaozhushou.tk/api/table?hostid=' + app.globalData.userInfo.nickName,
+          success:function(res){
+            console.log(res.data)
+            if(res.data.length!=0){
+              wx.navigateTo({
+                url: '../create/create?tableid=' + res.data[0].tableid
+              })
+            }else{
+              wx.navigateTo({
+                url: '../shop/shop'
+              })
+            }
+          }
         })
       }
     } catch (e) {
@@ -52,14 +63,7 @@ Page({
   onShow: function () {
 
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
+
 /**
    * 用户点击右上角分享
    */

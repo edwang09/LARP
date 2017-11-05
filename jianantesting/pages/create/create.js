@@ -84,9 +84,12 @@ Page({
     console.log(app.globalData.userInfo)
     let that = this
     if(options.tableid){
+
+      console.log("enter created room")
       wx.request({
         url: 'https://larpxiaozhushou.tk/api/table?tableid=' + options.tableid,
         success: function (res) {
+          console.log(res.data)
           if(res.data.length!=0){
           that.setData({
             gamename: res.data[0].gamename,

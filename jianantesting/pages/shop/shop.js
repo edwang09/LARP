@@ -1,3 +1,5 @@
+
+const app = getApp()
 Page({
   data: {
     background: ['1' ,'2', '3'],
@@ -29,6 +31,42 @@ Page({
           confirmText:'创建',
           success: function (res) {
             if (res.confirm) {
+              wx.request({
+                url: 'https://larpxiaozhushou.tk/api/table?hostid=' + app.globalData.userInfo.nickName,
+                success: function(res){
+                  var table
+                  for (table in res.data) {
+                    wx.request({
+                      url: 'https://larpxiaozhushou.tk/api/table/' + res.data[table]._id,
+                      method: 'DELETE'
+                    })
+                    wx.request({
+                      url: 'https://larpxiaozhushou.tk/api/user?tableid=' + res.data[table].tableid,
+                      success: function (res) {
+                        var player
+                        wx.request({
+                          url: 'https://larpxiaozhushou.tk/api/user/' + res.data[player]._id,
+                          method: 'DELETE'
+                        })
+                        }
+                    })
+                  }
+                }
+              })
+              wx.request({
+                url: 'https://larpxiaozhushou.tk/api/user?usernickname=' + app.globalData.userInfo.nickName,
+                success: function (res) {
+                  var user
+                  for (user in res.data) {
+                    wx.request({
+                      url: 'https://larpxiaozhushou.tk/api/user/' + res.data[user]._id,
+                      method: 'DELETE',
+                      success: function (res) {
+                      }
+                    })
+                  }
+                }
+              })
               wx.navigateTo({
                 url: '../create/create?gameid=' + that.data.currentgame.id
               })

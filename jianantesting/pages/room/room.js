@@ -650,6 +650,23 @@ Page({
             content: '房间已被删除',
             showCancel: false,
             complete: function(res) {
+              wx.request({
+                url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+                success: function (res) {
+                  console.log(res.data)
+                  for (user in res.data) {
+                    wx.request({
+                      url: 'https://larpxiaozhushou.tk/api/user/' + res.data[user]._id,
+                      method: 'DELETE',
+                      success: function () {
+                        console.log("deleted")
+                      },
+
+                    })
+                  }
+                },
+
+              })
               wx.removeStorage({
                 key: 'tableid'
               })
