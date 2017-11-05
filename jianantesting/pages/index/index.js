@@ -30,16 +30,6 @@ Page({
 
   },
   create: function () {
-    try {
-      var value = wx.getStorageSync('createtableid')
-      if (value) {
-        //wx.showToast({ title: '进入已建房间', icon: 'loading', duration: 2000 });
-        console.log(value)
-        wx.navigateTo({
-          url: '../create/create?tableid=' + value
-        })
-      } else {
-        //wx.showToast({ title: '进入超市', icon: 'loading', duration: 2000 });
         wx.request({
           url: 'https://larpxiaozhushou.tk/api/table?hostid=' + app.globalData.userInfo.nickName,
           success:function(res){
@@ -49,16 +39,14 @@ Page({
                 url: '../create/create?tableid=' + res.data[0].tableid
               })
             }else{
+              //wx.showToast({ title: '进入超市', icon: 'loading', duration: 2000 });
               wx.navigateTo({
                 url: '../shop/shop'
               })
             }
           }
         })
-      }
-    } catch (e) {
-      console.log("not created")
-    }
+     
   },
   onShow: function () {
 

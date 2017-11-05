@@ -18,20 +18,7 @@ Page({
 
   enterroom: function () {
     let that = this
-    try {
-      var tableid = wx.getStorageSync('tableid')
-      var gameid = wx.getStorageSync('gameid')
-      var characterid = wx.getStorageSync('characterid')
-      var user_id = wx.getStorageSync('user_id')
-      var table_id = wx.getStorageSync('table_id')
-      console.log(tableid + gameid + characterid + user_id + table_id)
-      if (tableid && gameid && characterid != null && user_id && table_id) {
-        wx.showToast({ title: 'room', duration: 1000 })
-        //wx.showToast({ title: '进入已建房间', icon: 'loading', duration: 2000 });
-        wx.navigateTo({
-          url: '../room/room'
-        })
-      } else {
+    try{
           wx.showToast({ title: '读取房间', icon: 'loading', duration: 2000 });
           wx.request({
             url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid + '&characterid=' + that.data.characterid,
@@ -111,17 +98,8 @@ Page({
               }
             }
           });
-
-
-
-        
-      }
     } catch (e) {
-      console.log("not created")
-      wx.showToast({ title: 'join', duration: 1000 })
-      wx.navigateTo({
-        url: '../join/join?tableid=' + that.data.tableid + '&tablepw=' + that.data.tablepw + '&characterid=' + that.data.character.charactername + '&characterpasscode=' + that.data.character.token
-      })
+      wx.showToast({ title: '发生错误', icon: 'loading', duration: 2000 });
     }
 
   },
