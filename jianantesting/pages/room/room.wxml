@@ -38,6 +38,7 @@
           <block wx:if="{{characterinfo.characterplot!=[]}}">
             <view class="tx pdt">回合剧本：</view>
             <block wx:for="{{characterinfo.characterplot}}" wx:for-item="plot" wx:key="index">
+            <view class="tx pdt">{{plot.plotname}}</view>
               <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
                 <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
                   <view class="tx pdt">*{{item.type}}</view>
@@ -54,7 +55,7 @@
 
     <swiper-item class="swiperit">
       <scroll-view class="weui-article swipscroll" scroll-y="true">
-        <view class="weui-article__h1 tx">公开的线索</view>
+        <view class="weui-article__h1 tx">公开的信息</view>
         <block>
           <block wx:for="{{mainplot}}" wx:for-item="plot" wx:key="index">
             <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
@@ -73,7 +74,7 @@
     <swiper-item class="swiperit">
       <view class="weui-article" style="height: 100%;">
         <view class="weui-article__h1 tx">我的线索</view>
-        <swiper indicator-dots="true" vertical circular bindchange="swiperV" current="0" style="height: 70%; width: 103%; padding-top: 10rpx; overflow: visible;">
+        <swiper indicator-dots="true" vertical bindchange="swiperV" current="0" style="height: 70%; width: 103%; padding-top: 10rpx; overflow: visible;">
           <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index">
             <swiper-item>
               <view class="article" style="height: 100%; overflow: visible;">
@@ -95,7 +96,7 @@
         <view wx:if="{{acquiredclue.length>0}}" style="padding-top: 20rpx; display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
           <picker style="width: 50%" bindchange="picksend" range="{{gameinfo.characterlist}}" range-key="name">
             <view style="height: 45rpx; background-color: gainsboro; border-radius: 10rpx;">
-              发给：{{gameinfo.characterlist[picksend].name}}
+              传递给：{{gameinfo.characterlist[picksend].name}}
             </view>
           </picker>
           <image bindtap="sendclueto" style="width: 70rpx; height: 70rpx;" src="/icon/send.png"></image>

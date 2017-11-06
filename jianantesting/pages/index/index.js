@@ -20,8 +20,20 @@ Page({
           url: '../room/room'
         })
       } else {
-        wx.navigateTo({
-          url: '../join/join'
+        wx.request({
+          url: 'https://larpxiaozhushou.tk/api/user?usernickname=' + app.globalData.userInfo.nickName,
+          success: function (res) {
+            //console.log('../room/room?usernickname=' + res.data[0].usernickname)
+            /*if (res.data.length != 0) {
+              wx.navigateTo({
+                url: '../room/room?usernickname=' + res.data[0].usernickname
+              })
+            } else {*/
+              wx.navigateTo({
+                url: '../join/join'
+              })
+            //}
+          }
         })
       }
     } catch (e) {
@@ -49,7 +61,7 @@ Page({
      
   },
   onShow: function () {
-
+    wx.hideShareMenu()
   },
 
 /**
