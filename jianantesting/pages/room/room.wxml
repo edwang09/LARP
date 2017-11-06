@@ -1,5 +1,9 @@
 <!--index.wxml-->
 <view class="page" style="overflow: hidden">
+<!--tutorial-->
+<view class="cover" hidden="{{flag}}">  
+
+</view>
 <!--全屏图片-->
   <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index" style="justify-content: center; align-items: center">
   <view id="{{index}}" hidden="{{seeimage!=index}}" style="height:100%; width:100%; background: black;">
