@@ -18,7 +18,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 150rpx 0;
+  padding: 140rpx 0;
   box-sizing: border-box;
 } 
 .MainBtn {
