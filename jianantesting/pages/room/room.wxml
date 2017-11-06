@@ -1,14 +1,11 @@
 <!--index.wxml-->
-<view class="page" style="overflow: hidden">
-<!--tutorial-->
-<view class="cover" hidden="{{flag}}">  
-
-</view>
-<!--全屏图片-->
+<view class="page" style="overflow: hidden;">
+  <!--全屏图片-->
   <block wx:for="{{acquiredclue}}" wx:for-item="clue" wx:key="index" style="justify-content: center; align-items: center">
-  <view id="{{index}}" hidden="{{seeimage!=index}}" style="height:100%; width:100%; background: black;">
-    <image  catchtouchstart="touchstartCallback" catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback" style="transform:translate({{stv.offsetX}}px, {{stv.offsetY}}px) scale({{stv.scale}}); " mode="widthFix" wx:if="{{clue.image}}" src="{{clue.image}}"> </image>
-  </view>
+    <view id="{{index}}" hidden="{{seeimage!=index}}" style="height:100%; width:100%; background: black;">
+      <image catchtouchstart="touchstartCallback" catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback" style="transform:translate({{stv.offsetX}}px, {{stv.offsetY}}px) scale({{stv.scale}}); " mode="widthFix" wx:if="{{clue.image}}" src="{{clue.image}}">
+      </image>
+    </view>
   </block>
   <!--内容主体-->
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperH">
@@ -42,7 +39,7 @@
           <block wx:if="{{characterinfo.characterplot!=[]}}">
             <view class="tx pdt">回合剧本：</view>
             <block wx:for="{{characterinfo.characterplot}}" wx:for-item="plot" wx:key="index">
-            <view class="tx pdt">{{plot.plotname}}</view>
+              <view class="tx pdt">{{plot.plotname}}</view>
               <block wx:for="{{plot.content}}" wx:for-item="item" wx:key="index">
                 <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
                   <view class="tx pdt">*{{item.type}}</view>
@@ -66,8 +63,8 @@
               <block wx:if="{{plot.plotid<=roundnumber}}" wx:for-item="item" wx:key="index">
                 <view class="tx pdt">*{{item.type}}</view>
                 <block wx:for="{{item.content}}" wx:for-item="paragraph" wx:key="index">
-                    <view>{{paragraph}}</view>
-                  </block>
+                  <view>{{paragraph}}</view>
+                </block>
               </block>
             </block>
           </block>
@@ -206,4 +203,8 @@
       <image class="tab-item {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="navigate" id="6" style="width: 25px; height: 25px;" src="/icon/set_nav{{updatetab[5] ? 'new' : ''}}.png"></image>
     </view>
   </view>
+</view>
+  <!--tutorial-->
+<view class="cover">
+    <view class="a">哈哈哈哈哈哈</view>
 </view>
