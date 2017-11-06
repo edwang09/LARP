@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    updatetab: [false, false, false, false, false, false],
     animationData: {},
     user_id: '',
     tableid: '',
@@ -44,8 +45,11 @@ Page({
   //swiper
   swiperH: function (e) {
     console.log(e);
+    var newtab=this.data.updatetab
+    newtab[e.detail.current]=false
     this.setData({
       currentTab: e.detail.current,
+      updatetab: newtab
     })
   },
   swiperV: function (e) {
@@ -790,6 +794,7 @@ Page({
             success: function (res) {
               that.setData({
                 roundnumber: res.data.roundnumber,
+                updatetab: [true, true, true, true, true, true]
               })
             },
           })
