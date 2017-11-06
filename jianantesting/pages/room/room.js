@@ -458,7 +458,8 @@ Page({
               console.log("new clue status")
               console.log(that.data.cluestatus)
               that.setData({
-                acquiredclue: that.data.acquiredclue.concat(that.data.gameinfo.cluelocation[locationid].clues[cluenumber])
+                acquiredclue: that.data.acquiredclue.concat(that.data.gameinfo.cluelocation[locationid].clues[cluenumber]),
+                updatetab: that.data.updatetab.slice(0, 2).concat([true]).concat(that.data.updatetab.slice(3, 6))
               })
 
               wx.request({
