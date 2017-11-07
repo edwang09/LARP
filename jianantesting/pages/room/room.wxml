@@ -207,6 +207,6 @@
   <!--tutorial-->
 <view class="cover" hidden="{{currenttutorial==-1||currenttutorial==6}}">
 <block wx:for="{{tutorial}}" wx:key="index">
-    <image class="a" src="{{item}}" id="{{index}}" hidden="{{currenttutorial!=index}}" bindtap="nexttutorial"></image>
+    <image class="a" src="{{item}}" id="{{index}}" hidden="{{currenttutorial!=index}}" bindtap="nexttutorial" mode="widthFix"></image>
 </block>
 </view>
