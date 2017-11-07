@@ -236,7 +236,7 @@ Page({
     }}else{
       // 来自页面内转发按钮
       return {
-      title: '人物码',
+        title: '人物码: ' + that.data.characterlist[res.target.id].charactername,
       imageUrl: '/icon/detect_shop.png',
       path: 'pages/distribute/distribute?id=' + res.target.id + '&tableid=' + that.data.tableid + '&gameid=' + that.data.gameid + '&type=character',
       success: function (res) {

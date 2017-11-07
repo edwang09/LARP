@@ -45,7 +45,8 @@ page, .page {
 }
 
 .a {
-  position: relative;
+  position: fixed;
+bottom: 0;
 }
 
 .swiperit {

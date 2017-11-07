@@ -5,6 +5,8 @@ const app = getApp()
 Page({
   data: {
     updatetab: [false, false, false, false, false, false],
+    tutorial: ["https://larpxiaozhushou.tk/pic/tutorial0", "https://larpxiaozhushou.tk/pic/tutorial1", "https://larpxiaozhushou.tk/pic/tutorial2", "https://larpxiaozhushou.tk/pic/tutorial3", "https://larpxiaozhushou.tk/pic/tutorial4", "https://larpxiaozhushou.tk/pic/tutorial5"],
+    currenttutorial: 0,
     animationData: {},
     user_id: '',
     tableid: '',
@@ -43,6 +45,17 @@ Page({
   },
 
   //swiper
+  nexttutorial: function (e) {
+    console.log(e);
+    var newtab = this.data.updatetab
+    newtab[e.detail.current] = false
+    this.setData({
+      currenttutorial: this.data.currenttutorial + 1,
+      currentTab: (parseInt(e.target.id)+1)%6,
+        updatetab: newtab
+    })
+    console.log(this.data.currentTab)
+  },
   swiperH: function (e) {
     console.log(e);
     var newtab=this.data.updatetab
