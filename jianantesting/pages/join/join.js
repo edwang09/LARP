@@ -45,7 +45,7 @@ Page({
     let that = this;
     wx.showToast({ title: '读取房间', icon: 'loading', duration: 2000 });
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/table?tableid=' + this.data.tableid+'&passcode=' + this.data.tablepw,
+      url: 'https://larpxiaozhushou.tk/api/app?type=table&tableid=' + this.data.tableid+'&passcode=' + this.data.tablepw,
       success: function(res) {
           if(res.data.length!=0){
             that.setData({
@@ -58,7 +58,7 @@ Page({
         complete: function(){
           if (that.data.gameid != '') {
           wx.request({
-            url: 'https://larpxiaozhushou.tk/api/game?id=' + that.data.gameid ,
+            url: 'https://larpxiaozhushou.tk/api/app?type=game&id=' + that.data.gameid ,
               success: function (res) {
                   console.log(res.data)
                   that.setData({
@@ -87,13 +87,14 @@ Page({
     if (this.data.characterpasscode == this.data.characterpw){
       wx.showToast({ title: '读取房间', icon: 'loading', duration: 2000 });
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid + '&characterid=' + that.data.characterid,
+        url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid + '&characterid=' + that.data.characterid,
         success: function (res) {
           console.log(res.data.length);
           if (res.data.length == 0) {
             wx.request({
-              url: 'https://larpxiaozhushou.tk/api/user',
+              url: 'https://larpxiaozhushou.tk/api/app',
               data: {
+                type:"user",
                 tableid: that.data.tableid,
                 gameid: that.data.gameid,
                 characterid: that.data.characterid,

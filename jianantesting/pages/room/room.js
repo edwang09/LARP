@@ -6,7 +6,7 @@ Page({
   data: {
     updatetab: [false, false, false, false, false, false],
     tutorial: ["https://larpxiaozhushou.tk/pic/tutorial0", "https://larpxiaozhushou.tk/pic/tutorial1", "https://larpxiaozhushou.tk/pic/tutorial2", "https://larpxiaozhushou.tk/pic/tutorial3", "https://larpxiaozhushou.tk/pic/tutorial4", "https://larpxiaozhushou.tk/pic/tutorial5"],
-    currenttutorial: 0,
+    currenttutorial: -1,
     animationData: {},
     user_id: '',
     tableid: '',
@@ -189,7 +189,7 @@ Page({
     
     setTimeout(function () {
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid + '&characterid=' + that.data.picksend,
+        url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid + '&characterid=' + that.data.picksend,
         success: function (res) {
           console.log(res.data[0])
           tempacquiredclue = res.data[0].acquiredclue
@@ -199,7 +199,7 @@ Page({
           console.log(tempacquiredclue)
           console.log(tempuser_id)
           wx.request({
-            url: 'https://larpxiaozhushou.tk/api/user/' + tempuser_id,
+            url: 'https://larpxiaozhushou.tk/api/app/' + tempuser_id,
             data: {
               acquiredclue: tempacquiredclue.concat(that.data.acquiredclue[that.data.currentclue])
             },
@@ -220,7 +220,7 @@ Page({
                 }),
               })
               wx.request({
-                url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+                url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
                 data: {
                   acquiredclue: that.data.acquiredclue,
                   broadcast: that.data.broadcast,
@@ -283,7 +283,7 @@ Page({
   nextround: function () {
     let that = this
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+      url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid,
       success: function (res) {
         console.log(res.data.length)
         console.log(that.data.gameinfo.playernumber)
@@ -302,7 +302,7 @@ Page({
             success: function (res) {
               if (res.confirm) {
                 wx.request({
-                  url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
+                  url: 'https://larpxiaozhushou.tk/api/app/' + that.data.table_id,
                   data: {
                     roundnumber: that.data.roundnumber + 1
                   },
@@ -328,7 +328,7 @@ Page({
   vote: function () {
     let that = this
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+          url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
           data: {
             acquiredclue: that.data.acquiredclue,
             broadcast: that.data.broadcast,
@@ -357,7 +357,7 @@ Page({
     var vote
     let that = this
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid + '&select=characterid vote',
+      url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid + '&select=characterid vote',
       success: function (res) {
         that.setData({
           voteresult: res.data
@@ -406,7 +406,7 @@ Page({
           updatetab: that.data.updatetab.slice(0, 2).concat([true]).concat(that.data.updatetab.slice(3, 6))
         })
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+          url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
           data: {
             acquiredclue: that.data.acquiredclue,
             broadcast: that.data.broadcast,
@@ -436,7 +436,7 @@ Page({
           actionpoint: that.data.actionpoint - 1
         })
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
+          url: 'https://larpxiaozhushou.tk/api/app/' + that.data.table_id,
           success: function (res) {
             that.setData({
               cluestatus: res.data.cluestatus
@@ -476,7 +476,7 @@ Page({
               })
 
               wx.request({
-                url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
+                url: 'https://larpxiaozhushou.tk/api/app/' + that.data.table_id,
                 data: {
                   cluestatus: that.data.cluestatus
                 },
@@ -493,7 +493,7 @@ Page({
               })
             }
             wx.request({
-              url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+              url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
               data: {
                 acquiredclue: that.data.acquiredclue,
                 broadcast: that.data.broadcast,
@@ -534,7 +534,7 @@ Page({
     console.log(e.detail.value.textarea)
     console.log(this.data.broadcast)
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+      url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
       data: {
         broadcast: that.data.broadcast
       },
@@ -553,7 +553,7 @@ Page({
     let that = this
     console.log(this.data.user_id)
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+      url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
       data: {
         acquiredclue: that.data.acquiredclue,
         broadcast: that.data.broadcast,
@@ -592,17 +592,18 @@ Page({
     let that = this
     console.log(this.data.user_id)
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+      url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid,
       success: function (res) {
         for (user in res.data) {
           wx.request({
-            url: 'https://larpxiaozhushou.tk/api/user/' + res.data[user]._id,
+            url: 'https://larpxiaozhushou.tk/api/app/' + res.data[user]._id,
             data: {
               actionpoint: point
             },
             method: "PUT",
             success: function (res) {
               console.log("point added")
+              
               wx.sendSocketMessage({
                 data: JSON.stringify({
                   table_id: that.data.table_id, message: 'setactionpoint' 
@@ -618,11 +619,11 @@ Page({
     let that=this
     var user
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+      url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid,
       success: function (res) {
         for (user in res.data) {
           wx.request({
-            url: 'https://larpxiaozhushou.tk/api/user/' + res.data[user]._id,
+            url: 'https://larpxiaozhushou.tk/api/app/' + res.data[user]._id,
             data: {
               vote: -1
             },
@@ -646,33 +647,16 @@ Page({
     var content = ''
     var cast
     console.log(options)
-    if (options.usernickname){
-      wx.request({
-        url: 'https://larpxiaozhushou.tk/api/user?usernickname=' + options.usernickname,
-        success: function (res) {
-          that.setData({
-            acquiredclue: res.data[0].acquiredclue,
-            broadcast: res.data[0].broadcast,
-            vote: res.data[0].vote,
-            actionpoint: res.data[0].actionpoint,
-            gameid: res.data[0].gameid,
-            tableid: res.data[0].tableid,
-            user_id: res.data[0]._id,
-            characterid: res.data[0].characterid
-          })
-          wx.request({
-            url: 'https://larpxiaozhushou.tk/api/table?tableid=' + res.data[0].tableid,
-            success: function (res) {
-              that.setData({
-                table_id: res.data[0]._id
-              })
-            },
-          });
-        },
-      });
-    }else{
-    try{
-      this.setData({
+    if(options.firsttime==0){
+      that.setData({
+        currenttutorial: 0        
+      })
+    }
+    var ispaused=false
+    function getsession(){
+      ispaused = true
+      try{
+      that.setData({
       tableid: wx.getStorageSync('tableid'),
       gameid: wx.getStorageSync('gameid'),
       characterid: wx.getStorageSync('characterid'),
@@ -685,9 +669,17 @@ Page({
         url: '../index/index',
       })
     }
+      ispaused = false
     }
+    function waitForIt() {
+      getsession()
+      if (ispaused) {
+        console.log("waiting")
+        setTimeout(function () { waitForIt() }, 100);
+      } else {
+
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
+      url: 'https://larpxiaozhushou.tk/api/app/' + that.data.table_id,
       success: function (res) {
         if (res.statusCode == 404 && that.data.table_id){
           wx.showModal({
@@ -696,12 +688,12 @@ Page({
             showCancel: false,
             complete: function(res) {
               wx.request({
-                url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+                url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid,
                 success: function (res) {
                   console.log(res.data)
                   for (user in res.data) {
                     wx.request({
-                      url: 'https://larpxiaozhushou.tk/api/user/' + res.data[user]._id,
+                      url: 'https://larpxiaozhushou.tk/api/app/' + res.data[user]._id,
                       method: 'DELETE',
                       success: function () {
                         console.log("deleted")
@@ -743,7 +735,7 @@ Page({
       }
     });
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+      url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
       success: function (res) {
         that.setData({
           acquiredclue: res.data.acquiredclue,
@@ -754,7 +746,7 @@ Page({
       },
     });
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/character?gameid=' + that.data.gameid + '&characterid=' + that.data.characterid,
+      url: 'https://larpxiaozhushou.tk/api/app?type=character&gameid=' + that.data.gameid + '&characterid=' + that.data.characterid,
       success: function (res) {
         that.setData({
           characterinfo: res.data[0],
@@ -763,7 +755,7 @@ Page({
       },
     });
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/game?id=' + that.data.gameid,
+      url: 'https://larpxiaozhushou.tk/api/app?type=game&id=' + that.data.gameid,
       success: function (res) {
         that.setData({
           gameinfo: res.data[0],
@@ -773,7 +765,7 @@ Page({
       },
       complete: function () {
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+          url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid,
           success: function (res) {
             console.log(res.data)
             that.setData({
@@ -793,19 +785,19 @@ Page({
     wx.onSocketOpen(function (res) {
       console.log('WebSocket is on.')
       wx.sendSocketMessage({
-        data: JSON.stringify({table_id: that.data.table_id,message:'refresh'})
+        data: JSON.stringify({table_id: that.data.table_id,message:'join'})
       })
     })
     wx.onSocketMessage(function (res) {
       var recieved = JSON.parse(res.data)
       if (recieved.table_id == that.data.table_id) {
         console.log(recieved)
-        if (recieved.message == "refresh") {
+        if (recieved.message == "refresh" || recieved.message == "join") {
           wx.showToast({ title: '信息更新', icon: 'loading', duration: 1000 });
           var content = ''
           var cast
           wx.request({
-            url: 'https://larpxiaozhushou.tk/api/table/' + that.data.table_id,
+            url: 'https://larpxiaozhushou.tk/api/app/' + that.data.table_id,
             success: function (res) {
               that.setData({
                 roundnumber: res.data.roundnumber,
@@ -814,7 +806,7 @@ Page({
             },
           })
           wx.request({
-            url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+            url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid,
             success: function (res) {
               console.log(res.data)
               that.setData({
@@ -825,7 +817,7 @@ Page({
         }else if (recieved.message == "setactionpoint") {
           wx.showToast({ title: '刷新行动点', icon: 'loading', duration: 1000 });
           wx.request({
-            url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+            url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
             success: function (res) {
               console.log(res.data)
               that.setData({
@@ -837,7 +829,7 @@ Page({
           if (recieved.user_id == that.data.user_id){
             wx.showToast({ title: '收到线索', icon: 'loading', duration: 1000 });
             wx.request({
-              url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+              url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
               success: function (res) {
                 console.log(res.data)
                 that.setData({
@@ -849,7 +841,7 @@ Page({
         } else if (recieved.message == "revote") {
             wx.showToast({ title: '重新投票', icon: 'loading', duration: 1000 });
             wx.request({
-              url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+              url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
               success: function (res) {
                 console.log(res.data)
                 that.setData({
@@ -865,13 +857,14 @@ Page({
         url: '../index/index'
       })
     })
-
+      }}
+      waitForIt()
   },
   onHide: function () {
     let that = this
     console.log(this.data.user_id)
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user/' + that.data.user_id,
+      url: 'https://larpxiaozhushou.tk/api/app/' + that.data.user_id,
       data: {
         acquiredclue: that.data.acquiredclue,
         broadcast: that.data.broadcast,

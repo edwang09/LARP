@@ -39,23 +39,23 @@ Page({
     var that=this
     var user
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/table?tableid=' + that.data.tableid,
+      url: 'https://larpxiaozhushou.tk/api/app?type=table&tableid=' + that.data.tableid,
       success: function (res) {
         if(res.data.length!=0){
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/table/' + res.data[0]._id,
+          url: 'https://larpxiaozhushou.tk/api/app/' + res.data[0]._id,
           method:'DELETE',
         })
         }
       }
     })
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/user?tableid=' + that.data.tableid,
+      url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid,
       success: function (res) {
         console.log(res.data)
         for(user in res.data){
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/user/' + res.data[user]._id,
+          url: 'https://larpxiaozhushou.tk/api/app/' + res.data[user]._id,
           method: 'DELETE',
           success: function () {
             console.log("deleted")
@@ -87,7 +87,7 @@ Page({
 
       console.log("enter created room")
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/table?tableid=' + options.tableid,
+        url: 'https://larpxiaozhushou.tk/api/app?type=table&tableid=' + options.tableid,
         success: function (res) {
           console.log(res.data)
           if(res.data.length!=0){
@@ -98,7 +98,7 @@ Page({
             gameid: res.data[0].gameid
           })
           wx.request({
-            url: 'https://larpxiaozhushou.tk/api/character?gameid=' + that.data.gameid,
+            url: 'https://larpxiaozhushou.tk/api/app?type=character&gameid=' + that.data.gameid,
             success: function (res) {
               console.log(res.data)
               that.setData({
@@ -115,7 +115,7 @@ Page({
         gameid: options.gameid,
       })
       wx.request({
-      url: 'https://larpxiaozhushou.tk/api/game?id=' + options.gameid,
+        url: 'https://larpxiaozhushou.tk/api/app?type=game&id=' + options.gameid,
       success: function (res) {
         console.log(res)
         that.setData({
@@ -128,8 +128,9 @@ Page({
         //console.log(wx.getStorageSync('createtableid').length)
 
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/table/',
+          url: 'https://larpxiaozhushou.tk/api/app/',
           data: {
+            type: "table",
             hostid: app.globalData.userInfo.nickName,
             tableid: that.data.tableid,
             gamename: that.data.gamename,
@@ -147,7 +148,7 @@ Page({
               data: that.data.tableid
             });
             wx.request({
-              url: 'https://larpxiaozhushou.tk/api/character?gameid=' + that.data.gameid,
+              url: 'https://larpxiaozhushou.tk/api/app?type=character&gameid=' + that.data.gameid,
               success: function (res) {
                 console.log(res.data)
                 that.setData({

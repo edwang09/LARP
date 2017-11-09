@@ -17,11 +17,11 @@ Page({
       if (tableid && gameid && characterid!=null && user_id && table_id) {
         //wx.showToast({ title: '进入已建房间', icon: 'loading', duration: 2000 });
         wx.navigateTo({
-          url: '../room/room'
+          url: '../room/room?tableid=' + tableid + '&gameid=' + gameid + '&characterid=' + characterid + '&user_id=' + user_id + '&table_id=' + table_id + '&firsttime=1'
         })
       } else {
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/user?usernickname=' + app.globalData.userInfo.nickName,
+          url: 'https://larpxiaozhushou.tk/api/app?type=user&usernickname=' + app.globalData.userInfo.nickName,
           success: function (res) {
             //console.log('../room/room?usernickname=' + res.data[0].usernickname)
             /*if (res.data.length != 0) {
@@ -43,7 +43,7 @@ Page({
   },
   create: function () {
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/table?hostid=' + app.globalData.userInfo.nickName,
+          url: 'https://larpxiaozhushou.tk/api/app?type=table&hostid=' + app.globalData.userInfo.nickName,
           success:function(res){
             console.log(res.data)
             if(res.data.length!=0){
