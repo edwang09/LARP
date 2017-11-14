@@ -1,0 +1,47 @@
+<!--index.wxml-->
+
+<view class="page">
+<block wx:if="{{direct}}">
+    <view class="title">直接进入房间</view>
+</block>
+
+<block wx:if="{{!hasgame&&!direct}}">
+    <view class="title">请输入房间号码:</view>
+      <input class="inputView" bindinput="roomidInput" type="text" value="{{tableid}}"/>
+
+
+    <view class="title">请输入房间密码:</view>
+      <input class="inputView" bindinput="passwordInput" password type="number" value="{{tablepw}}"/>
+  
+    <button class="inputView" bindtap="enterroom" type="primary" style="background-color:orange;"> 进入房间 </button>
+</block>
+  <block wx:if="{{hasgame&&!direct}}">
+    <view class="section">
+  
+      <view class="flex-row" style="display:flex;">
+        <view class="title">房间名称：</view>
+        <view class="title" style="color:orange;">{{tableid}}</view>
+      </view>
+      <view class="flex-row" style="display:flex;">
+        <view class="title">游戏名称：</view>
+        <view class="title" style="color:orange;">{{gamename}}</view>
+      </view>
+      <view class="flex-row" style="display:flex;">
+        <view class="title">游戏简介：</view>
+        <view class="title" style="color:orange;">{{description}}</view>
+      </view>
+      <picker bindchange="bindPickerChange" value="{{characterid}}" range="{{characterlist}}" range-key="name">
+        <view class="picker">
+          请选择角色：{{charactername}}
+        </view>
+      </picker>
+    </view>
+
+
+    <view class="section">
+      <input class="inputView" value="{{characterpasscode}}" bindchange="passcodeChange" password type="text" placeholder="请输入角色码"placeholder-class="ph"/>
+    </view>
+
+    <button class="inputView" bindtap="choosecharacter" type="primary" style="background-color:orange;"> 确认角色 </button>
+  </block>
+</view>

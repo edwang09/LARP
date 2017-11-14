@@ -1,4 +1,5 @@
 const app = getApp()
+var larp = require('../../utils/util.js')
 Page({
 
   /**
@@ -21,12 +22,12 @@ Page({
     try{
           wx.showToast({ title: '读取房间', icon: 'loading', duration: 2000 });
           wx.request({
-            url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid + '&characterid=' + that.data.characterid,
+            url: larp.backendurl + '?type=user&tableid=' + that.data.tableid + '&characterid=' + that.data.characterid,
             success: function (res) {
               console.log(res.data.length);
               if (res.data.length == 0) {
                 wx.request({
-                  url: 'https://larpxiaozhushou.tk/api/app',
+                  url: larp.backendurl,
                   data: {
                     type: "user",
                     tableid: that.data.tableid,
@@ -100,7 +101,7 @@ Page({
             }
           });
     } catch (e) {
-      wx.showToast({ title: '发生错误', icon: 'loading', duration: 2000 });
+      wx.showToast({ title: '稍等一下', icon: 'loading', duration: 1000 });
     }
 
   },
@@ -109,12 +110,13 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    wx.hideShareMenu({})
     if(options.type=='table'){
       this.setData({
         displaytype: options.type
       })
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/app?type=character&gameid=' + options.gameid,
+        url: larp.backendurl + '?type=character&gameid=' + options.gameid,
         success: function (res) {
           that.setData({
             characterlist: res.data,
@@ -123,7 +125,7 @@ Page({
         }
       })
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/app?type=game&id=' + options.gameid,
+        url: larp.backendurl + '?type=game&id=' + options.gameid,
         success: function (res) {
           that.setData({
             gameinfo: res.data[0],
@@ -139,7 +141,7 @@ Page({
       })
       console.log(options.id)
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/app?type=character&gameid=' + options.gameid + '&characterid=' + options.id,
+        url: larp.backendurl + '?type=character&gameid=' + options.gameid + '&characterid=' + options.id,
         success: function (res) {
           that.setData({
             character: res.data[0],
@@ -149,7 +151,7 @@ Page({
       })
       console.log(options.gameid)
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/app?type=game&id=' + options.gameid,
+        url: larp.backendurl + '?type=game&id=' + options.gameid,
         success: function (res) {
           that.setData({
             gamename: res.data[0].name,
@@ -159,11 +161,9 @@ Page({
       })
       console.log(options.tableid)
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/app?type=table&tableid=' + options.tableid,
+        url: larp.backendurl + '?type=table&tableid=' + options.tableid,
         success: function (res) {
           that.setData({
-            tableid: res.data[0].tableid,
-            tablepw: res.data[0].passcode,
             table_id: res.data[0]._id
           })
         }

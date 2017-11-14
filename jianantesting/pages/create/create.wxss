@@ -18,7 +18,7 @@
 .btn {   
   border-radius: 0;
   text-align: center;
-  width: 50%;
+  width: 100%;
 }
 .page {
   height: 100%;

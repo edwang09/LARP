@@ -1,15 +1,11 @@
 // pages/create/create.js
 const app = getApp()
-function makepw() {
-  return Math.floor(Math.random() * (10000));
-};
-function makeid() {
+var larp = require('../../utils/util.js')
+function makerd() {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (var i = 0; i < 5; i++)
+  for (var i = 0; i < 10; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
-
   return text;
 };
 Page({
@@ -22,87 +18,73 @@ Page({
     tableid:'',
     tablepw:'',
     gamedescription:'',
-    characterlist:[],
-    cluestatus:[]
-  },
-
-  goBack: function () {
-  /**
-   * 待完善
-   */
-    wx.navigateBack({
-      delta: 2
-    })
+    characterlist:[]
   },
 
   deleteroom: function (e) {
+    wx.showLoading({
+      title: '正在删除房间',
+    })
     var that=this
     var user
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/app?type=table&tableid=' + that.data.tableid,
+      url: larp.backendurl + '?type=table&tableid=' + that.data.tableid,
       success: function (res) {
         if(res.data.length!=0){
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/app/' + res.data[0]._id,
+          url: larp.backendurl + '/' + res.data[0]._id,
           method:'DELETE',
+          complete: function(){
+            console.log('deleted')
+            wx.reLaunch({
+              url: '../shop/shop'
+            })
+            wx.hideLoading()
+          }
         })
         }
       }
     })
     wx.request({
-      url: 'https://larpxiaozhushou.tk/api/app?type=user&tableid=' + that.data.tableid,
+      url: larp.backendurl + '?type=user&tableid=' + that.data.tableid,
       success: function (res) {
         console.log(res.data)
         for(user in res.data){
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/app/' + res.data[user]._id,
+          url: larp.backendurl + '/' + res.data[user]._id,
           method: 'DELETE',
           success: function () {
-            console.log("deleted")
           },
-          
         })
         }
       },
+    })
+  },
 
-    })
-    wx.removeStorage({
-      key: 'createtableid',
-      success: function (res) {
-        console.log("storage removed")
-      }
-    })
-    console.log('deleted')
-    wx.reLaunch({
-      url: '../index/index'
-    })
-    },
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '正在加载信息',
+    })
     wx.hideShareMenu()
     let that = this
     if(options.tableid){
-
       console.log("enter created room")
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/app?type=table&tableid=' + options.tableid,
+        url: larp.backendurl + '?type=table&tableid=' + options.tableid,
         success: function (res) {
           console.log(res.data)
           if(res.data.length!=0){
           that.setData({
             gamename: res.data[0].gamename,
             tableid: res.data[0].tableid,
-            tablepw: res.data[0].passcode,
             gameid: res.data[0].gameid
           })
           wx.request({
-            url: 'https://larpxiaozhushou.tk/api/app?type=character&gameid=' + that.data.gameid,
+            url: larp.backendurl + '?type=game&id=' + that.data.gameid,
             success: function (res) {
-              console.log(res.data)
+              wx.hideLoading()
               that.setData({
-                characterlist: res.data
+                characterlist: res.data[0].characterlist
               })
             }
           })
@@ -114,108 +96,37 @@ Page({
       this.setData({
         gameid: options.gameid,
       })
+      var tableid=makerd()
       wx.request({
-        url: 'https://larpxiaozhushou.tk/api/app?type=game&id=' + options.gameid,
-      success: function (res) {
-        console.log(res)
-        that.setData({
-          gamename:res.data[0].name,
-          cluestatus: res.data[0].cluestatus,
-          tableid: makeid(),
-          tablepw: makepw(),
-          gameid: options.gameid
+        url: larp.backendurl + '?type=game&id=' + options.gameid,
+        success: function (res) {
+          that.setData({
+            characterlist: res.data[0].characterlist,
+            gamename: res.data[0].name,
+            tableid: tableid
         })
-        //console.log(wx.getStorageSync('createtableid').length)
-
         wx.request({
-          url: 'https://larpxiaozhushou.tk/api/app/',
+          url: larp.backendurl + '/',
           data: {
             type: "table",
             hostid: app.globalData.userInfo.nickName,
-            tableid: that.data.tableid,
-            gamename: that.data.gamename,
-            gameid: that.data.gameid,
-            passcode: that.data.tablepw,
+            tableid: tableid,
+            gamename: res.data[0].name,
+            gameid: options.gameid,
             vote: [],
             roundnumber: 0,
-            cluestatus: that.data.cluestatus
+            cluestatus: res.data[0].cluestatus
           },
           method: "POST",
           success: function (res) {
-            console.log("succeeded")
-            wx.setStorage({
-              key: "createtableid",
-              data: that.data.tableid
-            });
-            wx.request({
-              url: 'https://larpxiaozhushou.tk/api/app?type=character&gameid=' + that.data.gameid,
-              success: function (res) {
-                console.log(res.data)
-                that.setData({
-                  characterlist: res.data
-                })
-              }
-            })
+            wx.hideLoading()
           },
         });
-        
       },
     });
-
-
     }
-
-
-
-
-
-
-
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
+  /*
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
@@ -228,24 +139,12 @@ Page({
       title: '游戏及人介绍',
       imageUrl: '/icon/detect_shop.png',
       path: 'pages/distribute/distribute?tableid=' + that.data.tableid + '&gameid=' + that.data.gameid + '&type=table',
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
     }}else{
       // 来自页面内转发按钮
       return {
-        title: '人物码: ' + that.data.characterlist[res.target.id].charactername,
+        title: '人物码: ' + that.data.characterlist[res.target.id].name,
       imageUrl: '/icon/detect_shop.png',
-      path: 'pages/distribute/distribute?id=' + res.target.id + '&tableid=' + that.data.tableid + '&gameid=' + that.data.gameid + '&type=character',
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
+      path: 'pages/distribute/distribute?id=' + res.target.id + '&tableid=' + that.data.tableid + '&gameid=' + that.data.gameid + '&type=character'
     }
   }
 }

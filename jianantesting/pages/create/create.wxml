@@ -6,7 +6,7 @@
       <view class="weui-article__section">
         <view class="weui-article__h3">
           <button class="ppl" size="mini" open-type="share" id="info">游戏简介</button>
-          <view class="h3">⇧ ⇧ ⇧ 请将游戏简介发到群里以便所有玩家挑选角色 ⇧ ⇧ ⇧</view>
+          <view class="h3">⇧ ⇧ 请将游戏简介发到群里以便所有玩家挑选角色 ⇧ ⇧</view>
         </view>
         <view class="weui-article__p">
           <view>游戏注意事项：</view>
@@ -18,20 +18,19 @@
         </view>
         <view class="weui-article__title">************************************</view>
         <view class="weui-article__h3">人物介绍</view>
-        <view class="h3">⇩ ⇩ ⇩ 点击人物名称转发人物码至玩家 ⇩ ⇩ ⇩</view>
+        <view class="h3">⇩ ⇩ 点击人物名称转发人物码至玩家 ⇩ ⇩</view>
         <block wx:for="{{characterlist}}" wx:for-item="item">
           <view class="weui-article__h3">
-            <button class="ppl" size="mini" open-type="share" id="{{item.characterid}}">{{item.charactername}}</button>
+            <button class="ppl" size="mini" open-type="share" id="{{item.id}}">{{item.name}}</button>
           </view>
           <view class="weui-article__p">
-            {{item.characterdescription}}
+            {{item.description}}
           </view>
         </block>
       </view>
     </view>
   </view>
   <view class="flex">
-    <button class="btn" type="primary" bindtap="goBack" style="background-color:orange;">回到主页</button>
     <button class="btn" type="primary" bindtap="deleteroom">删除房间</button>
   </view>
 </view>

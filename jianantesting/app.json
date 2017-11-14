@@ -1,13 +1,7 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/join/join",
-    "pages/info/info",
-    "pages/room/room",
-    "pages/intro/intro",
-    "pages/wccode/wccode",
     "pages/shop/shop",
+    "pages/room/room",
     "pages/create/create",
     "pages/distribute/distribute"
   ],
