@@ -1,8 +1,21 @@
-.page {
-  min-height: 100%;
+.page1 {
+  max-height: 60%;
   flex: 1;
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   overflow: hidden;
+}
+
+.page {
+  height: 420rpx;
+  flex: 1;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.logo {
+  position: fixed;
+  top: 0;
+
 }
 
 .page_swiper {
@@ -11,7 +24,7 @@
 .form {
   display: flex;
   flex-direction: row;
-  border-top: 0.1rpx double #ededed;
+  border-bottom: 0.1rpx double #ededed;
   justify-content: space-between;
   align-items: center;
   
@@ -54,6 +67,7 @@
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 20px;
+  border-bottom: 0.1rpx double #ededed;
 }
 
 .tab-item {
