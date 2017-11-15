@@ -12,7 +12,7 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-var backendurl ='https://larpxiaozhushou.tk/api/app'
+var backendurl ='https://USBACKENDWJN704.larpxiaozhushou.tk/api/app'
 var socketsend=function(that,message){
   wx.sendSocketMessage({
     data: JSON.stringify({
