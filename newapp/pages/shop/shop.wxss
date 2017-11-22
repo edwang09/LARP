@@ -1,0 +1,122 @@
+.page1 {
+  max-height: 60%;
+  flex: 1;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.page {
+  height: 420rpx;
+  flex: 1;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.logo {
+  position: fixed;
+  top: 0;
+
+}
+
+.page_swiper {
+  padding-bottom: 20px;
+}
+.form {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 0.1rpx double #ededed;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.game {
+  display: flex;
+  flex-direction: row;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+    align-items: center;
+  
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24rpx;
+  margin-bottom: 24rpx;
+  align-items: flex-start;
+}
+.Dbtn {
+  margin-right: 25rpx;
+}
+.swiper-item {
+  display: block;
+  border-radius: 10rpx;
+  height: 150px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.flex1 {
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  border-bottom: 0.1rpx double #ededed;
+}
+
+.tab-item {
+  width: 33.3%;
+  font-size: 22rpx;
+  text-align: center;
+  color: grey;
+}
+
+.pic {
+  display: flex;
+  border-radius: 6rpx;
+  margin: 28rpx 28rpx 28rpx 8rpx;
+}
+
+.h1 {
+  font-size: 32rpx;
+  font-weight: 400;
+  margin-bottom: 8rpx;
+}
+
+.h2 {
+  font-size: 26rpx;
+  font-weight: 300;
+  margin-bottom: 5rpx;
+  color: #808080
+}
+.h3 {
+  font-weight: 200;
+  font-size: 23rpx;
+  color: #c9c9c9;
+}
+
+.bc_green {
+  background-color: #09bb07;
+}
+
+.bc_red {
+  background-color: #f76260;
+}
+
+.bc_blue {
+  background-color: #10aeff;
+}
+
+.bc_yellow {
+  background-color: #ffbe00;
+}
+
+.bc_gray {
+  background-color: #c9c9c9;
+}

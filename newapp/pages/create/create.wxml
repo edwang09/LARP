@@ -1,0 +1,36 @@
+<view class="page">
+
+  <view class="page__bd">
+    <view class="weui-article">
+      <view class="weui-article__h1">{{gamename}}({{tableid}})</view>
+      <view class="weui-article__section">
+        <view class="weui-article__h3">
+          <button class="ppl" size="mini" open-type="share" id="info">游戏简介</button>
+          <view class="h3">⇧ ⇧ 请将游戏简介发到群里以便所有玩家挑选角色 ⇧ ⇧</view>
+        </view>
+        <view class="weui-article__p">
+          <view>游戏注意事项：</view>
+          <view>1. 一局游戏仅需一位玩家创建房间，并发送给其他人进入房间的链接（人物码）。</view>
+          <view>2. 房间创建者必须参与游戏，并负责控制游戏进程（游戏内控制）。</view>
+          <view>3. 请通过链接进入游戏房间。</view>
+          <view>4. 重复创建房间会删除之前创建的房间。</view>
+          <view>5. 请不要随意清除本地缓存。</view>
+        </view>
+        <view class="weui-article__title">************************************</view>
+        <view class="weui-article__h3">人物介绍</view>
+        <view class="h3">⇩ ⇩ 点击人物名称转发人物码至玩家 ⇩ ⇩</view>
+        <block wx:for="{{characterlist}}" wx:for-item="item">
+          <view class="weui-article__h3">
+            <button class="ppl" size="mini" open-type="share" id="{{item.id}}">{{item.name}}</button>
+          </view>
+          <view class="weui-article__p">
+            {{item.description}}
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="flex">
+    <button class="btn" type="primary" bindtap="deleteroom">删除房间</button>
+  </view>
+</view>

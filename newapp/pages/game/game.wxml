@@ -1,0 +1,47 @@
+<view class="page">
+
+  <view class="page__bd">
+    <view class="weui-article">
+      <view class="form" style="position: fixed; top: 0; border-bottom: 0.1rpx double #ededed;">
+        <view class="game">
+          <view class="pic bc_green" style="width: 150rpx; height: 150rpx;"></view>
+          <view class="info">
+            <view class="h1">
+              风乍起
+            </view>
+            <view class="h2">
+              Yummy酱
+            </view>
+          </view>
+          <view class="Dbtn">
+            <button size="mini" style="background: orange;" bindtap="introduction" id="{{item.id}}">创建</button>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-article__section">
+        <view class="head">游戏简介</view>
+        <view class="article">
+          今天是富公馆主人、富氏集团老板富不仁与方玉卿小姐的结婚典礼，下午5点开始是婚礼答谢宴。晚7点本安排的是新人共舞，却发现新郎官迟迟未出现。方玉卿派李妈妈去找富不仁，这时富不仁被发现死在书房中。 
+        </view>
+        <view class="article">
+          富不仁斜倒在躺椅上，胸口、肩部有明显刀伤，血迹浸染了他整个下半身；书架歪斜，书散落一地，书桌上的也一片混乱；并无明显搏斗痕迹。
+        </view>
+        <view class="head">游戏特色</view>
+        <view class="article">
+          圆桌话题、分组讨论、小任务、封闭式LARP
+        </view>
+        <view class="head">人物介绍</view>
+        <block wx:for="{{characterlist}}" wx:for-item="item">
+          <view class="article" style="font-weight: 300;">
+            {{item.charactername}}
+          </view>
+          <view class="article">
+            {{item.characterdescription}}
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+</view>

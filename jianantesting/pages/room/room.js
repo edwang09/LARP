@@ -5,7 +5,7 @@ var larp = require('../../utils/util.js')
 Page({
   data: {
     updatetab: [false, false, false, false, false, false],
-    tutorial: ["https://larpxiaozhushou.tk/pic/tutorial0", "https://larpxiaozhushou.tk/pic/tutorial1", "https://larpxiaozhushou.tk/pic/tutorial2", "https://larpxiaozhushou.tk/pic/tutorial3", "https://larpxiaozhushou.tk/pic/tutorial4", "https://larpxiaozhushou.tk/pic/tutorial5"],
+    tutorial: ["https://usbackendwjn704.larpxiaozhushou.tk/pic/tutorial0", "https://usbackendwjn704.larpxiaozhushou.tk/pic/tutorial1", "https://usbackendwjn704.larpxiaozhushou.tk/pic/tutorial2", "https://usbackendwjn704.larpxiaozhushou.tk/pic/tutorial3", "https://usbackendwjn704.larpxiaozhushou.tk/pic/tutorial4", "https://usbackendwjn704.larpxiaozhushou.tk/pic/tutorial5"],
     currenttutorial: -1,
     animationData: {},
     user_id: '',
@@ -622,7 +622,7 @@ Page({
       characterid: wx.getStorageSync('characterid'),
       user_id: wx.getStorageSync('user_id'),
       table_id: wx.getStorageSync('table_id'),
-      usernickname: app.globalData.userInfo.nickName
+      usernickname: app.globalData.unionid
     })
     }catch(e){
       wx.reLaunch({
@@ -641,6 +641,7 @@ Page({
     wx.request({
       url: larp.backendurl + '/' + that.data.table_id,
       success: function (res) {
+        console.log(res.satusCode)
         if (res.statusCode == 404 && that.data.table_id){
           wx.showModal({
             title: '房间不存在',
@@ -721,7 +722,7 @@ Page({
 
 
     wx.connectSocket({
-      url: 'wss://larpxiaozhushou.tk',
+      url: 'wss://USBACKENDWJN704.larpxiaozhushou.tk',
     })
     wx.onSocketOpen(function (res) {
       console.log('WebSocket is on.')
@@ -729,8 +730,9 @@ Page({
     })
     wx.onSocketMessage(function (res) {
       var recieved = JSON.parse(res.data)
+      console.log(recieved)
       if (recieved.table_id == that.data.table_id) {
-        console.log(recieved)
+        
         if (recieved.message == "refresh" || recieved.message == "join") {
           wx.showToast({ title: '信息更新', icon: 'loading', duration: 1000 });
           var content = ''

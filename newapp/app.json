@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/shop/shop",
+    "pages/room/room",
+    "pages/create/create",
+    "pages/distribute/distribute"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "LARP小助手",
+    "navigationBarTextStyle":"black"
+  }
+}

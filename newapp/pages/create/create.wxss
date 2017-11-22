@@ -1,0 +1,26 @@
+.ppl{
+    position: left;
+    padding-left: 10px;
+}
+.h3 {
+  font-weight: 200;
+  font-size: 33rpx;
+  margin-bottom: 0.1em;
+  color: red;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+.btn {   
+  border-radius: 0;
+  text-align: center;
+  width: 100%;
+}
+.page {
+  height: 100%;
+  width: 100%
+}

@@ -1,0 +1,14 @@
+@import "/pages/shop/shop.wxss";
+
+.head{
+  font-size: 28rpx; 
+  margin-bottom:.34em;
+  font-weight: 400; 
+  padding-top: 30rpx;
+}
+.article{
+  font-size: 25rpx; 
+  margin-bottom:.34em;
+  font-weight: 200; 
+  padding-top: 10rpx;
+}
