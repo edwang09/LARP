@@ -11,6 +11,12 @@ page, .page {
   overflow: hidden;
 }
 
+.fresh {
+  position: fixed;
+  top: 10rpx;
+  right: 10rpx;
+}
+
 .article {
   padding: 10rpx;
   font-size: 32rpx;
